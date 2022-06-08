@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route,Routes} from "react-router-dom";
+import Home from './pages/Home/Home';
 
 
 function App() {
@@ -7,8 +8,7 @@ function App() {
     <div className="App">
      <Router>
        <Routes>
-         <Route element={"here"} path="/" ></Route>
-         <Route element={"here"} path="/khobaocao"></Route>
+         <Route element={<Home/>} path="/" ></Route>
        </Routes>
      </Router>
     </div>
