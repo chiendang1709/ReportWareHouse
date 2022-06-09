@@ -1,0 +1,47 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    list-style-type: none;
+    text-decoration: none;
+    color: black;
+}
+html{
+    scroll-behavior : smooth;
+    margin: auto;
+}
+body{
+    margin: 0px;
+    background: #ecf0f5;
+}
+.container{
+    padding: 0 16px;
+    margin:0 auto;
+    width:100%;
+}
+/*container*/
+@media  screen and (min-width: 440px) {
+    .container{
+        width: 400px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .container{
+        width: 720px;
+    }
+}
+
+
+@media screen and (min-width: 992px) {
+    .container{
+        width: 960px;
+    }
+}
+@media screen and (min-width: 1200px) {
+    .container{
+        width: 1000px;
+    }
+
+}

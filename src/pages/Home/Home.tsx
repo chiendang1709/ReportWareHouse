@@ -1,10 +1,11 @@
 import React from 'react'
 import Navbar from './components/Navbar'
 import Banner from './components/Banner'
+import './scss/home.scss'
 
 const Home = () => {
   return (
-    <div>Home
+    <div>
         <Navbar></Navbar>
         <Banner></Banner>
     </div>
