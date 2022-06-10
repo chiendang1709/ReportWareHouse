@@ -5,10 +5,14 @@ const Navbar = () => {
     <nav className='navbar'>
           <ul>
             <li className='navbar__item'>
-                <a href="/" className="navbar__link"> Home </a>
+                <a href="/" className="navbar__link">
+                    <p className='navbar__text'>Home</p> 
+                </a>
             </li>
             <li className='navbar__item'>
-            <a href="/report" className="navbar__link"> Report </a>
+            <a href="/report" className="navbar__link"> 
+                    <p className='navbar__text'>Report</p> 
+             </a>
             </li>
           </ul>
     </nav>
