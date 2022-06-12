@@ -1,6 +1,8 @@
+
 import React from 'react'
 import logo from '../../../assets/images/logo.png'
 import icon__cate from '../assets/cate__icon.png'
+import MenuItem from './MenuItem'
 const Sidebar = () => {
   return (
     <div className='sidebar'>
@@ -19,13 +21,16 @@ const Sidebar = () => {
              </div>
               {/* chứa thế loại */}
              <div className="sidebar__content">
-                 <div className="content__type">
+                 {/* <div className="content__type">
                      <div className="content__table">
                          <div className="content__fied"></div>
                      </div>
-                 </div>
+                 </div> */}
 
-             </div>
+                    <ul className="content__type">
+                              <MenuItem/>
+                     </ul>
+            </div>
     </div>
   )
 }

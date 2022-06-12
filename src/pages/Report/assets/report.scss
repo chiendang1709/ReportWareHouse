@@ -3,7 +3,9 @@
     position: fixed;
     width: 20%;
     height: 100%;
-
+    border-right:  2px solid #4B545C;
+    box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
+    0 4px 6px -2px rgba(71, 63, 79, 0.16);
     .sidebar__header{  
         border-bottom: 2px solid #4B545C;
         padding: 10px;
@@ -16,14 +18,9 @@
             margin: auto;
                img{
                    width: 100%;
-                   height: 100%;
+                   height: 100%;                
                    
-                   
-         }
-
-        
-            
-   
+         } 
         }  
         .sidebar__title{
             display: flex;
@@ -44,8 +41,96 @@
            
         }
     } 
+    .sidebar__content{
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
+                .content__type{
+                    width: 100%;
+                        .content__item{
+                             text-align: center;
+                             width: 100%;
+                             margin: auto;
+                             position: relative;
+                             height: auto;
+
+                              .content__btn{                         
+                                border: none;
+                                background-color: transparent;
+                                cursor: pointer;
+                                width: 100%;
+                                font-size:1.5vw;
+                                color:white;
+                                padding: 1.5vw;
+                                text-transform: capitalize;
+                              }
+                              .content__table{
+                                display: none;
+                                        li{
+                                            padding: auto;
+                                        
+                                                .submenu__btn{
+                                                    top:0;
+                                                    left: 0;
+                                                    transform: none;
+                                                    border-bottom: 2px solid #4B545C;
+                                                    text-transform: capitalize;
+                                                }
+                                    
+                                                .content__field{
+                                                    display: none;
+                                                    border-bottom: 2px solid #4B545C;
+                                                    li{
+                                                        color:white;
+                                                        font-size:1.5vw;
+                                                        margin:1vw;
+                                                        text-transform: capitalize;
+                                                        border-bottom:none;
+                                                    }
+
+                                                }    
+                                                .show{
+                                                    display:block;
+                        
+                                                }
+                    
+                                        
+                                        }
+                                                               
+                            }
+                            .show{
+                                display:block;
+    
+                            }
+
+                            .content__submenu{
+                                background-color: #343A40;
+                                left: 100%;
+                                position:absolute;
+                                width: 100%;
+                                top: -1px;
+                                border:  2px solid #4B545C;
+                                border-radius:2%;                      
+                                box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
+                                0 4px 6px -2px rgba(71, 63, 79, 0.16);
+                                        li{
+                                            padding: 0px    ;
+                                        }
+                            }
+
+                        
+    
+    
+
+                        }                  
+                }    
+        
+    }
+
+
 }
 
 .height--small{
     height: 5vw;
 }
+

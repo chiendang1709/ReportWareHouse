@@ -1,0 +1,1 @@
+còn bị trùng state không biết tại sao, bấm drop cái kia nó drop cái  bảng khác lun .
