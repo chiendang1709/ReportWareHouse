@@ -19,6 +19,7 @@ const es = [
 ]
 const MenuItems = (props:{list:listTable}) => {
   const [dropright, setDropright] = useState(false);
+  const [t, seta] = useState(false);
   let ref = React.useRef<HTMLLIElement>(null)
   // const dispatch = useAppDispatch()
   // const listCategory = useAppSelector(state => state.category)
@@ -30,34 +31,28 @@ const MenuItems = (props:{list:listTable}) => {
       }
     };
     document.addEventListener("mousedown", handler );
-    document.addEventListener("touchstart", handler );
     return () => {
       // Cleanup the event listener
       document.removeEventListener("mousedown", handler );
-      document.removeEventListener("touchstart", handler );
     };
   }, [dropright]);
-
-  const onMouseEnter = () => {
-    window.innerWidth > 200 && setDropright(true);
-  };
-
-  const onMouseLeave = () => {
-    window.innerWidth > 200 && setDropright(false);
-  };
+  const handl =()=> {
+    setDropright((prev) => !prev)
+    // seta((t)=>false)
+  }
   // useEffect(() => {
   //   dispatch(getCategory())
   // }, [listCategory]);
   const categorys = () => (
     
-      <li key={props.list.id} className='content__item' ref={ref}  onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-            <button className='content__btn' aria-expanded={dropright ? "true" : "false"}
-              onClick={()=> setDropright((prev) => !prev)}>
+      <li key={props.list.id} className='content__item' ref={ref} >
+            <button className={`content__btn ${dropright ? "active" : " "} `} aria-expanded={dropright ? "true" : "false"}
+              onClick={()=> {handl }}>
               {props.list.name}
             </button>
           <ul className={`content__table content__submenu ${dropright ? "show" : " "}`}>
            {es.map((da,index)=>(
-              <Table key={props.list.id} name={da.name}  listTable ={"heloe"}  /> 
+              <Table key={props.list.id} active={t}  name={da.name}  listTable ={"heloe"}  /> 
            ))} 
            </ul>
       </li>

@@ -3,7 +3,7 @@
      position: fixed;
     width: 15%;
     height: 100%;
-    border-right:  2px solid #4B545C;
+    border-right:  1px solid #4B545C;
     box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
     0 4px 6px -2px rgba(71, 63, 79, 0.16);
     .sidebar__header{  
@@ -14,7 +14,7 @@
 
         .sidebar__logo{
             width: 10vw;
-            height: 6vw;
+            height: 5.5vw;
             margin: auto;
                img{
                    width: 100%;
@@ -45,6 +45,7 @@
         display: flex;
         align-items: center;
         margin: 0 auto;
+        
                 .content__type{
                     width: 100%;
 
@@ -52,7 +53,6 @@
 
                              width: 100%;
                              margin: auto;
-                             position: relative;
                              height: auto;
 
                               .content__btn{     
@@ -62,42 +62,45 @@
                                 cursor: pointer;
                                 width: 100%;
                                 font-size:1vw;
+                                font-weight: 600;
                                 color:white;
                                 padding: 1.5vw; 
-                                margin-right: 10px;
                                 text-transform: capitalize;
                                     &:hover {
                                     background-color: #6C757D;
-                                    border-radius: 2px;
                                         
                                 }
 
                               }
                               .content__table{
                                 display: none;
-                                overflow-y: scroll;
-                                &::-webkit-scrollbar{
-                                    display: none;
-                                }
-                                
+            
+                                                            
                                         li{
                                             padding: auto;
                                                 .submenu__btn{
                                                     text-align: center;
+                                                    font-weight:600;
                                                     top:0;
                                                     left: 0;
                                                     transform: none;
-                                                    border-bottom: 2px solid #4B545C;
+                                                    border-top: 1px solid #4B545C;
+                                                    border-bottom: 1px solid #4B545C;
                                                     text-transform: capitalize;
+                                                    &:hover {
+                                                        background-color: orangered;
+                                                        color: black;
+                                                            
+                                                    }
                                                 }
                                                 .content__field{
                                                     display: none;
-                                                    border-bottom: 2px solid #4B545C;
+                                                   
                                                     li{
                                                         text-align: center;
                                                         color:white;
                                                         font-size:1.0vw;
-                                                        margin:1vw;
+                                                        margin: 1.5vw;
                                                         text-transform: capitalize;
                                                         border-bottom:none;
                                                     }
@@ -115,9 +118,10 @@
                                 left: 100%;
                                 position:absolute;
                                 width: 100%;
-                                top: -1px;
-                                border:  2px solid #4B545C;
-                                border-radius:2%;                      
+                                top: 24%;
+                                border-right:  1px solid #4B545C;
+                                border-left:  1px solid #4B545C;
+                     
                                 box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
                                 0 4px 6px -2px rgba(71, 63, 79, 0.16);
                                         li{
@@ -138,8 +142,17 @@
 }
 
 .show{
-    display: block !important;;
+    display: block !important;
 
+}
+
+.active{
+  background-color: #6C757D !important;
+}
+
+.table__active{
+    background-color: orangered !important;
+    color: black !important;
 }
 .height--small{
     height: 5vw;
