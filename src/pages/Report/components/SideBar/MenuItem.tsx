@@ -28,6 +28,8 @@ const MenuItems = (props:{list:listTable}) => {
     const handler = (event: TouchEvent | MouseEvent) => {
       if (dropright && ref.current && !ref.current.contains(event.target as HTMLLIElement)){
         setDropright(false);
+        seta(false)
+
       }
     };
     document.addEventListener("mousedown", handler );
@@ -36,10 +38,7 @@ const MenuItems = (props:{list:listTable}) => {
       document.removeEventListener("mousedown", handler );
     };
   }, [dropright]);
-  const handl =()=> {
-    setDropright((prev) => !prev)
-    // seta((t)=>false)
-  }
+  
   // useEffect(() => {
   //   dispatch(getCategory())
   // }, [listCategory]);
@@ -47,7 +46,7 @@ const MenuItems = (props:{list:listTable}) => {
     
       <li key={props.list.id} className='content__item' ref={ref} >
             <button className={`content__btn ${dropright ? "active" : " "} `} aria-expanded={dropright ? "true" : "false"}
-              onClick={()=> {handl }}>
+              onClick={()=> { setDropright((prev) => !prev)} }>
               {props.list.name}
             </button>
           <ul className={`content__table content__submenu ${dropright ? "show" : " "}`}>

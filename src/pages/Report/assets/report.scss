@@ -45,16 +45,16 @@
         display: flex;
         align-items: center;
         margin: 0 auto;
-        
+        position: relative;
                 .content__type{
                     width: 100%;
-
+                   
                         .content__item{
-
+                            //  display: inline-block;
                              width: 100%;
                              margin: auto;
                              height: auto;
-
+                            
                               .content__btn{     
                                 text-align: left;                    
                                 border: none;
@@ -74,8 +74,8 @@
                               }
                               .content__table{
                                 display: none;
-            
-                                                            
+                                animation: LTR ease 0.5s;  
+                                                                       
                                         li{
                                             padding: auto;
                                                 .submenu__btn{
@@ -88,14 +88,14 @@
                                                     border-bottom: 1px solid #4B545C;
                                                     text-transform: capitalize;
                                                     &:hover {
-                                                        background-color: orangered;
+                                                        background-color: rgb(245, 85, 27);
                                                         color: black;
                                                             
                                                     }
                                                 }
                                                 .content__field{
                                                     display: none;
-                                                   
+                                                    animation: TTB ease 0.5s;  
                                                     li{
                                                         text-align: center;
                                                         color:white;
@@ -118,10 +118,10 @@
                                 left: 100%;
                                 position:absolute;
                                 width: 100%;
-                                top: 24%;
+                                top: 0;
                                 border-right:  1px solid #4B545C;
                                 border-left:  1px solid #4B545C;
-                     
+
                                 box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
                                 0 4px 6px -2px rgba(71, 63, 79, 0.16);
                                         li{
@@ -151,7 +151,7 @@
 }
 
 .table__active{
-    background-color: orangered !important;
+    background-color: rgb(245, 85, 27) !important;
     color: black !important;
 }
 .height--small{
@@ -186,3 +186,26 @@
       
     }
 }
+
+@keyframes LTR {
+    from {
+      opacity: 0;
+      transform: translateX(-5px);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes TTB {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
