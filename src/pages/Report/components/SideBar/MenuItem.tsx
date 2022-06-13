@@ -11,11 +11,11 @@ import index from 'utils'
   
 const es = [
   {id:1,
-  name: "doanh hu"},
+  name: "doanh thuat"},
   {id:2,
     name: "nhan su"},
   {id:3,
-    name: "ky hua"}
+    name: "ky thuat"}
 ]
 const MenuItems = (props:{list:listTable}) => {
   const [dropright, setDropright] = useState(false);
@@ -23,18 +23,34 @@ const MenuItems = (props:{list:listTable}) => {
   // const dispatch = useAppDispatch()
   // const listCategory = useAppSelector(state => state.category)
   // console.log("data", listCategory)
-  // const onMouseEnter = () => {
-  //   window.innerWidth > 200 && setDropright(true);
-  // };
-  // const onMouseLeave = () => {
-  //   window.innerWidth > 200 && setDropright(false);
-  // };
+  useEffect(() => {
+    const handler = (event: TouchEvent | MouseEvent) => {
+      if (dropright && ref.current && !ref.current.contains(event.target as HTMLLIElement)){
+        setDropright(false);
+      }
+    };
+    document.addEventListener("mousedown", handler );
+    document.addEventListener("touchstart", handler );
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", handler );
+      document.removeEventListener("touchstart", handler );
+    };
+  }, [dropright]);
+
+  const onMouseEnter = () => {
+    window.innerWidth > 200 && setDropright(true);
+  };
+
+  const onMouseLeave = () => {
+    window.innerWidth > 200 && setDropright(false);
+  };
   // useEffect(() => {
   //   dispatch(getCategory())
   // }, [listCategory]);
   const categorys = () => (
-   
-      <li key={props.list.id} className='content__item' ref={ref} >
+    
+      <li key={props.list.id} className='content__item' ref={ref}  onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
             <button className='content__btn' aria-expanded={dropright ? "true" : "false"}
               onClick={()=> setDropright((prev) => !prev)}>
               {props.list.name}
@@ -49,12 +65,9 @@ const MenuItems = (props:{list:listTable}) => {
   );
   console.log("cate",props.list)
   return (
-    <div>
-     
+      <React.Fragment>
         {categorys()} 
-    
-
-   </div>
+      </React.Fragment>
    
     
   )
