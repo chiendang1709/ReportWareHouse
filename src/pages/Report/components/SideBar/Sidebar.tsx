@@ -1,7 +1,7 @@
 
 import React from 'react'
-import logo from '../../../assets/images/logo.png'
-import icon__cate from '../assets/cate__icon.png'
+import logo from 'assets/images/logo.png'
+import icon__cate from 'assets/images/cate__icon.png'
 import MenuItem from './MenuItem'
 const Sidebar = () => {
   return (

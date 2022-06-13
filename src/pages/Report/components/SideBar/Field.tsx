@@ -1,6 +1,7 @@
 import React from 'react'
 
-const Field = (props :{id:number,submenu: Boolean}) => {
+const Field = (props :{key:number,submenu: Boolean, listField: any}) => {
+
   return (
     <ul className={`content__field .content__submenu ${props.submenu ? "show" : " "}`}>
        <li>

@@ -1,9 +1,9 @@
-import axiosClient from "../services/axiosClient";
+import axiosClient from "services/axiosClient";
 
-const dataApi =  {
- getAll: (params : number)=> {
-        const url = '/data';
-        return axiosClient.get(url, {params});
+const dataApi ={
+ getAll: async(params ?: number)=> {
+        const url ="/todos/";
+        return await axiosClient.get(url);
  }
 }
 

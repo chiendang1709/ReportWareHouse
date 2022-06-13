@@ -1,9 +1,14 @@
-import React from 'react'
+import { makeStyles } from '@mui/styles';
 
-const styleMui = () => {
-  return (
-    <div>styleMui</div>
-  )
-}
+ export const styleMui = makeStyles((theme) => ({
+    tableMui: {
+      color:'black',
+      cursor: 'pointer',
+      border: '1px solid grey',
+      fontSize: '12px',
+      
+    },
+  }));
+ 
 
-export default styleMui
+ 
