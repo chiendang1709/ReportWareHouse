@@ -3,7 +3,51 @@ import React from 'react'
 import logo from 'assets/images/logo.png'
 import icon__cate from 'assets/images/cate__icon.png'
 import MenuItem from './MenuItem'
+import { doesNotMatch } from 'assert'
 const Sidebar = () => {
+    
+  const Category = [
+    {
+      id:1,
+      title: "kinh doanh",
+      table:[
+                {
+                id: 1,
+                title:"Doanh thu"
+                },
+                {
+                    id: 2,
+                title:"Tài chính"
+                }
+            ]    
+    },
+    {
+      id:2,
+      title: "kỹ thuật", 
+    table: [
+                {
+                id: 1,
+                title:"vật liệu"
+                }
+            ]    
+    },
+
+    {
+        id:3,
+        title: "Nhân sự",
+        table:[
+                {
+                    id: 1,
+                    title:"nhân viên"
+                    },
+                 {
+                    id: 2,
+                    title:"lương"
+                    }
+         ]     
+    }
+  ]
+    
   return (
     <div className='sidebar'>
 
@@ -21,14 +65,11 @@ const Sidebar = () => {
              </div>
               {/* chứa thế loại */}
              <div className="sidebar__content">
-                 {/* <div className="content__type">
-                     <div className="content__table">
-                         <div className="content__fied"></div>
-                     </div>
-                 </div> */}
 
                     <ul className="content__type">
-                              <MenuItem/>
+                        { Category.map((category) =>
+                              <MenuItem key={category.id} id={category.id} title={category.title} table={category.table}/>
+                        )}
                      </ul>
             </div>
     </div>

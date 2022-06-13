@@ -1,0 +1,72 @@
+
+.navbar{
+    width: 100%;
+    padding: 50px 50px;
+    position: absolute;
+        ul{
+            display: flex;
+            .navbar__item{
+                margin: 20px;
+                .navbar__link{
+                    .navbar__text{
+                    font-size: 1.5rem;
+                    color: white;
+                    text-transform: uppercase;
+                    position: relative;
+                    overflow:hidden;
+                    cursor:pointer;
+                    width: 100%;
+
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        width: 100%;
+                        border-bottom: 2px solid orangered;
+                        bottom: 0;
+                        left: -100%;
+                        transition-delay: all 0.5s;
+                        transition: all 0.5s;
+                        z-index: -1;
+                    }
+                    &:hover{
+                        &:after{
+                            left: 100%;
+                            z-index: 1;
+                            
+                        }
+    
+
+                    }
+                }
+             }
+            }
+        }
+}
+
+.banner{
+    // ../../../ là do phải lấy ở thư mục assets chạy local thì nhận, nhưng up lên host ko nhận//
+    // background-image: url('../../../assets/images/background.jpg')
+    background-size: 100% 100%;
+    background-position: center;
+    height: 100vh;
+      .banner__content{
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%,-50%);
+          height: 400px;
+          width: 400px;
+          text-align: center;
+             img{
+                width: 100%;
+                height: auto;
+             }
+
+             h1{
+                 background-color: orangered;
+                border-radius: 20px;
+                padding: 16px;
+                box-shadow: 10px 10px 14px 1px ;
+             }
+      }
+}

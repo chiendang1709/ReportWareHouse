@@ -1,0 +1,42 @@
+@import url('');
+.navbar{
+    width: 100%;
+    padding: 50px 50px;
+    position: absolute;
+        ul{
+            display: flex;
+            .navbar__item{
+                margin: 20px;
+                .navbar__link{
+                    font-size: 2rem;
+                    color: white    ;
+
+                }
+            }
+        }
+}
+
+.banner{
+    background-size: 100% 100%;
+    background-position: center;
+    height: 100vh;
+      .banner__content{
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%,-50%);
+          height: 400px;
+          width: 400px;
+          text-align: center;
+             img{
+                width: 100%;
+                height: auto;
+             }
+
+             h1{
+                 background-color: orangered;
+                border-radius: 20px;
+                padding: 16px
+             }
+      }
+}

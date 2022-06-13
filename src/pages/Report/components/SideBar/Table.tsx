@@ -1,26 +1,27 @@
+import { table } from 'console';
 import React, { useEffect, useRef, useState }  from 'react'
 import Field from './Field'
 
 
 
-const Table = ( props :{dropright: Boolean; listTable: any}) => {
+const Table = ( props :{title:string}) => {
   const [submenu, setSubmenu] = useState(false);
   let ref = React.useRef<HTMLLIElement>(null)
 
-  // useEffect(() => {
-  //   const handler = (event: TouchEvent | MouseEvent) => {
-  //     if (submenu && ref.current && !ref.current.contains(event.target as HTMLLIElement)){
-  //       setSubmenu(false);
-  //     }
-  //   };
-  //   document.addEventListener("mousedown", handler );
-  //   document.addEventListener("touchstart", handler );
-  //   return () => {
-  //     // Cleanup the event listener
-  //     document.removeEventListener("mousedown", handler );
-  //     document.removeEventListener("touchstart", handler );
-  //   };
-  // }, [submenu]);
+  useEffect(() => {
+    const handler = (event: TouchEvent | MouseEvent) => {
+      if (submenu && ref.current && !ref.current.contains(event.target as HTMLLIElement)){
+        setSubmenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handler );
+    document.addEventListener("touchstart", handler );
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", handler );
+      document.removeEventListener("touchstart", handler );
+    };
+  }, [submenu]);
   
   const onMouseEnter = () => {
     window.innerWidth > 960 && setSubmenu(true);
@@ -32,18 +33,16 @@ const Table = ( props :{dropright: Boolean; listTable: any}) => {
   // onMouseLeave={onMouseLeave}
   
 
-  return (
-        <ul className={`content__table content__submenu ${props.dropright ? "show" : " "}`}>
+  return (  
             <li ref={ref} >
                 <button className='content__btn submenu__btn' 
                  type="button" aria-haspopup="menu" aria-expanded={submenu ? "true" : "false"}
-                  onClick={()=> setSubmenu((prev) => !prev)}>
-                    Bảng Doanh thu  
+                  onClick={()=> setSubmenu((prev) => !prev)}>                  
+                    {props.title}
                 </button>
-                <Field  key={1} submenu={submenu} listField={"hello"}/>
+                <Field   submenu={submenu} listField={"hello"}/>
             </li>   
-         
-        </ul>
+    
   )
 }
 
