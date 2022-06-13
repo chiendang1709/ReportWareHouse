@@ -5,3 +5,7 @@ export interface Test {
 export interface Props {
     chartData: number[];
   }
+export interface listTable {
+    id: number,
+    name: string
+   };

@@ -3,7 +3,7 @@ import Field from './Field'
 
 
 
-const Table = ( props :{dropright: Boolean; listTable: any}) => {
+const Table = ( props :{ listTable: any; name:string}) => {
   const [submenu, setSubmenu] = useState(false);
   let ref = React.useRef<HTMLLIElement>(null)
 
@@ -28,22 +28,22 @@ const Table = ( props :{dropright: Boolean; listTable: any}) => {
   const onMouseLeave = () => {
     window.innerWidth > 960 && setSubmenu(false);
   };
-  // onMouseEnter={onMouseEnter}
-  // onMouseLeave={onMouseLeave}
+ 
   
 
   return (
-        <ul className={`content__table content__submenu ${props.dropright ? "show" : " "}`}>
+      
             <li ref={ref} >
                 <button className='content__btn submenu__btn' 
                  type="button" aria-haspopup="menu" aria-expanded={submenu ? "true" : "false"}
                   onClick={()=> setSubmenu((prev) => !prev)}>
-                    Bảng Doanh thu  
+                   {props.name}
                 </button>
-                <Field  key={1} submenu={submenu} listField={"hello"}/>
+                <Field  submenu={submenu} listField={"hello"}/>
             </li>   
+
          
-        </ul>
+       
   )
 }
 

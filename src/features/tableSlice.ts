@@ -1,16 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export interface DataState {
+export interface ListTable {
   listReport: any;
   
 };
-
-const initialState: DataState = {
+const initialState: ListTable = {
   listReport:[],
-
 };
 
-export const dataSlice = createSlice({
+
+export const tableSlice = createSlice({
   name: 'get',
   initialState,
   reducers: {
@@ -24,7 +23,7 @@ export const dataSlice = createSlice({
   
 });
 
-export const { getList, postList } = dataSlice.actions;
+export const {getList, postList } = tableSlice.actions;
 
 
-export default dataSlice.reducer;
+export default tableSlice.reducer;

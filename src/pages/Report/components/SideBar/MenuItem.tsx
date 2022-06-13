@@ -1,36 +1,58 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 import { useAppDispatch, useAppSelector } from 'app/store/hooks'
-import { getList, postList } from 'features/authSlice'
+import { getList, postList } from 'features/tableSlice'
+import { getCategory, postCategory } from 'features/categorySlice'
 import Table from './Table'
+import { listTable } from 'interfaces/components'
+import index from 'utils'
 
 
-
-const MenuItems = () => {
+  
+const es = [
+  {id:1,
+  name: "doanh hu"},
+  {id:2,
+    name: "nhan su"},
+  {id:3,
+    name: "ky hua"}
+]
+const MenuItems = (props:{list:listTable}) => {
   const [dropright, setDropright] = useState(false);
   let ref = React.useRef<HTMLLIElement>(null)
-  const dispatch = useAppDispatch()
-  const listReport = useAppSelector(state => state.data)
-  console.log("data", listReport)
-  const onMouseEnter = () => {
-    window.innerWidth > 200 && setDropright(true);
-  };
-
-  const onMouseLeave = () => {
-    window.innerWidth > 200 && setDropright(false);
-  };
-
-  return (
-    <div>
-    <ul>
-       <li className='content__item' ref={ref} onClick={()=>dispatch(getList())}  >
+  // const dispatch = useAppDispatch()
+  // const listCategory = useAppSelector(state => state.category)
+  // console.log("data", listCategory)
+  // const onMouseEnter = () => {
+  //   window.innerWidth > 200 && setDropright(true);
+  // };
+  // const onMouseLeave = () => {
+  //   window.innerWidth > 200 && setDropright(false);
+  // };
+  // useEffect(() => {
+  //   dispatch(getCategory())
+  // }, [listCategory]);
+  const categorys = () => (
+   
+      <li key={props.list.id} className='content__item' ref={ref} >
             <button className='content__btn' aria-expanded={dropright ? "true" : "false"}
               onClick={()=> setDropright((prev) => !prev)}>
-              Kinh doanh 
+              {props.list.name}
             </button>
-          <Table dropright ={dropright} listTable ={"heloe"}  /> 
-    </li>
-    </ul>
+          <ul className={`content__table content__submenu ${dropright ? "show" : " "}`}>
+           {es.map((da,index)=>(
+              <Table key={props.list.id} name={da.name}  listTable ={"heloe"}  /> 
+           ))} 
+           </ul>
+      </li>
+
+  );
+  console.log("cate",props.list)
+  return (
+    <div>
+     
+        {categorys()} 
+    
 
    </div>
    

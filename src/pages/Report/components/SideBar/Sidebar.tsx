@@ -1,9 +1,26 @@
-
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import logo from 'assets/images/logo.png'
 import icon__cate from 'assets/images/cate__icon.png'
+import { useAppDispatch, useAppSelector } from 'app/store/hooks'
+import { getCategory, postCategory } from 'features/categorySlice'
 import MenuItem from './MenuItem'
+import { listTable } from 'interfaces/components'
+
+
+  
 const Sidebar = () => {
+  const dispatch = useAppDispatch()
+  const listCategory = useAppSelector(state => state.category)
+  console.log("data", listCategory)
+  useEffect(() => {
+    dispatch(getCategory())
+  }, []);
+  const categorys = () => {
+    let list = listCategory.listCategory.map((data :listTable, index:number) => (
+             <MenuItem key={index} list={data} />
+    ));
+    return list
+    };
   return (
     <div className='sidebar'>
 
@@ -19,16 +36,10 @@ const Sidebar = () => {
                     <h3>CATEGORY</h3> 
                 </div>
              </div>
-              {/* chứa thế loại */}
              <div className="sidebar__content">
-                 {/* <div className="content__type">
-                     <div className="content__table">
-                         <div className="content__fied"></div>
-                     </div>
-                 </div> */}
 
                     <ul className="content__type">
-                              <MenuItem/>
+                        {categorys()}     
                      </ul>
             </div>
     </div>
