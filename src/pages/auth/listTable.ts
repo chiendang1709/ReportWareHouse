@@ -1,7 +1,7 @@
 import {call, put, takeEvery,all} from "@redux-saga/core/effects"
 
 import { AxiosResponse } from "axios"
-import { getList, postList } from "features/authSlice"
+import { getList, postList } from "features/tableSlice"
 import dataApi from "interfaces/dataApi"
 
 export function * getListTable(){

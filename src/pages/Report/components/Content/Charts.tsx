@@ -10,7 +10,7 @@ const Charts = () => {
     labels: ["January", "February", "March", "April", "May", "June"],
     datasets: [
       {
-       type:types,
+       type: types,
         label: "My First dataset",
         backgroundColor: [
           "rgb(255, 99, 32)",
@@ -33,7 +33,7 @@ const Charts = () => {
   return (
     <div  className='content__chart'>
       <div className='chart'>
-      <Chart  type='bar' data={datas}  />
+      <Chart  type='bar' data={datas} />
       <button onClick={()=> setType("line")}>Line</button>
       <button onClick={()=> setType("bar")}>Bar</button>
       <button onClick={()=> setType("pie")}>Pie</button>

@@ -2,12 +2,16 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import createSagaMiddleware from "@redux-saga/core";
 
 import rootSaga from "./rootSaga";
-import dataSlice from "features/authSlice";
+import tableSlice from "features/tableSlice";
+import categorySlice from "features/categorySlice";
 
 const sagaMiddleware = createSagaMiddleware()
 export const store = configureStore({
   reducer: {
-   data: dataSlice
+  
+   category: categorySlice,
+   table: tableSlice
+   
   },
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware().concat(sagaMiddleware)
