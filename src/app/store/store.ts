@@ -4,13 +4,16 @@ import createSagaMiddleware from "@redux-saga/core";
 import rootSaga from "./rootSaga";
 import tableSlice from "features/tableSlice";
 import categorySlice from "features/categorySlice";
+import changeChart from "features/changeChart";
 
 const sagaMiddleware = createSagaMiddleware()
 export const store = configureStore({
   reducer: {
   
    category: categorySlice,
-   table: tableSlice
+   table: tableSlice,
+   typeChart: changeChart
+   
   },
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware().concat(sagaMiddleware)

@@ -88,7 +88,7 @@
                                                     border-bottom: 1px solid #4B545C;
                                                     text-transform: capitalize;
                                                     &:hover {
-                                                        background-color: rgb(245, 85, 27);
+                                                        background-color: #F2A03D;
                                                         color: black;
                                                             
                                                     }
@@ -151,7 +151,7 @@
 }
 
 .table__active{
-    background-color: rgb(245, 85, 27) !important;
+    background-color: #F27405!important;
     color: black !important;
 }
 .height--small{
@@ -161,6 +161,8 @@
 .main__content {
     background-color: #e5e6e9;
     position: fixed;
+    display: flex;
+    flex-direction: column;
     left: 15%;
     width: 85%;
     height: 100%;
@@ -168,9 +170,10 @@
     .content__chart {
         position: relative;
         height: 60%;
-        padding: 10%;
+        padding:5%;
+        margin: 15px 0;
         .chart{
-            width:65%;
+            width:60%;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -179,9 +182,15 @@
     }
     .content__table {
         height: 40%;
-        padding: 20px;
+       
+        margin: 5px 0;
        .table {
-        height: 100%;
+        position: relative;
+        padding:5px 10%;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+       
        }
       
     }

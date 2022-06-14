@@ -5,12 +5,12 @@ import { getList, postList } from "features/tableSlice"
 import { getCategory, postCategory } from "features/categorySlice"
 import dataApi from "interfaces/dataApi"
 
-export function * getListTable(){
-    const res: AxiosResponse = yield call(dataApi.getAll)
-    if(res){
-        yield put(postList(res))
-    }
-}
+// export function * getListTable(){
+//     const res: AxiosResponse = yield call(dataApi.getAll)
+//     if(res){
+//         yield put(postList(res))
+//     }
+// }
 export function * getListCategory(){
     const res: AxiosResponse = yield call(dataApi.getCategory)
     if(res){
@@ -18,5 +18,6 @@ export function * getListCategory(){
     }
 }
 export default function * list (){
-    yield all([takeEvery(getList.type, getListTable), takeEvery(getCategory.type,getListCategory)])
+    // takeEvery(getList.type, getListTable)
+    yield all([takeEvery(getCategory.type,getListCategory)])
 }

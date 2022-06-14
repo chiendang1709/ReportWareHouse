@@ -1,8 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 
+export interface ListData {
+  id: number;
+  name:string
+  
+};
 export interface ListCategory {
-  listCategory: any;
+  listCategory: Array<ListData>;
   
 };
 const initialState: ListCategory = {

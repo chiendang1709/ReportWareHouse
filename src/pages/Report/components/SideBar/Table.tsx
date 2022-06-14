@@ -3,7 +3,7 @@ import Field from './Field'
 
 
 
-const Table = ( props :{ listTable: any; name:string; active:boolean}) => {  
+const Table = ( props :{ listTable: any; name:string; }) => {  
  
   const [submenu, setSubmenu] = useState(false);
   // useEffect(()=>{

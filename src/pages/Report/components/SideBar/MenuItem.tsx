@@ -19,16 +19,12 @@ const es = [
 ]
 const MenuItems = (props:{list:listTable}) => {
   const [dropright, setDropright] = useState(false);
-  const [t, seta] = useState(false);
+ 
   let ref = React.useRef<HTMLLIElement>(null)
-  // const dispatch = useAppDispatch()
-  // const listCategory = useAppSelector(state => state.category)
-  // console.log("data", listCategory)
   useEffect(() => {
     const handler = (event: TouchEvent | MouseEvent) => {
       if (dropright && ref.current && !ref.current.contains(event.target as HTMLLIElement)){
         setDropright(false);
-        seta(false)
 
       }
     };
@@ -51,7 +47,7 @@ const MenuItems = (props:{list:listTable}) => {
             </button>
           <ul className={`content__table content__submenu ${dropright ? "show" : " "}`}>
            {es.map((da,index)=>(
-              <Table key={props.list.id} active={t}  name={da.name}  listTable ={"heloe"}  /> 
+              <Table key={props.list.id}  name={da.name}  listTable ={"heloe"}  /> 
            ))} 
            </ul>
       </li>
