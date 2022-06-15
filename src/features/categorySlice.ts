@@ -1,10 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 
-<<<<<<< HEAD
-export interface ListCategory {
-  listCategory: any;
-=======
 export interface ListData {
   id: number;
   name:string
@@ -12,7 +8,6 @@ export interface ListData {
 };
 export interface ListCategory {
   listCategory: Array<ListData>;
->>>>>>> 539587522d5e7fe804e07fcb74485550f3496122
   
 };
 const initialState: ListCategory = {

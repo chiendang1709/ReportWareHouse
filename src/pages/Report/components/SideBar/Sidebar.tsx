@@ -9,11 +9,6 @@ import ChartsType from './ChartsType'
 import { getTypeChart } from 'features/changeChart'
 
 
-  
-
-
-
-  
 const Sidebar = () => {
   const dispatch = useAppDispatch()
   const listCategory = useAppSelector(state => state.category)
@@ -32,7 +27,9 @@ const Sidebar = () => {
 
              <div className="sidebar__header">
                 <div className="sidebar__logo">
-                    <img src={logo} alt="rpwh logo" />
+                 <a href="/">
+                    <img src={logo} title="go home page" alt="rpwh logo" />
+                   </a>
                 </div>            
              </div>
              <div className="sidebar__header" >
@@ -50,9 +47,7 @@ const Sidebar = () => {
                         {categorys()}     
                      </ul>
             </div>
-            <button onClick={()=>dispatch(getTypeChart('bar'))}>Bar</button>
-            <button onClick={()=>dispatch(getTypeChart('pie'))}>Pie</button>
-            <button onClick={()=>dispatch(getTypeChart('line'))}>Line</button>
+
     </div>
   )
 }
