@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 import { useAppDispatch, useAppSelector } from 'app/store/hooks'
-import { getList, postList } from 'features/tableSlice'
 import { getCategory, postCategory } from 'features/categorySlice'
 import Table from './Table'
 import { listTable } from 'interfaces/components'
 import index from 'utils'
+import { tableAction } from 'features/tableSlice'
 
 
   
@@ -19,7 +19,7 @@ const es = [
 ]
 const MenuItems = (props:{list:listTable}) => {
   const [dropright, setDropright] = useState(false);
- 
+  const dispatch = useAppDispatch()
   let ref = React.useRef<HTMLLIElement>(null)
   useEffect(() => {
     const handler = (event: TouchEvent | MouseEvent) => {
@@ -42,7 +42,8 @@ const MenuItems = (props:{list:listTable}) => {
     
       <li key={props.list.id} className='content__item' ref={ref} >
             <button className={`content__btn ${dropright ? "active" : " "} `} aria-expanded={dropright ? "true" : "false"}
-              onClick={()=> { setDropright((prev) => !prev)} }>
+              onClick={()=> { setDropright((prev) => !prev)
+                               dispatch(tableAction.getListTables(props.list.id)) } }>
               {props.list.name}
             </button>
           <ul className={`content__table content__submenu ${dropright ? "show" : " "}`}>

@@ -34,14 +34,14 @@ const TableData = () => {
             
   return (
     <div className='content__table'>
-   <div className='table' style={{ height: 310, width: '100%' }}>
+   <div className='table' >
     <DataGrid 
         rowHeight={29}
         className={classes.root}
         rows={rows}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        // pageSize={5}
+        // rowsPerPageOptions={[5]}
         // checkboxSelection 
         // onSelectionModelChange={(ids) => {
         //     const selectedIDs = new Set(ids);

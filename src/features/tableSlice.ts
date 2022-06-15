@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface ListTable {
-  listReport: any;
+  listReport: any; // sẽ thay đổi
   
 };
 const initialState: ListTable = {
@@ -10,20 +10,20 @@ const initialState: ListTable = {
 
 
 export const tableSlice = createSlice({
-  name: 'get',
+  name: 'ListTable',
   initialState,
   reducers: {
-    getList: () => {
-     console.log("lấy")
+    getListTables: (state, action: PayloadAction<number>) => {
+      console.log('kiem tra',action.payload);
     },
-    postList: (state, action)=> {
-      state.listReport =action.payload;
+    postListTables: (state, action) => {
+      state.listReport= action.payload
     }
   },
   
 });
 
-export const {getList, postList } = tableSlice.actions;
+export const tableAction = tableSlice.actions;
 
 
 export default tableSlice.reducer;

@@ -2,7 +2,7 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import createSagaMiddleware from "@redux-saga/core";
 
 import rootSaga from "./rootSaga";
-import tableSlice from "features/tableSlice";
+import tableReducer from "features/tableSlice";
 import categorySlice from "features/categorySlice";
 import changeChart from "features/changeChart";
 
@@ -11,7 +11,7 @@ export const store = configureStore({
   reducer: {
   
    category: categorySlice,
-   table: tableSlice,
+   table: tableReducer,
    typeChart: changeChart
    
   },
