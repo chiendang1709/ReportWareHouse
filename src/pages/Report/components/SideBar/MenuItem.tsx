@@ -25,7 +25,6 @@ const MenuItems = (props:{list:listTable}) => {
     const handler = (event: TouchEvent | MouseEvent) => {
       if (dropright && ref.current && !ref.current.contains(event.target as HTMLLIElement)){
         setDropright(false);
-
       }
     };
     document.addEventListener("mousedown", handler );
