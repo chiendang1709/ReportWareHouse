@@ -6,10 +6,15 @@ import { getCategory, postCategory } from 'features/categorySlice'
 import MenuItem from './MenuItem'
 import { listTable } from 'interfaces/components'
 import ChartsType from './ChartsType'
+import { getTypeChart } from 'features/changeChart'
 
 
   
-const Sidebar = ()  => {
+
+
+
+  
+const Sidebar = () => {
   const dispatch = useAppDispatch()
   const listCategory = useAppSelector(state => state.category)
   console.log("data", listCategory)
@@ -41,11 +46,13 @@ const Sidebar = ()  => {
                 </div>
              </div>
              <div className="sidebar__content">
-
                     <ul className="content__type">
                         {categorys()}     
                      </ul>
             </div>
+            <button onClick={()=>dispatch(getTypeChart('bar'))}>Bar</button>
+            <button onClick={()=>dispatch(getTypeChart('pie'))}>Pie</button>
+            <button onClick={()=>dispatch(getTypeChart('line'))}>Line</button>
     </div>
   )
 }

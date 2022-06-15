@@ -1,16 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+
+import { useAppDispatch, useAppSelector } from 'app/store/hooks';
 
 import { Chart as ChartJS, registerables } from "chart.js";
 import { Chart } from 'react-chartjs-2';
 import {ChartType} from 'chart.js';
+
 ChartJS.register(...registerables);
 const Charts = () => {
   const [types, setType] = useState<ChartType>('bar');
+  const typeCharts = useAppSelector(state => state.typeChart)
+  
+  useEffect(()=> setType(typeCharts.typeChart),[typeCharts])
+
   const datas = {
     labels: ["January", "February", "March", "April", "May", "June"],
     datasets: [
-      {
-       type: types,
+      { 
+       type:types,
         label: "My First dataset",
         backgroundColor: [
           "rgb(255, 99, 32)",
@@ -33,10 +40,7 @@ const Charts = () => {
   return (
     <div  className='content__chart'>
       <div className='chart'>
-      <Chart  type='bar' data={datas} />
-      <button onClick={()=> setType("line")}>Line</button>
-      <button onClick={()=> setType("bar")}>Bar</button>
-      <button onClick={()=> setType("pie")}>Pie</button>
+         <Chart  type='bar' data={datas}  />
       </div>
      
     </div>

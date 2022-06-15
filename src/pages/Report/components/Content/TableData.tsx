@@ -1,5 +1,6 @@
 import React from 'react'
-import { DataGrid, GridColDef, GridToolbarExport,GridToolbarContainer } from '@mui/x-data-grid';
+
+import { DataGrid, GridColDef, GridToolbarExport,GridToolbarContainer,GridToolbar } from '@mui/x-data-grid';
 
 import { styleMui } from 'components/common/styleMui';
 
@@ -9,7 +10,7 @@ const TableData = () => {
         { field: 'userId', headerName: 'UserId', width: 100 },
         { field: 'id', headerName: 'id', width: 100 },
         { field: 'title', headerName: 'Title', width: 130 },
-      
+        { field: 'date', headerName: 'Date', width: 130 },
       ];
   function CustomToolbar() {
           return (
@@ -19,10 +20,10 @@ const TableData = () => {
           );
         }
  const rows = [
-       { userId: 1,id:1, title: 'Snow'},
-       { userId: 2,id:2, title: 'Lannister' },
-       { userId: 3,id:3, title: 'Lannister'},
-       { userId: 4,id:4, title: 'Stark' },
+       { userId: 1,id:1, title: 'Snow', date:'hello'},
+       { userId: 2,id:2, title: 'Lannister',date:'hello' },
+       { userId: 3,id:3, title: 'Lannister',date:'hello'},
+       { userId: 4,id:4, title: 'Stark',date:'hello' },
        { userId: 5,id:5, title: 'Targaryen' },
        { userId: 6,id:6, title: 'Melisandre' },
        { userId: 7,id:7, title: 'Clifford' },
@@ -33,9 +34,10 @@ const TableData = () => {
             
   return (
     <div className='content__table'>
-   <div className='table'>
+   <div className='table' style={{ height: 310, width: '100%' }}>
     <DataGrid 
-        className={classes.tableMui}
+        rowHeight={29}
+        className={classes.root}
         rows={rows}
         columns={columns}
         pageSize={5}
@@ -48,7 +50,7 @@ const TableData = () => {
         //     );
         //     console.log(selectedRowData);
         //   }}
-          components={{ Toolbar: CustomToolbar }}
+          components={{ Toolbar: GridToolbar }}
       /> 
       </div>
      </div>
