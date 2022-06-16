@@ -1,8 +1,8 @@
 import {call, put, takeEvery,all} from "@redux-saga/core/effects"
 
 import { AxiosResponse } from "axios"
-import { getCategory, postCategory } from "features/categorySlice"
-import dataApi from "interfaces/dataApi"
+import { getCategory, postCategory } from "pages/Report/categorySlice"
+import dataApi from "pages/Report/api/ReportApi"
 
 // export function * getListTable(){
 //     const res: AxiosResponse = yield call(dataApi.getAll)

@@ -94,6 +94,9 @@
                                 text-transform: capitalize;
                                     &:hover {
                                     background-color: #6C757D;
+                                    svg{
+                                        color: white;
+                                    }
                                         
                                 }
 
@@ -145,8 +148,8 @@
                                 position:absolute;
                                 width: 100%;
                                 overflow-y: scroll;
-                                max-height: 300px;
-                                top: 0;
+                                max-height: 450px;
+                                top: 0px;
                                 border-right:  1px solid #4B545C;
                                 border-left:  1px solid #4B545C;
                                 box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
@@ -158,6 +161,7 @@
                                             opacity: 1;
                                             width: 2px;
                                             color: #343A40;
+                                            height: 2px;
                                         }
                             }
 
@@ -169,7 +173,12 @@
                 }    
         
     }
-
+    .sidebar__footer{
+        border-top: 2px solid #4B545C;
+        padding:1vw;
+        width: 100%;
+        position: relative;
+    }
 
 }
 

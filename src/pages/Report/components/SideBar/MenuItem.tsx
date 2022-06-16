@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 import { useAppDispatch, useAppSelector } from 'app/store/hooks'
-import { getList, postList } from 'features/tableSlice'
-import { getCategory, postCategory } from 'features/categorySlice'
+import { getList, postList } from 'pages/Report/tableSlice'
+import { getCategory, postCategory } from 'pages/Report/categorySlice'
 import Table from './Table'
 import { listTable } from 'interfaces/components'
 import index from 'utils'
-
+import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 
   
 const es = [
@@ -43,6 +43,7 @@ const MenuItems = (props:{list:listTable}) => {
             <button className={`content__btn ${dropright ? "active" : " "} `} aria-expanded={dropright ? "true" : "false"}
               onClick={()=> { setDropright((prev) => !prev)} }>
               {props.list.name}
+              {/* <DoubleArrowIcon></DoubleArrowIcon> */}
             </button>
           <ul className={`content__table content__submenu ${dropright ? "show" : " "}`}>
            {es.map((da,index)=>(

@@ -2,11 +2,12 @@ import React, { useEffect, useRef, useState } from 'react'
 import logo from 'assets/images/logo.png'
 import icon__cate from 'assets/images/cate__icon.png'
 import { useAppDispatch, useAppSelector } from 'app/store/hooks'
-import { getCategory, postCategory } from 'features/categorySlice'
+import { getCategory, postCategory } from 'pages/Report/categorySlice'
 import MenuItem from './MenuItem'
 import { listTable } from 'interfaces/components'
 import ChartsType from './ChartsType'
-import { getTypeChart } from 'features/changeChart'
+import { getTypeChart } from 'pages/Report/changeChart'
+
 
 
 const Sidebar = () => {
@@ -47,6 +48,10 @@ const Sidebar = () => {
                         {categorys()}     
                      </ul>
             </div>
+            {/* <div className="sidebar__footer" >
+                  <button>Apply</button>
+             </div> */}
+
 
     </div>
   )

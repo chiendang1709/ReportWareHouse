@@ -1,6 +1,6 @@
 import { useAppDispatch } from 'app/store/hooks'
 
-import { getTypeChart } from 'features/changeChart'
+import { getTypeChart } from 'pages/Report/changeChart'
 import React, { useState } from 'react'
 
 
@@ -24,13 +24,21 @@ import pie2 from 'assets/images/pie__icon__2.png'
      return (
         <div className='sidebar__chart'>
          
-             <button onMouseEnter={()=>setIconBar(bar2)} onMouseLeave={()=>setIconBar(bar)} onClick={()=>dispatch(getTypeChart('bar'))}>
-                     <img src={iconbar} title="choose bar chart"  alt="bar" />
+             <button onMouseEnter={()=>setIconBar(bar2)} 
+                        onMouseLeave={()=>setIconBar(bar)} 
+                        onClick={()=>dispatch(getTypeChart('bar'))}>
+                        <img src={iconbar} title="choose bar chart"  alt="bar" />
              </button>
-            <button onMouseEnter={()=>setIconPie(pie2)}  onMouseLeave={()=>setIconPie(pie)} onClick={()=>dispatch(getTypeChart('pie'))}>
+             <button 
+                        onMouseEnter={()=>setIconPie(pie2)}  
+                        onMouseLeave={()=>setIconPie(pie)} 
+                        onClick={()=>dispatch(getTypeChart('pie'))}>
                     <img   src={iconpie} title="choose pie chart" alt="pie" />        
             </button>
-            <button onMouseEnter={()=>setIconLine(line2)}  onMouseLeave={()=>setIconLine(line)} onClick={()=>dispatch(getTypeChart('line'))}>
+            <button 
+                        onMouseEnter={()=>setIconLine(line2)}  
+                        onMouseLeave={()=>setIconLine(line)}                      
+                        onClick={()=>dispatch(getTypeChart('line'))}>
                     <img   src={iconline} title="choose line chart" alt="line" />  
             </button>
         </div>
