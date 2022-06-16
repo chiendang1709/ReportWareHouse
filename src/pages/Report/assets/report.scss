@@ -69,16 +69,15 @@
     } 
     .sidebar__content{
         display: flex;
-        align-items: center;
-        margin: 0 auto;
         position: relative;
+        max-height: 1000px;
+        height: 24vw;
                 .content__type{
                     width: 100%;
                    
                         .content__item{
                             //  display: inline-block;
                              width: 100%;
-                             margin: auto;
                              height: auto;
                             
                               .content__btn{     
@@ -177,7 +176,25 @@
         border-top: 2px solid #4B545C;
         padding:1vw;
         width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: relative;
+                button{
+                    width: 10vw;
+                    padding: 1vw;
+                    border:  1px solid transparent;
+                    border-radius:10px;
+                    background-color: rgb(225, 92, 25);
+                    color:black;
+                    font-size: 1.5vw;
+                    font-weight: 600;
+                    cursor: pointer;
+                    &:hover{
+                        background-color: orangered;
+                    }
+
+                }
     }
 
 }

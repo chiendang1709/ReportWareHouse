@@ -48,9 +48,9 @@ const Sidebar = () => {
                         {categorys()}     
                      </ul>
             </div>
-            {/* <div className="sidebar__footer" >
+            <div className="sidebar__footer" >
                   <button>Apply</button>
-             </div> */}
+             </div>
 
 
     </div>
