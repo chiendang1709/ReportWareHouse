@@ -1,8 +1,8 @@
-import {call, put, takeEvery,all} from "@redux-saga/core/effects"
+import {call, put, takeEvery,all,takeLatest} from "@redux-saga/core/effects"
 
 import { AxiosResponse } from "axios"
-import { getList, postList } from "pages/Report/tableSlice"
-import { getCategory, postCategory } from "pages/Report/categorySlice"
+import {categoryAction } from "pages/Report/categorySlice"
+import { tableAction } from "pages/Report/tableSlice"
 import dataApi from "pages/Report/api/ReportApi"
 
 // export function * getListTable(){
@@ -14,10 +14,20 @@ import dataApi from "pages/Report/api/ReportApi"
 export function * getListCategory(){
     const res: AxiosResponse = yield call(dataApi.getCategory)
     if(res){
-        yield put(postCategory(res))
+        yield put(categoryAction.postCategory(res))
     }
 }
-export default function * list (){
-    // takeEvery(getList.type, getListTable)
-    yield all([takeEvery(getCategory.type,getListCategory)])
+export function* getListTable({payload}: {payload: number}){
+
+    console.log('check param saga',payload);
+    const res : AxiosResponse = yield call(dataApi.getListTable, payload)
+    if(res){
+        yield put(tableAction.postListTables(res))
+    }
+}
+
+export default function* list (){
+    
+    yield takeLatest(categoryAction.getCategory.type,getListCategory)
+    yield takeLatest(tableAction.getListTables,getListTable)
 }

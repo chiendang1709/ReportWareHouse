@@ -43,13 +43,18 @@ import { height } from '@mui/system';
       width: '100%',
     },
     '& .MuiDataGrid-footerContainer':{
-      margin : '0 0 5px 0',
-     
+      display: 'none'
+    },
+    '& .MuiToolbar-root MuiToolbar-gutters' :{
+      maxheight: '30px !important',
+      minheight:'30px !important',
     },
     '& .MuiDataGrid-panelWrapper': {
       width:'30px !important'
     }
+    
   },
+  
   }));
  
 
