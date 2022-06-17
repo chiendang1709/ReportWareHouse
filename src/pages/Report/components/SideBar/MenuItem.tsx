@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from 'react'
 
 import { useAppDispatch, useAppSelector } from 'app/store/hooks'
+<<<<<<< HEAD
 import {categoryAction} from 'pages/Report/categorySlice'
 import Table from './Table'
 import { listTable } from 'interfaces/components'
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+=======
+import { getCategory, postCategory } from 'features/categorySlice'
+import Table from './Table'
+import { listTable } from 'interfaces/components'
+import index from 'utils'
+import { tableAction } from 'features/tableSlice'
+
+>>>>>>> f5865cf01a7b40f0b6e25521d3d4e90c2714cc23
 
   
 const es = [
@@ -35,6 +44,10 @@ const es = [
 ]
 const MenuItems = (props:{list:listTable}) => {
   const [dropright, setDropright] = useState(false);
+<<<<<<< HEAD
+=======
+  const dispatch = useAppDispatch()
+>>>>>>> f5865cf01a7b40f0b6e25521d3d4e90c2714cc23
   let ref = React.useRef<HTMLLIElement>(null)
 
   useEffect(() => {
@@ -56,7 +69,8 @@ const MenuItems = (props:{list:listTable}) => {
   const categorys = () => (  
       <li key={props.list.id} className='content__item' ref={ref} >
             <button className={`content__btn ${dropright ? "active" : " "} `} aria-expanded={dropright ? "true" : "false"}
-              onClick={()=> { setDropright((prev) => !prev)} }>
+              onClick={()=> { setDropright((prev) => !prev)
+                               dispatch(tableAction.getListTables(props.list.id)) } }>
               {props.list.name}
               {/* <DoubleArrowIcon></DoubleArrowIcon> */}
             </button>

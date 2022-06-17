@@ -212,18 +212,29 @@
     .content__chart {
         position: relative;
         height: 60%;
+<<<<<<< HEAD
       
         margin-top: 10px;
         .chart{
             width:65%;
+=======
+        padding: 0 20px;
+        margin-top: 10px;
+        .chart{
+            width:60%;
+>>>>>>> f5865cf01a7b40f0b6e25521d3d4e90c2714cc23
             height: 100%;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%,-50%);
             canvas {
+<<<<<<< HEAD
               height: 100% !important;
               object-fit: contain;
+=======
+              height: 90% !important;
+>>>>>>> f5865cf01a7b40f0b6e25521d3d4e90c2714cc23
             }
         }
     }
