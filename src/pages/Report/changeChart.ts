@@ -18,6 +18,7 @@ export const changeChartSlice = createSlice({
       state.typeChart =action.payload;
     },
    
+    
   },
   
 });

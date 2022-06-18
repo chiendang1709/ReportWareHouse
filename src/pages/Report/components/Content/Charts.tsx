@@ -115,7 +115,7 @@ const Charts = () => {
     }).then(canvas => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF();
-      pdf.addImage(imgData, "JPEG",10,10,160,100);
+      pdf.addImage(imgData, "JPEG",10,10,180,100);
       pdf.save(`${new Date().toISOString()}.pdf`);
     });
   };

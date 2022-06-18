@@ -34,11 +34,7 @@ const TableData = () => {
             
   return (
     <div className='content__table'>
-<<<<<<< HEAD
    <div className='table'>
-=======
-   <div className='table' >
->>>>>>> f5865cf01a7b40f0b6e25521d3d4e90c2714cc23
     <DataGrid 
         rowHeight={29}
         className={classes.root}
