@@ -23,7 +23,7 @@ const Sidebar = () => {
   const categorys = () => {
     let list = listCategory.listCategory.map((data :listCategory, index:number) => 
         (
-             <MenuItem key={index} listCategory={data} />
+             <MenuItem key={data.id} listCategory={data} />
          ));
        return list
     };

@@ -7,7 +7,7 @@ import { fieldAction } from 'pages/Report/slice/fieldSlice';
 import { listValueFieldAction } from 'pages/Report/slice/valueField';
 
 
-const Table = ( props :{ listTable: listTable}) => {  
+const Table = ( props :{ listTable: listTable }) => {  
  
   let listNameField: string[]= []
   const dispatch = useAppDispatch()
@@ -18,17 +18,17 @@ const Table = ( props :{ listTable: listTable}) => {
  
   //
   let ref = React.useRef<HTMLLIElement>(null)
-  useEffect(() => {
-    const handler = (event: TouchEvent | MouseEvent) => {
-      if (submenu && ref.current && !ref.current.contains(event.target as HTMLLIElement)){
-        setSubmenu(false);
-      }
-    };
-    document.addEventListener("mousedown", handler );
-    return () => {
-      document.removeEventListener("mousedown", handler );
-    };
-  }, [submenu]);
+    useEffect(() => {
+      const handler = (event: TouchEvent | MouseEvent) => {
+        if (submenu && ref.current && !ref.current.contains(event.target as any)){
+          setSubmenu(false);
+        }
+      };
+      document.addEventListener("mousedown", handler );
+      return () => {
+        document.removeEventListener("mousedown", handler );
+      };
+    }, [submenu]);
   //
   
  //list name Field
@@ -66,20 +66,24 @@ const Table = ( props :{ listTable: listTable}) => {
 
   const listField = () => {
     let list = listNameField.map((data : string, index:number) => (
-         <Field handleClick={handleClick} submenu={submenu}   nameField={data}  />
+         <Field key={index} handleClick={handleClick}   nameField={data}  />
     ));
     return list
     };
 
   return ( 
-            <li ref={ref}>
+            <li  ref={ref}>
                 <button  className={`content__btn submenu__btn ${submenu ? "table__active" : " "} `} 
                  type="button" aria-haspopup="menu" aria-expanded={submenu ? "true" : "false"}
                   onClick={()=> {setSubmenu((prev) =>  !prev); dispatch(fieldAction.getListFields(props.listTable.id))} }>
                    {props.listTable.reports_name}
                 </button>
-                {listField()}
+                <ul className={`content__field .content__submenu ${submenu ? "show" : " "}`}  >
+                   {listField()}
+                </ul>
             </li>  
+
+
         
 
      

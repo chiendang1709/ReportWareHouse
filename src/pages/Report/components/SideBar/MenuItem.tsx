@@ -25,18 +25,22 @@ const MenuItems = (props:{listCategory:listCategory}) => {
     };
   }, [dropright]);
  
+  // key={props.listCategory.id}
   const categorys = () => (  
-      <li key={props.listCategory.id} className='content__item' ref={ref} >
+      <li  className='content__item' ref={ref} >
             <button className={`content__btn ${dropright ? "active" : " "} `} aria-expanded={dropright ? "true" : "false"}
               onClick={()=> { setDropright((prev) => !prev);  dispatch(tableAction.getListTables(props.listCategory.id))} }>
               {props.listCategory.name}
         
             </button>
-            <ul className={`content__table content__submenu ${dropright ? "show" : " "}`}>
+            <ul  className={`content__table content__submenu ${dropright ? "show" : " "}`}>
               { listTable.listTable.map((data: listTable,index:number)=>(
-               <Table key={data.id} listTable={data}   /> 
-          ))}
-            </ul>
+                  data.category == props.listCategory.id ?
+                  (<Table key={data.id}  listTable={data}/>)
+                  : null 
+              ))}
+          </ul>
+            
       </li>
 
   );
@@ -45,8 +49,8 @@ const MenuItems = (props:{listCategory:listCategory}) => {
       <React.Fragment>
         {categorys()} 
       </React.Fragment>
-   
-    
+      
+
   )
 }
 
