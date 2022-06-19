@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from 'react'
 import logo from 'assets/images/logo.png'
 import icon__cate from 'assets/images/cate__icon.png'
 import { useAppDispatch, useAppSelector } from 'app/store/hooks'
-import { categoryAction } from 'pages/Report/categorySlice'
+import { categoryAction } from 'pages/Report/slice/categorySlice'
 import MenuItem from './MenuItem'
 import { listCategory } from 'interfaces/components'
 import ChartsType from './ChartsType'
-import { getTypeChart } from 'pages/Report/changeChart'
-import { apply } from 'pages/Report/applySlice'
+import { getTypeChart } from 'pages/Report/slice/changeChart'
+import { apply } from 'pages/Report/slice/applySlice'
 
 
 

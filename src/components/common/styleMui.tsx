@@ -22,12 +22,13 @@ import { height } from '@mui/system';
       borderRadius: '2px',
       width:'100% !important',
       fontSize: '12px',
+      textTransform: 'capitalize',
       
 
     },
     '&.MuiDataGrid-root .MuiDataGrid-columnHeaders': {
       border: 0,
-      backgroundColor: 'rgba(242,160,61, 0.5)',
+      backgroundColor: '#ff4500',
       maxheight: '30px !important'
     },   
     

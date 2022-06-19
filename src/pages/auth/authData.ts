@@ -1,11 +1,11 @@
 import {call, put, takeEvery,all,takeLatest} from "@redux-saga/core/effects"
 
 import { AxiosResponse } from "axios"
-import {categoryAction } from "pages/Report/categorySlice"
-import { tableAction } from "pages/Report/tableSlice"
+import {categoryAction } from "pages/Report/slice/categorySlice"
+import { tableAction } from "pages/Report/slice/tableSlice"
 import dataApi from "pages/Report/api/ReportApi"
-import { fieldAction } from "pages/Report/fieldSlice"
-import {listValueFieldAction} from "pages/Report/valueField"
+import { fieldAction } from "pages//Report/slice/fieldSlice"
+import {listValueFieldAction} from "pages/Report/slice/valueField"
 import { ListData } from "interfaces/components"
 
 // export function * getListTable(){

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Table from './Table'
 import { useAppDispatch, useAppSelector } from 'app/store/hooks'
 import { listCategory, listTable } from 'interfaces/components'
-import { tableAction } from 'pages/Report/tableSlice'
+import { tableAction } from 'pages/Report/slice/tableSlice'
 import img from 'assets/images/loading_spiner.gif'
   
 

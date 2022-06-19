@@ -3,8 +3,8 @@ import React, { Children, useEffect, useRef, useState }  from 'react'
 import Field from './Field'
 import {useAppSelector,useAppDispatch } from 'app/store/hooks';
 import { listTable } from 'interfaces/components';
-import { fieldAction } from 'pages/Report/fieldSlice';
-import { listValueFieldAction } from 'pages/Report/valueField';
+import { fieldAction } from 'pages/Report/slice/fieldSlice';
+import { listValueFieldAction } from 'pages/Report/slice/valueField';
 
 
 const Table = ( props :{ listTable: listTable}) => {  

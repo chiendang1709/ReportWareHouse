@@ -11,7 +11,10 @@ const Field = (props :{submenu: Boolean, nameField: string, handleClick:any }) =
   return (
     <ul className={`content__field .content__submenu ${props.submenu ? "show" : " "}`}  >
        <li>
-           <label className='nameField'><input  type="checkbox" value={props.nameField} onChange={(e)=>isCheck(e.target.value)} />{props.nameField}</label>
+           <input  type="checkbox" value={props.nameField} onChange={(e)=>isCheck(e.target.value)} />
+           <label className='nameField'>
+            {props.nameField}
+            </label>
        </li>
     </ul>
   )

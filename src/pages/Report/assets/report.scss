@@ -134,16 +134,21 @@
                                                             color:white;                                                        
                                                             margin: 1vw 1.5vw;
                                                             border-bottom:none;
+                                                            display:flex ;
                                                             .nameField {
                                                                 width: 100%;
-                                                                text-align: center;
-                                                                margin: 1vw 1.5vw;
                                                                 height: 100%;
-                                                                input {
-                                                                font-size:1.0vw;
-                                                                margin-right: 5px;
-                                                                }
+                                                                color: white;
+                                                                font-size:0.9vw;
+                                                                margin-left: 5px;
+                                                                text-transform: capitalize;
+                                                                
                                                             }
+                                                            input {                    
+                                                                width: 0.9vw;
+                                                                height: 0.9vw;
+                                                                margin: auto;
+                                                                }
                                                         }
                                                     
                                                         
@@ -260,6 +265,12 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%,-50%);
+            h1{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+            }
             canvas {
               height: 100% !important;
               object-fit: contain;
