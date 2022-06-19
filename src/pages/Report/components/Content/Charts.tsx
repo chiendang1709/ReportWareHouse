@@ -9,8 +9,10 @@ import {ChartType} from 'chart.js';
 ChartJS.register(...registerables);
 const Charts = () => {
   const [types, setType] = useState<ChartType>('bar');
+  const [on, setOn] = useState(false);
   const typeCharts = useAppSelector(state => state.typeChart)
-  
+  const onChart = useAppSelector(state=> state.onChart) 
+  useEffect(()=> setOn(onChart.onChart),[onChart])
   useEffect(()=> setType(typeCharts.typeChart),[typeCharts])
 
   const datas = {
@@ -40,7 +42,11 @@ const Charts = () => {
   return (
     <div  className='content__chart'>
       <div className='chart'>
-         <Chart  type='bar' data={datas}  />
+        { on?
+
+         (<Chart  type='bar' data={datas}  />)
+         :(<h1> Choose your chart</h1>)
+        }
       </div>
      
     </div>

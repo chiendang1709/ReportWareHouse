@@ -5,6 +5,7 @@ import rootSaga from "./rootSaga";
 import tableSlice from "pages/Report/tableSlice";
 import categorySlice from "pages/Report/categorySlice";
 import changeChart from "pages/Report/changeChart";
+import onChartSlice from "pages/Report/onChart";
 
 const sagaMiddleware = createSagaMiddleware()
 export const store = configureStore({
@@ -12,7 +13,8 @@ export const store = configureStore({
   
    category: categorySlice,
    table: tableSlice,
-   typeChart: changeChart
+   typeChart: changeChart,
+   onChart: onChartSlice,
    
   },
   middleware: (getDefaultMiddleware) =>
