@@ -53,11 +53,7 @@ const Sidebar = () => {
                      </ul>
             </div>
             <div className="sidebar__footer" >
-<<<<<<< HEAD
-                  <button>Apply</button>
-=======
                   <button  onClick={()=>dispatch(apply.getApply("Apply"))}>Apply</button>
->>>>>>> be46798e1e25341e1f520b19acbbc550e54a09c7
              </div>
 
 

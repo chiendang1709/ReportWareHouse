@@ -121,20 +121,11 @@ const Charts = () => {
   };
   return (
     <div  className='content__chart'>
-<<<<<<< HEAD
-      <div className='chart'>
-        { on?
-
-         (<Chart  type='bar' data={datas}  />)
-         :(<h1> Choose your chart</h1>)
-        }
-=======
       <div id='chart' className='chart'>
       { on?
           (<Chart options={options}  type='bar' data={datas}  />)
           :(<h1> Choose your chart</h1>)
       }
->>>>>>> be46798e1e25341e1f520b19acbbc550e54a09c7
       </div>
       { on?
       (<button id="print" onClick={printPDF}>Click PDF</button>) :""
