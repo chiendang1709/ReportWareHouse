@@ -1,29 +1,35 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { listTable } from 'interfaces/components';
+
 
 export interface ListTable {
-  listReport: any;
-  
+  listTable: Array<listTable>;
+ 
 };
+
+
 const initialState: ListTable = {
-  listReport:[],
+   listTable:[],
+ 
 };
 
 
 export const tableSlice = createSlice({
-  name: 'get',
+  name: 'ListTable',
   initialState,
   reducers: {
-    getList: () => {
-     console.log("lấy")
+    getListTables: (state, action: PayloadAction<number>) => {
+       console.log('kiem tra',action.payload);
     },
-    postList: (state, action)=> {
-      state.listReport =action.payload;
+    showListTables: (state, action) => {
+      state.listTable= action.payload
     }
   },
+ 
   
 });
 
-export const {getList, postList } = tableSlice.actions;
+export const tableAction = tableSlice.actions;
 
 
 export default tableSlice.reducer;
