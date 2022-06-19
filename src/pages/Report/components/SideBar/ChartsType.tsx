@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { useAppDispatch } from 'app/store/hooks'
 import { getTypeChart } from 'pages/Report/changeChart'
 
-
 import bar from 'assets/images/bar__icon.png'
 import line from 'assets/images/line__icon.png'
 import pie from 'assets/images/pie__icon.png'
@@ -13,6 +12,7 @@ import pie2 from 'assets/images/pie__icon__2.png'
 
 import { get } from 'https'
 import { getOnChart } from 'pages/Report/onChart'
+
 
 
 

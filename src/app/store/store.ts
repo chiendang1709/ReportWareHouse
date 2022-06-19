@@ -7,6 +7,11 @@ import categorySlice from "pages/Report/categorySlice";
 import changeChart from "pages/Report/changeChart";
 import  applys  from "pages/Report/applySlice";
 import  onChartSlice from "pages/Report/onChart";
+<<<<<<< HEAD
+=======
+import fieldSlice from "pages/Report/fieldSlice";
+import listValueField from "pages/Report/valueField";
+>>>>>>> c336c33d508672b57ff8bef776425564bde1b752
 
 const sagaMiddleware = createSagaMiddleware()
 export const store = configureStore({
@@ -14,6 +19,11 @@ export const store = configureStore({
   
    category: categorySlice,
    table: tableSlice,
+<<<<<<< HEAD
+=======
+   field: fieldSlice,
+   listValue: listValueField,
+>>>>>>> c336c33d508672b57ff8bef776425564bde1b752
    typeChart: changeChart,
    onChart: onChartSlice,
    clickApply : applys

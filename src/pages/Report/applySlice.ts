@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface t {
-   apply: string; // sẽ thay đổi
+   apply: string; 
   
 };
 const initialState: t = {

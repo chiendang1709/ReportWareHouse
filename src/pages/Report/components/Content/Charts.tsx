@@ -7,6 +7,7 @@ import { Chart } from 'react-chartjs-2';
 import {ChartType} from 'chart.js';
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
+<<<<<<< HEAD
 
 ChartJS.register(...registerables);
 
@@ -27,10 +28,23 @@ const es = [
 ]
 const Charts = () => {
   //typeChart
+=======
+import { listChart } from 'interfaces/components';
+
+ChartJS.register(...registerables);
+
+const Charts = () => {
+  //typeChart
+  let lists: string[]= [];
+  const tong: Array<listChart>= []  
+  let datasets: any[]= []
+  let itemVa: string[]=[]  
+>>>>>>> c336c33d508672b57ff8bef776425564bde1b752
   const [types, setType] = useState<ChartType>('bar');
   const [on, setOn] = useState(false);
   const typeCharts = useAppSelector(state => state.typeChart)
   const onChart = useAppSelector(state=> state.onChart) 
+<<<<<<< HEAD
   useEffect(()=> setOn(onChart.onChart),[onChart])
   useEffect(()=> setType(typeCharts.typeChart),[typeCharts])
 
@@ -57,10 +71,45 @@ const Charts = () => {
     return ( { 
         type:types,
         label: data.name,
+=======
+  const listValueField = useAppSelector(state=> state.listValue) 
+  useEffect(()=> setOn(onChart.onChart),[onChart])
+  useEffect(()=> setType(typeCharts.typeChart),[typeCharts])
+
+  //  console.log("dta",listValueField.listValueField);
+  if(listValueField.listValueField.length > 0){
+      itemVa = Object.keys(listValueField.listValueField[0])
+     console.log("keys", itemVa);
+   
+   }
+      for(let i =0 ;i<itemVa.length; i++ ){
+        const listValue: string[]= []
+        for(let y = 0; y <listValueField.listValueField.length;y++)
+        {  
+           const list= listValueField.listValueField[y];
+           const a = list[`${itemVa[i]}`]
+           listValue.push(a)
+        }
+        tong.push({
+          name:`${itemVa[i]}`,
+          de: listValue
+        })
+      }
+    
+    const insertChart =(data:any)=> { 
+   
+    let converNumber = data.de.map((item:string)=> Number(item))
+    console.log("converNumber",converNumber);
+    let random = Math.floor(Math.random()*16777215).toString(16);
+    return ( { 
+        type:types,
+        label:data.name,
+>>>>>>> c336c33d508672b57ff8bef776425564bde1b752
         backgroundColor: [ `#${random}`],
         borderColor:"#FDF3F4",
         data:converNumber ,
   })
+<<<<<<< HEAD
 }
     dataNumber.map((data)=> {  
       datasets.push( insertChart(data))      
@@ -68,6 +117,16 @@ const Charts = () => {
    
   const datas = {
     labels: [1,2,5,7,7],
+=======
+ }
+     tong.map((data)=> {   
+      datasets.push( insertChart(data))      
+   })
+ 
+  
+  const datas = {
+    labels:["*","*","*","*","*"],
+>>>>>>> c336c33d508672b57ff8bef776425564bde1b752
     datasets: datasets,
     xAxisID:'xAxis1',
   };

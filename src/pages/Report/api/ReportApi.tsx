@@ -1,22 +1,31 @@
+import { ListData } from "interfaces/components";
 import axiosClient from "services/axiosClient";
 
 const dataApi ={
- getCategory: async()=> {
-       const url ="/category/";
-       return await axiosClient.get(url)
- },
- getAll: async(params ?: number)=> {
-        const url ="/todos/";
-        return await axiosClient.get(url);
- },
- getListTable: async(params : number)=> {
-      const url ="table";
-      return await axiosClient.get(url, {params})
-},
-postNameField: async(params ?: number)=> {
-      const url ="field";
-      return await axiosClient.post(url, {params})
-}
+
+    //lấy danh sách category
+    getCategory: async()=> {
+          const url ="/category/";
+          return await axiosClient.get(url)
+     },
+    //lấy danh sách tên bảng
+    getListTable: async(params : number)=> {
+          const url =`/category/${params}/reports/`;
+          return await axiosClient.get(url)
+    },
+    //lấy danh sách tên trường 
+    getListField: async(params : number)=> {
+          const url =`/reports/${params}/get-fields/`;
+          return await axiosClient.post(url)
+    },
+    //lấy value theo chon 
+    postValueField: async(params: ListData)=> {
+          
+          const json = JSON.stringify({params: params.listValue});
+          console.log("api",json)
+          const url =`/reports/${params.id}/get-data/`;
+          return await axiosClient.post(url, json)
+    }
 }
 
 export default dataApi;

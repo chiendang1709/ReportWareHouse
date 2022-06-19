@@ -1,13 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { listCategory } from 'interfaces/components';
 
 
-export interface ListData {
-  id: number;
-  name:string
-  
-};
+
 export interface ListCategory {
-  listCategory: Array<ListData>;
+  listCategory: Array<listCategory>;
   
 };
 const initialState: ListCategory = {
@@ -15,7 +12,7 @@ const initialState: ListCategory = {
 };
 
 export const categorySlice = createSlice({
-  name: 'get',
+  name: 'category',
   initialState,
   reducers: {
     getCategory:() => {

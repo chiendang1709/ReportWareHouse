@@ -4,7 +4,7 @@ import icon__cate from 'assets/images/cate__icon.png'
 import { useAppDispatch, useAppSelector } from 'app/store/hooks'
 import { categoryAction } from 'pages/Report/categorySlice'
 import MenuItem from './MenuItem'
-import { listTable } from 'interfaces/components'
+import { listCategory } from 'interfaces/components'
 import ChartsType from './ChartsType'
 import { getTypeChart } from 'pages/Report/changeChart'
 import { apply } from 'pages/Report/applySlice'
@@ -21,9 +21,9 @@ const Sidebar = () => {
   }, []);
 
   const categorys = () => {
-    let list = listCategory.listCategory.map((data :listTable, index:number) => 
+    let list = listCategory.listCategory.map((data :listCategory, index:number) => 
         (
-             <MenuItem key={index} list={data} />
+             <MenuItem key={index} listCategory={data} />
          ));
        return list
     };
