@@ -2,26 +2,30 @@ import React, { useEffect, useRef, useState } from 'react'
 import logo from 'assets/images/logo.png'
 import icon__cate from 'assets/images/cate__icon.png'
 import { useAppDispatch, useAppSelector } from 'app/store/hooks'
-import { getCategory, postCategory } from 'pages/Report/categorySlice'
+import { categoryAction } from 'pages/Report/categorySlice'
 import MenuItem from './MenuItem'
 import { listTable } from 'interfaces/components'
 import ChartsType from './ChartsType'
 import { getTypeChart } from 'pages/Report/changeChart'
+import { apply } from 'pages/Report/applySlice'
 
 
 
 const Sidebar = () => {
   const dispatch = useAppDispatch()
   const listCategory = useAppSelector(state => state.category)
-  console.log("data", listCategory)
+
+  //getListCategory
   useEffect(() => {
-    dispatch(getCategory())
+    dispatch(categoryAction.getCategory())
   }, []);
+
   const categorys = () => {
-    let list = listCategory.listCategory.map((data :listTable, index:number) => (
+    let list = listCategory.listCategory.map((data :listTable, index:number) => 
+        (
              <MenuItem key={index} list={data} />
-    ));
-    return list
+         ));
+       return list
     };
   return (
     <div className='sidebar'>
@@ -49,7 +53,11 @@ const Sidebar = () => {
                      </ul>
             </div>
             <div className="sidebar__footer" >
+<<<<<<< HEAD
                   <button>Apply</button>
+=======
+                  <button  onClick={()=>dispatch(apply.getApply("Apply"))}>Apply</button>
+>>>>>>> be46798e1e25341e1f520b19acbbc550e54a09c7
              </div>
 
 
