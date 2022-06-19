@@ -1,5 +1,4 @@
 import React,{ useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from 'app/store/hooks'
 
 const Field = (props :{ nameField: string, handleClick:any }) => { //
   

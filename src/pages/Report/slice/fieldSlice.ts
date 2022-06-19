@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface ListField {
-  listReport: any; // sẽ thay đổi
+  listField: string[]; 
   
 };
 const initialState: ListField = {
-  listReport:[],
+  listField:[],
 };
 
 
@@ -16,7 +16,7 @@ export const fieldSlice = createSlice({
     getListFields: (state, action: PayloadAction<number>) => {
     },
     showListFields: (state, action) => {
-      state.listReport= action.payload
+      state.listField= action.payload
     }
   },
   

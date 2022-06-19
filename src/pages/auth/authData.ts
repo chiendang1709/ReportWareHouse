@@ -22,7 +22,7 @@ export function * getListCategory(){
 }
 export function* getListTable({payload}: {payload: number}){
 
-    console.log('check param Table',payload);
+   
     const res : AxiosResponse = yield call(dataApi.getListTable, payload)
     if(res){
         yield put(tableAction.showListTables(res))
@@ -30,19 +30,19 @@ export function* getListTable({payload}: {payload: number}){
 }
 export function* getListField({payload}: {payload: number}){
 
-    console.log('check param Field',payload);
+   
     const res : AxiosResponse = yield call(dataApi.getListField, payload)
     if(res){
-        console.log('check value field',res);
+        
         yield put(fieldAction.showListFields(res))
     }
 }
 export function* getListValue({payload}: {payload: ListData} ){
   
-    console.log('check param Value',payload);
+    
     const res : AxiosResponse = yield call(dataApi.postValueField, payload)
     if(res){
-        console.log('check value field',res);
+       
         yield put(listValueFieldAction.showListValueFields(res))
     }
 }

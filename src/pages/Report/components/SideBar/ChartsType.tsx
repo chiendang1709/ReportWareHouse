@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import { useAppDispatch } from 'app/store/hooks'
 import { getTypeChart } from 'pages/Report/slice/changeChart'
+import { getOnChart } from 'pages/Report/slice/onChart'
 
 import bar from 'assets/images/bar__icon.png'
 import line from 'assets/images/line__icon.png'
@@ -10,14 +11,8 @@ import bar2 from 'assets/images/bar__icon__2.png'
 import line2 from 'assets/images/line__icon__2.png'
 import pie2 from 'assets/images/pie__icon__2.png'
 
-import { get } from 'https'
-import { getOnChart } from 'pages/Report/slice/onChart'
 
 
-
-
-
- 
  const ChartsType = () => {
      const [iconbar, setIconBar] = useState(bar)
      const [iconline, setIconLine] = useState(line)

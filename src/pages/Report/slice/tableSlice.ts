@@ -19,7 +19,6 @@ export const tableSlice = createSlice({
   initialState,
   reducers: {
     getListTables: (state, action: PayloadAction<number>) => {
-       console.log('kiem tra',action.payload);
     },
     showListTables: (state, action) => {
       state.listTable= action.payload

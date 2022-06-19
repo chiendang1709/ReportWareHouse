@@ -5,6 +5,7 @@ import { DataGrid, GridColDef, GridToolbarExport,GridToolbarContainer,GridToolba
 import { useAppDispatch, useAppSelector } from 'app/store/hooks';
 import { styleMui } from 'components/common/styleMui';
 
+
 const TableData = () => {
   const classes = styleMui();
   
@@ -25,8 +26,7 @@ const TableData = () => {
     if(listValueField.listValueField.length !== 0){
       listValueField.listValueField.map((valueField:any, index:number)=> {
         const newObj ={...valueField}
-     
-        newObj.id= index
+        newObj.id= index    
         rows.push(newObj)
 
       })
@@ -42,7 +42,6 @@ const TableData = () => {
         rowHeight={29}
         className={classes.root}
         rows={rows}
-
         columns={columns}
         components={{ Toolbar: GridToolbar }}
       /> 

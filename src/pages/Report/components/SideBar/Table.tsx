@@ -32,15 +32,13 @@ const Table = ( props :{ listTable: listTable }) => {
   //
   
  //list name Field
-  if(list.listReport.length !==0){
-    listNameField =list.listReport
+  if(list.listField.length !==0){
+    listNameField =list.listField
   }
   //getNameField
  
- 
   const handleClick= (param: string)=> {
-    console.log("testnum", param);
-    
+
      if(array.includes(param)){
       const newObj = Object.assign(array);
       newObj.splice(newObj.indexOf(param),1)
@@ -53,14 +51,12 @@ const Table = ( props :{ listTable: listTable }) => {
    };
   if(apply.apply === 'Apply'){ 
     if(array.length !==0)  {
-        console.log("test-choose",array.join(",")) 
         const test ={
           listValue :array.join(","),
           id: props.listTable.id
         }
         let a =array.join(",")
         dispatch(listValueFieldAction.getlistValueField(test))
-        console.log("nice")
     }
   }   
 
