@@ -1,6 +1,6 @@
 import React,{ useEffect, useState } from 'react'
 
-const Field = (props :{ nameField: string, handleClick:any }) => { //
+const Field = (props :{ nameField: string, handleClick:any, id:number }) => { //
   
   const isCheck =(e: string)=>
   {
@@ -10,7 +10,7 @@ const Field = (props :{ nameField: string, handleClick:any }) => { //
   return (
    
        <li>
-           <input  type="checkbox" value={props.nameField} onChange={(e)=>isCheck(e.target.value)} />
+           <input name={`${props.id}`} type="checkbox" value={props.nameField} onChange={(e)=>isCheck(e.target.value)} />
            <label className='nameField'>
             {props.nameField}
             </label>

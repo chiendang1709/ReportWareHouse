@@ -16,27 +16,24 @@
                     overflow:hidden;
                     cursor:pointer;
                     width: 100%;
-
-                    &:after {
-                        content: '';
+                    &:before {
+                        content: "";
                         position: absolute;
-                        width: 100%;
-                        border-bottom: 2px solid orangered;
-                        bottom: 0;
-                        left: -100%;
-                        transition-delay: all 0.5s;
-                        transition: all 0.5s;
-                        z-index: -1;
+                        height: 0.85rem;
+                        background-color: orangered;
+                        width:100%;
+                        margin-top: 2px;
+                        border-radius: 2px;
+                        bottom: -0.7rem;
+                        right: 0;
+                        transition: .3s;
                     }
-                    &:hover{
-                        &:after{
-                            left: 100%;
-                            z-index: 1;
-                            
-                        }
-    
-
-                    }
+                    &:hover::before {
+                        position: absolute;
+                        left: 0;
+                        width:0; 
+                        background-color: aqua;               
+                      }
                 }
              }
             }
@@ -80,7 +77,7 @@
                     transition: .5s ease-out;
                     &:hover {
                         background-position: left;
-                        color: rgb(71, 64, 64);
+                        color: rgb(45, 43, 43);
                     }
                 }
                

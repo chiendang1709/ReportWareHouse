@@ -16,7 +16,7 @@ const Table = ( props :{ listTable: listTable }) => {
   const [array, setArray] = useState([]as string[])
   const apply = useAppSelector(state => state.clickApply)
   const list= useAppSelector(state => state.field)
- 
+  const [check, isCheck] = useState(false)
   //
   let ref = React.useRef<HTMLLIElement>(null)
     useEffect(() => {
@@ -60,10 +60,25 @@ const Table = ( props :{ listTable: listTable }) => {
         dispatch(listValueFieldAction.getlistValueField(test))
     }
   }   
+  
 
+  let checkbox: any = document.getElementsByName(`${props.listTable.id}`)  ;
+  function changeListner(e:any) {
+    const isSelectorChecked = e.target.checked;
+    if (isSelectorChecked) {
+      for (let item of checkbox) {
+        item.checked = true;
+      }
+    } else {
+      for (let item of checkbox) {
+        item.checked = false;
+      }
+    }
+  }
+  
   const listField = () => {
     let list = listNameField.map((data : string, index:number) => (
-         <Field key={index} handleClick={handleClick}   nameField={data}  />
+         <Field key={index} handleClick={handleClick} id={props.listTable.id}  nameField={data}  />
     ));
     return list
     };
@@ -75,7 +90,8 @@ const Table = ( props :{ listTable: listTable }) => {
                   onClick={()=> {setSubmenu((prev) => !prev); dispatch(getOnTable(true)); dispatch(fieldAction.getListFields(props.listTable.id)); } }>
                    {props.listTable.reports_name}
                 </button>
-                <ul className={`content__field .content__submenu ${submenu ? "show" : " "}`}  >
+                <ul className={`content__field .content__submenu ${submenu ? "show" : " "}`}  >                
+                  <input className="select-all" onChange={(e)=>changeListner(e)} type="checkbox" name="acs" value="Select All"/>Select All 
                    {listField()}
                 </ul>
             </li>  

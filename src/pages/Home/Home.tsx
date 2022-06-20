@@ -6,7 +6,7 @@ import './assets/home.scss'
 const Home = () => {
   return (
     <div>
-        {/* <Navbar></Navbar> */}
+        <Navbar></Navbar>
         <Banner></Banner>
     </div>
   )
