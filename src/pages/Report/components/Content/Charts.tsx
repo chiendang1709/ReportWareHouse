@@ -11,12 +11,23 @@ import { listChart } from 'interfaces/components';
 
 ChartJS.register(...registerables);
 
+export interface data {
+  type:ChartType,
+  label:string,
+  backgroundColor:string[],
+  borderColor:string,
+  data:number[] ,
+  
+};
+
 const Charts = () => {
-  //typeChart
+
+  var regex = new RegExp('^[0-9]*$')
   let lists: string[]= [];
-  const tong: Array<listChart>= []  
-  let datasets: any[]= []
-  let itemVa: string[]=[]  
+  const valueChart: Array<listChart>= []  
+  let datasets: data[]= []
+  const listValueAlphabet: string[]= [] 
+  let fieldValues: string[]=[]  
   const [types, setType] = useState<ChartType>('bar');
   const [on, setOn] = useState(false);
   const typeCharts = useAppSelector(state => state.typeChart)
@@ -25,46 +36,53 @@ const Charts = () => {
   useEffect(()=> setOn(onChart.onChart),[onChart])
   useEffect(()=> setType(typeCharts.typeChart),[typeCharts])
 
-  //  console.log("dta",listValueField.listValueField);
+  //value y
   if(listValueField.listValueField.length > 0){
-      itemVa = Object.keys(listValueField.listValueField[0])
-     console.log("keys", itemVa);
-   
+    fieldValues = Object.keys(listValueField.listValueField[0])
    }
-      for(let i =0 ;i<itemVa.length; i++ ){
-        const listValue: string[]= []
+      for(let i =0 ;i<fieldValues.length; i++ ){
+        const listValueNumber: string[]= []
         for(let y = 0; y <listValueField.listValueField.length;y++)
         {  
-           const list= listValueField.listValueField[y];
-           const a = list[`${itemVa[i]}`]
-           listValue.push(a)
+           const list= listValueField.listValueField[y][`${fieldValues[i]}`];
+           if(regex.test(list)== false){   
+            listValueAlphabet.push(list) 
+           } else {
+            listValueNumber.push(list)
+           }
+         
         }
-        tong.push({
-          name:`${itemVa[i]}`,
-          de: listValue
+        valueChart.push({
+          name:`${fieldValues[i]}`,
+          de: listValueNumber
         })
+       
       }
+      
     
-    const insertChart =(data:any)=> { 
-   
-    let converNumber = data.de.map((item:string)=> Number(item))
-    console.log("converNumber",converNumber);
-    let random = Math.floor(Math.random()*16777215).toString(16);
-    return ( { 
-        type:types,
-        label:data.name,
-        backgroundColor: [ `#${random}`],
-        borderColor:"#FDF3F4",
-        data:converNumber ,
-  })
+    const insertChart =(data:listChart)=> { 
+      let converNumber = data.de.map((item:string)=> Number(item))
+      //  console.log("converNumber",converNumber);
+      let random = Math.floor(Math.random()*16777215).toString(16);
+      return ( { 
+          type:types,
+          label:data.name,
+          backgroundColor: [ `#${random}`],
+          borderColor:"#FDF3F4",
+          data:converNumber ,
+    })
  }
-     tong.map((data)=> {   
-      datasets.push( insertChart(data))      
+ valueChart.map((data)=> { 
+      if(data.de.length >0){
+        datasets.push( insertChart(data))      
+      } 
    })
- 
+   //end value
+   //value name x
   
+   
   const datas = {
-    labels:["*","*","*","*","*"],
+    labels: listValueAlphabet.length !==0? listValueAlphabet:["*","*","*","*","*"],
     datasets: datasets,
     xAxisID:'xAxis1',
   };
@@ -102,6 +120,7 @@ const Charts = () => {
       }},
     
   };
+
 
   //PDF
   const printPDF = () => {

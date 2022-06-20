@@ -54,19 +54,36 @@
           left: 50%;
           top: 50%;
           transform: translate(-50%,-50%);
-          height: 400px;
-          width: 400px;
+          height: 40vw;
+          width: 40vw;
           text-align: center;
              img{
                 width: 100%;
                 height: auto;
              }
-
-             h1{
-                 background-color: orangered;
-                border-radius: 20px;
-                padding: 16px;
-                box-shadow: 10px 10px 14px 1px ;
+             a{
+                 cursor: pointer;
+               
+                 text-align: center;
+                h1{
+                    width: 30vw;
+                    font-size: 2vw;
+                    margin: auto;
+                    display: inline-block;
+                    padding: 1vw;                 
+                    text-transform: capitalize;
+                    color: white;
+                    border-radius: 10px;
+                    /* "to left" / "to right" - affects initial color */
+                    background: linear-gradient(to left, orangered 50%, red 50%) right;
+                    background-size: 200%;
+                    transition: .5s ease-out;
+                    &:hover {
+                        background-position: left;
+                        color: rgb(71, 64, 64);
+                    }
+                }
+               
              }
       }
 }

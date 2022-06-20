@@ -8,7 +8,8 @@ import { listCategory } from 'interfaces/components'
 import ChartsType from './ChartsType'
 import { getTypeChart } from 'pages/Report/slice/changeChart'
 import { apply } from 'pages/Report/slice/applySlice'
-
+import { getOnTable } from 'pages/Report/slice/onTable'
+import { getOnChart } from 'pages/Report/slice/onChart'
 
 
 const Sidebar = () => {
@@ -54,6 +55,7 @@ const Sidebar = () => {
             </div>
             <div className="sidebar__footer" >
                   <button  onClick={()=>dispatch(apply.getApply("Apply"))}>Apply</button>
+                  {/* <button  onClick={()=> {dispatch(getOnTable(false));  dispatch(getOnChart(false))}}>Refesh</button> */}
              </div>
 
 

@@ -5,6 +5,7 @@ import {useAppSelector,useAppDispatch } from 'app/store/hooks';
 import { listTable } from 'interfaces/components';
 import { fieldAction } from 'pages/Report/slice/fieldSlice';
 import { listValueFieldAction } from 'pages/Report/slice/valueField';
+import { getOnTable } from 'pages/Report/slice/onTable'
 
 
 const Table = ( props :{ listTable: listTable }) => {  
@@ -32,8 +33,8 @@ const Table = ( props :{ listTable: listTable }) => {
   //
   
  //list name Field
-  if(list.listReport.length !==0){
-    listNameField =list.listReport
+  if(list.listField.length !==0){
+    listNameField =list.listField
   }
   //getNameField
  
@@ -72,10 +73,10 @@ const Table = ( props :{ listTable: listTable }) => {
     };
 
   return ( 
-            <li  ref={ref}>
+             <li  ref={ref}>
                 <button  className={`content__btn submenu__btn ${submenu ? "table__active" : " "} `} 
                  type="button" aria-haspopup="menu" aria-expanded={submenu ? "true" : "false"}
-                  onClick={()=> {setSubmenu((prev) =>  !prev); dispatch(fieldAction.getListFields(props.listTable.id))} }>
+                  onClick={()=> {setSubmenu((prev) => !prev); dispatch(getOnTable(true)); dispatch(fieldAction.getListFields(props.listTable.id)); } }>
                    {props.listTable.reports_name}
                 </button>
                 <ul className={`content__field .content__submenu ${submenu ? "show" : " "}`}  >

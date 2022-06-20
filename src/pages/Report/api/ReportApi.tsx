@@ -22,7 +22,6 @@ const dataApi ={
     postValueField: async(params: ListData)=> {
           
           const json = JSON.stringify({params: params.listValue});
-          console.log("api",json)
           const url =`/reports/${params.id}/get-data/`;
           return await axiosClient.post(url, json)
     }

@@ -1,8 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { listData } from 'interfaces/components';
 
+// export interface listField {
 
+//     listValue :string,
+//     id:number
 
+// }
 export interface ListField {
   listValueField: Array<any>;
   

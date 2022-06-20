@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { DataGrid, GridColDef, GridToolbarExport,GridToolbarContainer,GridToolbar } from '@mui/x-data-grid';
 
@@ -6,6 +6,8 @@ import { useAppDispatch, useAppSelector } from 'app/store/hooks';
 import { styleMui } from 'components/common/styleMui';
 
 const TableData = () => {
+  const [on, setOn] = useState(false);
+  const onTable = useAppSelector(state=> state.onTable) 
   const classes = styleMui();
   
   const columns: GridColDef[] = [];
@@ -24,8 +26,7 @@ const TableData = () => {
   const row = ()=>{
     if(listValueField.listValueField.length !== 0){
       listValueField.listValueField.map((valueField:any, index:number)=> {
-        const newObj ={...valueField}
-     
+        const newObj ={...valueField}  
         newObj.id= index
         rows.push(newObj)
 
@@ -35,18 +36,24 @@ const TableData = () => {
   colums();         
   row();  
          
+  useEffect(()=> setOn(onTable.onTable),[onTable])
+
   return (
     <div className='content__table'>
    <div className='table'>
-    <DataGrid 
-        rowHeight={29}
-        className={classes.root}
-        rows={rows}
+      {on?
+         ( <DataGrid 
+              rowHeight={29}
+              className={classes.root}
+              rows={rows}
 
-        columns={columns}
-        components={{ Toolbar: GridToolbar }}
-      /> 
-      </div>
+              columns={columns}
+              components={{ Toolbar: GridToolbar }}
+            /> 
+         )
+        :<h1> choose your data</h1>
+        }   
+     </div>
      </div>
    
   )
