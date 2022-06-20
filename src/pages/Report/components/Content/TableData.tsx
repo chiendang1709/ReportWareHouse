@@ -5,6 +5,7 @@ import { DataGrid, GridColDef, GridToolbarExport,GridToolbarContainer,GridToolba
 import { useAppDispatch, useAppSelector } from 'app/store/hooks';
 import { styleMui } from 'components/common/styleMui';
 
+
 const TableData = () => {
   const [on, setOn] = useState(false);
   const onTable = useAppSelector(state=> state.onTable) 
@@ -26,8 +27,8 @@ const TableData = () => {
   const row = ()=>{
     if(listValueField.listValueField.length !== 0){
       listValueField.listValueField.map((valueField:any, index:number)=> {
-        const newObj ={...valueField}  
-        newObj.id= index
+        const newObj ={...valueField}
+        newObj.id= index    
         rows.push(newObj)
 
       })

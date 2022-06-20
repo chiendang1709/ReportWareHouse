@@ -27,7 +27,7 @@ const MenuItems = (props:{listCategory:listCategory}) => {
     };
   }, [dropright]);
  
-  // key={props.listCategory.id}
+  
   const categorys = () => (  
       <li  className='content__item' ref={ref} >
             <button className={`content__btn ${dropright ? "active": ""}`}aria-expanded={dropright ? "true" : "false"}
