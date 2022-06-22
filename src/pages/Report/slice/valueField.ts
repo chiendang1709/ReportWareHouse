@@ -11,10 +11,12 @@ import { listData } from 'interfaces/components';
 // }
 export interface ListField {
   listValueField: Array<any>;
+  loading:boolean
   
 };
 const initialState: ListField = {
   listValueField:[],
+  loading:false
 };
 
 
@@ -23,10 +25,11 @@ export const listValueField = createSlice({
   initialState,
   reducers: {
     getlistValueField: (state, action: PayloadAction<any> ) => {
-     
+      state.loading=false
     },
     showListValueFields: (state, action)=> {
       state.listValueField =action.payload;
+      state.loading=true
     }
   
   },

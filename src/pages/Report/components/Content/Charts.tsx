@@ -144,7 +144,15 @@ const Charts = () => {
       }
       </div>
       { on?
-      (<button id="print" onClick={printPDF}>Click PDF</button>) :""
+      (   <div className="chart__tool">
+            <div className="open__tool">
+              <button></button>
+            </div>
+            <div className="tool__list">
+
+                 <button id="print" onClick={printPDF}>Click PDF</button>
+            </div>        
+          </div>) :""
      }
     </div>
   );
