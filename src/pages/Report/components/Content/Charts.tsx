@@ -30,6 +30,7 @@ const Charts = () => {
   let fieldValues: string[]=[]  
   const [types, setType] = useState<ChartType>('bar');
   const [on, setOn] = useState(false);
+  const [onTool, setOnTool] = useState(false);  
   const typeCharts = useAppSelector(state => state.typeChart)
   const onChart = useAppSelector(state=> state.onChart) 
   const listValueField = useAppSelector(state=> state.listValue) 
@@ -146,11 +147,17 @@ const Charts = () => {
       { on?
       (   <div className="chart__tool">
             <div className="open__tool">
-              <button></button>
+              <button aria-expanded={onTool ? "true" : "false"}  onClick={()=> setOnTool((prev) => !prev)} >Tool</button>
             </div>
-            <div className="tool__list">
-
-                 <button id="print" onClick={printPDF}>Click PDF</button>
+            <div className={`tool__list ${onTool ? 'tool--active' : ''}`}>
+                <ul>
+                  <li className='tool__item border--item'>
+                      <input type="month"></input>
+                  </li>
+                  <li className='tool__item'>
+                       <button id="print" onClick={printPDF}>Click PDF</button>
+                  </li>            
+                 </ul>
             </div>        
           </div>) :""
      }
