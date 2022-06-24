@@ -17,20 +17,9 @@ const Table = ( props :{ listTable: listTable }) => {
   const apply = useAppSelector(state => state.clickApply)
   const list= useAppSelector(state => state.field)
   const [check, isCheck] = useState(false)
-  //
   let ref = React.useRef<HTMLLIElement>(null)
-    useEffect(() => {
-      const handler = (event: TouchEvent | MouseEvent) => {
-        if (submenu && ref.current && !ref.current.contains(event.target as any)){
-          setSubmenu(false);
-        }
-      };
-      document.addEventListener("mousedown", handler );
-      return () => {
-        document.removeEventListener("mousedown", handler );
-      };
-    }, [submenu]);
-  //
+    
+
   
  //list name Field
   if(list.listField.length !==0){
@@ -78,7 +67,8 @@ const Table = ( props :{ listTable: listTable }) => {
   
   const listField = () => {
     let list = listNameField.map((data : string, index:number) => (
-         <Field key={index} handleClick={handleClick} id={props.listTable.id}  nameField={data}  />
+      //nameField={data} 
+         <Field key={index} handleClick={handleClick} id={props.listTable.id}  />
     ));
     return list
     };
@@ -91,7 +81,7 @@ const Table = ( props :{ listTable: listTable }) => {
                    {props.listTable.reports_name}
                 </button>
                 <ul className={`content__field .content__submenu ${submenu ? "show" : " "}`}  >                
-                  <input className="select-all" onChange={(e)=>changeListner(e)} type="checkbox" name="acs" value="Select All"/>Select All 
+                 
                    {listField()}
                 </ul>
             </li>  
