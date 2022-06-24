@@ -71,7 +71,7 @@
         display: flex;
         position: relative;
         max-height: 50vw;
-        height: 29vw;
+        height: 40vh;
                 .content__type{
                     width: 100%;
                    
@@ -204,7 +204,7 @@
                                 position:absolute;
                                 width: 100%;
                                 overflow-y: scroll;
-                                max-height: 30vw;
+                                max-height: 20vw;
                                 top: 0px;
                                 border-right:  1px solid #4B545C;
                                 border-left:  1px solid #4B545C;
@@ -235,9 +235,6 @@
         border-top: 2px solid #4B545C;
         padding:1vw;
         width: 100%;
-        // display: flex;
-        // justify-content: center;
-        // align-items: center;
         position: relative;
                 button{
                     width: 10vw;
@@ -284,7 +281,7 @@
     left: 15%;
     width: 85%;
     height: 100%;
-   
+  
     z-index: -1;
     .content__chart {
         position: relative;
