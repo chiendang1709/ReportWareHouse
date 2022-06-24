@@ -7,12 +7,12 @@ import './assets/home.scss'
 const Home = () => {
   const [Loading,setLoading]= useState(true);
   useEffect(() => {
-    setTimeout(() => setLoading(false), 3000)
+    setTimeout(() => setLoading(false), 2000)
   }, [])
   return (
     <>
     { Loading == false ?
-      ( <div>
+      ( <div className='home'>
           <Navbar></Navbar>
           <Banner></Banner>
       </div>

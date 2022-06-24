@@ -8,6 +8,7 @@ import {ChartType} from 'chart.js';
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { listChart } from 'interfaces/components';
+import arrow from 'assets/images/arrow__icon.png'
 
 ChartJS.register(...registerables);
 
@@ -146,13 +147,21 @@ const Charts = () => {
       </div>
       { on?
       (   <div className="chart__tool">
-            <div className="open__tool">
-              <button aria-expanded={onTool ? "true" : "false"}  onClick={()=> setOnTool((prev) => !prev)} >Tool</button>
+            <div className={`open__tool ${onTool ? 'open--active' : ''}`}>
+              <button aria-expanded={onTool ? "true" : "false"}  onClick={()=> setOnTool((prev) => !prev)} >Tool
+                 <img src={arrow} alt="arrow" title ="use tool" />
+              </button>
             </div>
             <div className={`tool__list ${onTool ? 'tool--active' : ''}`}>
                 <ul>
                   <li className='tool__item border--item'>
                       <input type="month"></input>
+                  </li>
+                  <li className='tool__item border--item'>
+                      <select>
+                          <option value=""> Select a option </option>
+                          <option value="2"> doanh thu </option>
+                      </select>
                   </li>
                   <li className='tool__item'>
                        <button id="print" onClick={printPDF}>Click PDF</button>

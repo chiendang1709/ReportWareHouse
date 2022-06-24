@@ -1,15 +1,18 @@
-
+.home{
+  animation: 0.5s ease-out 0s 1 PA
+}
 .navbar{
     width: 100%;
     padding: 50px 50px;
     position: absolute;
+    animation: 1s ease-out 0s 1 SIFL;
         ul{
             display: flex;
             .navbar__item{
                 margin: 20px;
                 .navbar__link{
                     .navbar__text{
-                    font-size: 1.5rem;
+                    font-size: 2vw;
                     color: white;
                     text-transform: uppercase;
                     position: relative;
@@ -19,20 +22,20 @@
                     &:before {
                         content: "";
                         position: absolute;
-                        height: 0.85rem;
+                        height: 1vw;
                         background-color: orangered;
                         width:100%;
                         margin-top: 2px;
                         border-radius: 2px;
-                        bottom: -0.7rem;
+                        bottom: -0.7vw;
                         right: 0;
                         transition: .3s;
                     }
                     &:hover::before {
                         position: absolute;
                         left: 0;
-                        width:0; 
-                        background-color: aqua;               
+                        width:100%; 
+                        background-color: #06A9DF;               
                       }
                 }
              }
@@ -44,28 +47,29 @@
     // ../../../ là do phải lấy ở thư mục assets chạy local thì nhận, nhưng up lên host ko nhận//
     // background-image: url('../../../assets/images/background.jpg')
     background-size: 100% 100%;
-    background-position: center;
+    background-position: center top;
     height: 100vh;
       .banner__content{
           position: absolute;
           left: 50%;
           top: 50%;
           transform: translate(-50%,-50%);
-          height: 40vw;
           width: 40vw;
           text-align: center;
              img{
-                width: 100%;
-                height: auto;
+              animation: 1s ease 0s 1 AI;
+                width: 20vw;
+                height: 10vw;
              }
              a{
                  cursor: pointer;
                
                  text-align: center;
                 h1{
+                   animation: 1s ease 0s 1  UT;
                     width: 30vw;
                     font-size: 2vw;
-                    margin: auto;
+                    margin: 20px 0;
                     display: inline-block;
                     padding: 1vw;                 
                     text-transform: capitalize;
@@ -74,20 +78,30 @@
                     /* "to left" / "to right" - affects initial color */
                     background: linear-gradient(to left, orangered 50%, red 50%) right;
                     background-size: 200%;
-                    transition: .5s ease-out;
+                   
                     &:hover {
                         background-position: left;
                         color: rgb(45, 43, 43);
+                        transition: .5s ease-out;
                     }
                 }
                
              }
       }
 }
+.loading{
+    position: relative;  
+    width: 100vw;
+    height: 100vh;
+}
 .sk-cube-grid {
-    width: 40px;
-    height: 40px;
-    margin: 100px auto;
+      position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    width: 15vw;
+    height: 15vw;
+
   }
   
   .sk-cube-grid .sk-cube {
@@ -100,38 +114,47 @@
   
   .sk-cube-grid .sk-cube1 {
     animation-delay: 0.2s;
+    background-color: #8E8D85;
   }
   
   .sk-cube-grid .sk-cube2 {
     animation-delay: 0.3s;
+    background-color: orangered;
   }
   
   .sk-cube-grid .sk-cube3 {
     animation-delay: 0.4s;
+    background-color: #06A9DF;
   }
   
   .sk-cube-grid .sk-cube4 {
     animation-delay: 0.1s;
+    background-color: #06A9DF;
   }
   
   .sk-cube-grid .sk-cube5 {
     animation-delay: 0.2s;
+    background-color: #8E8D85;
   }
   
   .sk-cube-grid .sk-cube6 {
     animation-delay: 0.3s;
+    background-color: orangered;
   }
   
   .sk-cube-grid .sk-cube7 {
     animation-delay: 0s;
+    background-color: orangered;
   }
   
   .sk-cube-grid .sk-cube8 {
     animation-delay: 0.1s;
+    background-color: #06A9DF;
   }
   
   .sk-cube-grid .sk-cube9 {
     animation-delay: 0.2s;
+    background-color: #8E8D85;
   }
   
   @keyframes sk-cubeGridScaleDelay {
@@ -144,3 +167,39 @@
       transform: scale3D(0, 0, 1);
     }
   }
+
+  @keyframes PA {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  @keyframes SIFL {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes AI {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 100%;
+    }
+  }
+  @keyframes UT {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  
