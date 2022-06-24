@@ -9,6 +9,8 @@ import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { listChart } from 'interfaces/components';
 import arrow from 'assets/images/arrow__icon.png'
+import undo  from 'assets/images/undo__icon.png'
+import undo2 from 'assets/images/undo__icon__2.png'
 
 ChartJS.register(...registerables);
 
@@ -32,6 +34,7 @@ const Charts = () => {
   const [types, setType] = useState<ChartType>('bar');
   const [on, setOn] = useState(false);
   const [onTool, setOnTool] = useState(false);  
+  const [onUndo, setOnUndo] = useState(undo);
   const typeCharts = useAppSelector(state => state.typeChart)
   const onChart = useAppSelector(state=> state.onChart) 
   const listValueField = useAppSelector(state=> state.listValue) 
@@ -155,7 +158,15 @@ const Charts = () => {
             <div className={`tool__list ${onTool ? 'tool--active' : ''}`}>
                 <ul>
                   <li className='tool__item border--item'>
+                     <div className='filter__group'>
                       <input type="month"></input>
+                      <div className='filter__undo'>
+                        <button onMouseEnter={()=>setOnUndo(undo2)} onMouseLeave={()=>setOnUndo(undo)}>
+                          <img src={onUndo} alt="undo" title="undo chart" />
+                        </button>
+                      </div>
+
+                     </div>
                   </li>
                   <li className='tool__item border--item'>
                       <select>
