@@ -16,7 +16,7 @@ const [child, setChildmenu] = useState(false);
   return (
    // value:{props.nameField} name: ${props.id} bien neu con xai
        <li>
-           <button className={`name__field ${child ? 'active' : "" }`} onClick={()=> setChildmenu((prev) => !prev)}>
+           <button className= "name__field" onClick={()=> setChildmenu((prev) => !prev)}>
                {/* id truyen vao o name */}
                 <input name='' type="checkbox" value='' onChange={(e)=>isCheck(e.target.value)} />
                   <label >
@@ -24,30 +24,7 @@ const [child, setChildmenu] = useState(false);
                         name
                  </label>
           </button>
-                    <ul className={`${child ? 'show' : '' }`}>
-                       {/* chay vong lap o day */}
-                        <li>
-                            {/* id truyen vao o name */}
-                          <input name='' type="checkbox" value='' onChange={(e)=>isCheck(e.target.value)} />
-                          <label className='name__field child--field'>
-                                  {/* truyen du lieu vao day */}
-                                  name
-                          </label>
-                        </li>
-                        <li>
-                          <input name={`${props.id}`} type="checkbox" value='' onChange={(e)=>isCheck(e.target.value)} />
-                          <label className='name__field  child--field'>
-                                    2
-                          </label>
-                        </li>
-                        <li>
-                          <input name={`${props.id}`} type="checkbox" value='' onChange={(e)=>isCheck(e.target.value)} />
-                          <label className='name__field  child--field'>
-                                    3
-                          </label>
-                        </li>
-
-                    </ul>
+                   
            
        </li>
 
