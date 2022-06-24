@@ -289,9 +289,9 @@
                 height: 100%;
                 button{
                     -webkit-transform: rotate(-90deg);
-                    // -moz-transform: rotate(-90deg);
-                    // -ms-transform: rotate(-90deg);
-                    // -o-transform: rotate(-90deg);
+                    -moz-transform: rotate(-90deg);
+                    -ms-transform: rotate(-90deg);
+                    -o-transform: rotate(-90deg);
                     left: -3.5vw;
                     margin-top: 3.5vw;
                     position: absolute;
