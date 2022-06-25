@@ -16,10 +16,14 @@ import { Filter, filterAction } from "pages/Report/slice/filterSlice"
 //     }
 // }
 export function * getListCategory(){
-    const res: AxiosResponse = yield call(dataApi.getCategory)
-    if(res ){
-        yield put(categoryAction.postCategory(res))
-    }
+    try {
+        const res: AxiosResponse = yield call(dataApi.getCategory)
+        if(res ){
+         yield put(categoryAction.postCategory(res))
+        }
+    } catch (e : unknown) {
+        console.log('Error')
+      }
 }
 export function* getListTable({payload}: {payload: number}){
  
@@ -37,30 +41,39 @@ export function* getListTable({payload}: {payload: number}){
 
 export function* getListDepartment(){
 
-   
-    const res : AxiosResponse = yield call(dataApi.getListDepartment)
-    if(res){
-        yield put(departmentAction.showDepartment(res))
-    }
+    try {
+        const res : AxiosResponse = yield call(dataApi.getListDepartment)
+        if(res){
+            yield put(departmentAction.showDepartment(res))
+        }
+    } catch (e : unknown) {
+        console.log('Error')
+      }
 }
 
 export function* getListValue({payload}: {payload: string} ){
   
-    
-    const res : AxiosResponse = yield call(dataApi.postValueField, payload)
-    if(res){
-       
-        yield put(listValueFieldAction.showListValueFields(res))
+    try {
+        const res : AxiosResponse = yield call(dataApi.postValueField, payload)
+        if(res){
+        
+            yield put(listValueFieldAction.showListValueFields(res))
+        }
+    } catch (e : unknown) {
+        console.log('Error')
+      }
     }
-}
 
 export function* getFilter({payload}: {payload: Filter} ){
   
-    
+    try {
     const res : AxiosResponse = yield call(dataApi.postFilter, payload)
-    if(res){
-       
-        yield put(filterAction.showFilter(res))
+        if(res){
+        
+            yield put(filterAction.showFilter(res))
+        }
+    } catch (e : unknown) {
+        console.log('Error')
     }
 }
 

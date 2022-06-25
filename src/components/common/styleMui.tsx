@@ -5,9 +5,13 @@ import { height } from '@mui/system';
  export  const styleMui = makeStyles((theme) => ({
    
   root: {
+    '.MuiDataGrid-main':{
+      borderCollapse: 'collapse',
+    },
     ' .MuiDataGrid-columnsContainer' :{
       position:  'relative !important',
       backgroundColor: 'rgba(255, 0, 100, 0.20)',
+      
        
      },
     '& .MuiDataGrid-virtualScrollerContent': {
@@ -15,7 +19,10 @@ import { height } from '@mui/system';
      
     },
     '& .MuiDataGrid-virtualScrollerRenderZone':{
-      width:'100% !important'
+      width:'100% !important',
+      "&>*:nth-child(even)": {
+        backgroundColor: '#dddddd',
+      },
     },
     '&.MuiDataGrid-root .MuiDataGrid-row': {
       backgroundColor: 'white',
@@ -23,6 +30,7 @@ import { height } from '@mui/system';
       width:'100% !important',
       fontSize: '12px',
       textTransform: 'capitalize',
+     
       
 
     },

@@ -13,7 +13,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { listChart, listDepartment } from 'interfaces/components';
 import arrow from 'assets/images/arrow__icon.png'
 import undo  from 'assets/images/undo__icon.png'
-import undo2 from 'assets/images/undo__icon__2.png'
+import fil from 'assets/images/filter__icon.png'
+import ex from 'assets/images/export__icon.png'
+
 import { departmentAction } from 'pages/Report/slice/departmentSlice';
 import { ListField } from 'pages/Report/slice/valueField';
 import { filterAction } from 'pages/Report/slice/filterSlice';
@@ -61,7 +63,6 @@ const Charts = () => {
   const [types, setType] = useState<ChartType>('bar');
   const [on, setOn] = useState(false);
   const [onTool, setOnTool] = useState(false);  
-  const [onUndo, setOnUndo] = useState(undo);
   const [month1, setMonth1] =useState<string|boolean>("");
   const [year1, setYear1] =useState<string|boolean>("");
   const [month2, setMonth2] =useState<string|boolean>("");
@@ -279,48 +280,46 @@ const Charts = () => {
                       {/* <input type="month" onChange={(e)=> setMonth(e.target.value) } ></input> */}
                       {/* <input type="number" style={{width: "50%",height:"30px"}} placeholder="MMMM" min="1" max="12" onChange={(e)=> setMonth2(e.target.value) } /> */}
                       <select  onChange={(e)=> setMonth1(e.target.value) }  >
-                         <option value="-1"> MMMM </option> 
-                          <option value="1"> Tháng 1 </option>
-                          <option value="2"> Tháng 2  </option>
-                          <option value="3"> Tháng 3  </option>
-                          <option value="4"> Tháng 4  </option>
-                          <option value="5"> Tháng 5  </option>
-                          <option value="6"> Tháng 6  </option>
-                          <option value="7"> Tháng 7  </option>
-                          <option value="8"> Tháng 8  </option>
-                          <option value="9"> Tháng 9  </option>
-                          <option value="10"> Tháng 10  </option>
-                          <option value="11"> Tháng 11 </option>
-                          <option value="12"> Tháng 12  </option>
+                         <option value="-1"> Choose Month </option> 
+                          <option value="1"> January </option>
+                          <option value="2"> February </option>
+                          <option value="3"> May </option>
+                          <option value="4"> April </option>
+                          <option value="5"> May </option>
+                          <option value="6"> June </option>
+                          <option value="7"> July </option>
+                          <option value="8"> August </option>
+                          <option value="9"> September </option>
+                          <option value="10"> October </option>
+                          <option value="11"> November </option>
+                          <option value="12"> December </option>
                       </select>
                      <input type="number" style={{width: "50%", height:"100%"}} placeholder="YYYY" min="2017" max="2100" onChange={(e)=> setYear1(e.target.value) } /> 
-                      <div className='filter__undo'>
-                        <button onMouseEnter={()=>setOnUndo(undo2)} onClick={()=>undos()} onMouseLeave={()=>setOnUndo(undo)}>
-                          <img src={onUndo} alt="undo" title="undo chart" />
-                        </button>
-                      </div>
+                    
 
                      </div>
                   </li>
                   <li className='tool__item border--item'>
+                  <div className='filter__group'>
                      {/* <input type="month" style={{width: "210px"}} onChange={(e)=> setMonth1(e.target.value) } ></input> */}
                      {/* <input type="number" style={{width: "50%",height:"30px"}} placeholder="MMMM" min="1" max="12" onChange={(e)=> setMonth2(e.target.value) } /> */}
-                     <select style={{width: "50%"}}  onChange={(e)=> setMonth2(e.target.value) }  >
-                         <option value="-1"> MMMM </option> 
-                          <option value="1"> Tháng 1 </option>
-                          <option value="2"> Tháng 2  </option>
-                          <option value="3"> Tháng 3  </option>
-                          <option value="4"> Tháng 4  </option>
-                          <option value="5"> Tháng 5  </option>
-                          <option value="6"> Tháng 6  </option>
-                          <option value="7"> Tháng 7  </option>
-                          <option value="8"> Tháng 8  </option>
-                          <option value="9"> Tháng 9  </option>
-                          <option value="10"> Tháng 10  </option>
-                          <option value="11"> Tháng 11 </option>
-                          <option value="12"> Tháng 12  </option>
+                     <select   onChange={(e)=> setMonth2(e.target.value) }  >
+                         <option value="-1"> Choose Month </option> 
+                          <option value="1"> January </option>
+                          <option value="2"> February  </option>
+                          <option value="3"> May  </option>
+                          <option value="4"> April  </option>
+                          <option value="5"> May  </option>
+                          <option value="6"> June  </option>
+                          <option value="7"> July  </option>
+                          <option value="8"> August  </option>
+                          <option value="9"> September  </option>
+                          <option value="10"> October  </option>
+                          <option value="11"> November </option>
+                          <option value="12"> December  </option>
                       </select>
                      <input type="number" style={{width: "50%", height:"100%"}} placeholder="YYYY" min="2017" max="2100" onChange={(e)=> setYear2(e.target.value) } />
+                     </div>
                   </li>
                   <li className='tool__item border--item'>
                       <select  onChange={(e)=> {setDep(e.target.value);setNameDep(e.target.selectedOptions[0].text) ; console.log(e);
@@ -334,10 +333,23 @@ const Charts = () => {
                       </select>
                   </li>
                   <li className='tool__item'>
-                    <div  style={{display: "flex"}}>
-                       <button id="filter" onClick={()=>filter()} >Filter</button>
-                       <button id="print" onClick={printPDF}>Click PDF</button>
-                       </div>
+                    <div className='filter__group'>
+                        <div className='filter__button'>
+                            <button id="filter" onClick={()=>filter()} >
+                              <img src={fil} alt="filter" title="filter chart" />
+                            </button>
+                        </div>
+                        <div className='filter__button filter__border'>
+                            <button  onClick={()=>undos()} >
+                              <img src={undo} alt="undo" title="undo chart" />
+                            </button>
+                        </div>
+                        <div className='filter__button'>
+                            <button id="print" onClick={printPDF}>
+                             <img src={ex} alt="export" title="export pdf" />
+                            </button>
+                        </div>
+                     </div>  
                   </li>            
                  </ul>
             </div>        

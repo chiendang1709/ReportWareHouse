@@ -35,13 +35,14 @@ const TableData = () => {
   const row = ()=>{
     if(listValueField.listData.length !== 0){
       listValueField.listData.map((valueField:any, index:number)=> {
+  
         const newObj ={...valueField}
-        newObj.id= index 
+        newObj.id= index
         rows.push(newObj)
       })
     }
   }
-  colums();         
+  colums();           
   row();  
          
 
@@ -52,8 +53,7 @@ const TableData = () => {
          ( <DataGrid 
               rowHeight={29}
               className={classes.root}
-              rows={rows}
-
+              rows={ rows}          
               columns={columns}
               components={{ Toolbar: GridToolbar }}
             /> 

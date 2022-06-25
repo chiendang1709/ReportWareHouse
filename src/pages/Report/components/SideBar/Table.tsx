@@ -59,14 +59,11 @@ const Table = ( props :{ listTable: test[], name: string }) => {
 <li  ref={ref}>
         <button  className={`content__btn submenu__btn ${submenu ? "table__active" : " "} `} 
          type="button" aria-haspopup="menu" aria-expanded={submenu ? "true" : "false"}
-         onMouseEnter={()=>setArrow(triangle2)}  
-         onMouseLeave={()=>setArrow(triangle)} 
+        
           onClick={()=> {setSubmenu((prev) => !prev); dispatch(getOnTable(true));  } }>
             {props.name}
-           {submenu ?
-            (<img src={triangle2} alt="triangle" title="list field" />)
-            : (<img src={arrow} alt="triangle" title="list field" />)
-           }
+          
+            <img src={triangle} alt="triangle" title="list field" />
         </button>
         <ul className={`content__field .content__submenu ${submenu ? "show" : " "}`}  >                
            {listField()}

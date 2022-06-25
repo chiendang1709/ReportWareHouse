@@ -29,6 +29,9 @@
              
              .active__chart{
                 background-color: orangered !important;
+                img{
+                    filter: brightness(0%);
+                }
              }
              button{
                  background-color: transparent;
@@ -45,6 +48,9 @@
                  
                  &:hover {
                     background-color: orangered;
+                     img{
+                        filter: brightness(0%);
+                     }
                             
                 }
              }
@@ -75,7 +81,9 @@
         height: 40vh;
                 .content__type{
                     width: 100%;
-                   
+                    .active{
+                        background-color: #6C757D !important;
+                      }
                         .content__item{
                             //  display: inline-block;
                              width: 100%;
@@ -107,6 +115,10 @@
                                 }
 
                               }
+                              .show{
+                                display: block !important;
+                            
+                            }
                               .content__table{
                                 display: none;
                                 animation: LTR ease 1s;  
@@ -135,12 +147,21 @@
                                                         background-color: orangered;
                                                         color: black;
                                                          img{
-                                                             transform: rotate(180deg);
+                                                             filter: brightness(0%);
                                                          }
                                                             
                                                     }
                                                   
                                                     
+                                                  
+                                                }
+                                                .table__active{
+                                                    background-color:orangered!important;
+                                                    color: black !important;
+                                                        img{
+                                                            transform: rotate(180deg);
+                                                            filter: brightness(0%);
+                                                        }
                                                   
                                                 }
                                                
@@ -259,16 +280,21 @@
                 button{
                     width: 10vw;
                     margin: 0.5vw 1vw;
-                    padding: 1vw;
+                    padding: 0.5vw;
                     border:  1px solid transparent;
                     border-radius:10px;
-                    background-color: rgb(225, 92, 25);
+                    background-color: orangered;
                     color:black;
                     font-size: 1.5vw;
                     font-weight: 600;
                     cursor: pointer;
+                    img{
+                        width: 2.5vw;
+                        height: 2.5vw;
+
+                    }
                     &:hover{
-                        background-color: orangered;
+                        background-color: red;
                     }
 
                 }
@@ -276,23 +302,11 @@
 
 }
 
-.show{
-    display: block !important;
 
-}
 
-.active{
-  background-color: #6C757D !important;
-}
 
-.table__active{
-    background-color:orangered!important;
-    color: black !important;
-        img{
-            transform: rotate(180deg);
-        }
-  
-}
+
+
 .height--small{
     height: 5vw;
 }
@@ -336,16 +350,21 @@
         .chart__tool{
             padding: 0;
             position: fixed;
+            z-index: 2;
             right: 0;
             top: 3%;
              display: flex;
-             height: 14vw;
+             height: 18vw;
              background-color: #343A40;
             .open--active{
                 background-color: orangered !important;
+                button{
+                    color: black !important;
+                }
                 img{
                      transform: rotate(-90deg) !important;
                      animation:  1s ease RT;
+                     filter: brightness(0%);
 
                 }
             }
@@ -356,8 +375,11 @@
                 
                 &:hover{
                     background-color: orangered;
+                   button{
+                       color: black;
+                   }
                     img{
-                        transform: rotate(-90deg) 
+                        filter: brightness(0%)
                     }
                 }
                 button{
@@ -366,7 +388,7 @@
                     -ms-transform: rotate(-90deg);
                     -o-transform: rotate(-90deg);
                     left: -5.3vw;
-                    margin-top: 6.0vw;
+                    margin-top: 8.5vw;
                     position: absolute;
                     text-align: center;
                     width: 12.9vw;
@@ -376,6 +398,9 @@
                     border:  none;
                     border-radius: 2px;
                     cursor: pointer;
+                    font-size: 1vw;
+                    font-weight: 600;
+                    
                     img{
                         transform: rotate(90deg);
                         width: 1vw;
@@ -388,65 +413,30 @@
                     
                     
                 }
+               
             }
             
-            
+            .tool--active{
+                display: block !important;
+                    
+            }
             .tool__list{ 
                 display:none; 
                 animation: RTL ease 1s;  
                 border-left: 1px solid #6C757D;  
-                ul{                  
+                ul{     
+                    display: flex;
+                    flex-direction: column;             
                     li{
                         height: 4.5vw;
                         padding: 1vw 1.5vw;
-                        input[type="month"]
-                        {
+                        .filter__group{
+                            display: flex;
                             width: 100%;
                             height: 100%;
-                            margin: auto;
-                            text-align: center;
-                            border-radius:2px;
-                            border:1px solid #8292a2;
-                            border-radius:0.25rem;
-                            padding: 0vw 0.5vw;
-                            font-size: 1vw;
-                            &:focus {
-                                outline:none;
-                                border-color:#3acfff;
-                                box-shadow:0 0 0 0.25rem rgba(0, 120, 250, 0.1);
-                              }
-                              
-                              ::-webkit-datetime-edit {}
-                              ::-webkit-datetime-edit-fields-wrapper {}
-                              ::-webkit-datetime-edit-month-field:hover,
-                              ::-webkit-datetime-edit-day-field:hover,
-                              ::-webkit-datetime-edit-year-field:hover {
-                                background:rgba(0, 120, 250, 0.1);
-                              }
-                              ::-webkit-datetime-edit-text {
-                                opacity:0;
-                              }
-                              ::-webkit-clear-button,
-                              ::-webkit-inner-spin-button {
-                                display:none;
-                              }
-                              ::-webkit-calendar-picker-indicator {
-                                position:absolute;
-                                width:2.5rem;
-                                height:100%;
-                                top:0;
-                                right:0;
-                                bottom:0;
-                                
-                                opacity:0;
-                                cursor:pointer;
-                                
-                                color:rgba(0, 120, 250, 1);
-                                background:rgba(0, 120, 250, 1);
-                               
-                              }
+                           
+                                         
                         }
-
                         select{
                             width:  100%;
                             height: 100%;
@@ -459,17 +449,49 @@
                             resize: vertical;
                             
                         }
-                        
-                        button{
-                            width: 100%;
-                            height: 100%;
-                            margin: auto;
-                            border: none;
-                            background-color: orangered;
-                            border-radius: 10px;
-                            font-size: 1vw;
-                            
+                      
+                        .filter__border{
+                            border-left:1px solid #8292a2;
+                            border-right:1px solid #8292a2;
                         }
+                        .filter__button{
+                            
+                            width: 6vw;
+                            padding:0 0.5vw;
+
+                           
+                            button{
+                                background-color: transparent;
+                                width: 100%;
+                                height: 3vw;
+                                border-radius: 0;
+                                border: none;
+                                margin: auto;
+                                font-size: 1vw;
+                                
+                                img{
+                                width: 40%;
+                                height: 50%;
+                                }
+                                &:hover{
+                                    background-color: orangered;
+                                    border-radius: 2px;
+                                    img{
+                                        filter: brightness(0);
+                                    }
+                                }
+                            }
+                        }
+                        // button{
+                        //     width: 100%;
+                        //     height: 100%;
+                        //     margin: auto;
+                        //     border: none;
+                        //     background-color: orangered;
+                        //     border-radius: 10px;
+                        //     font-size: 1vw;
+                            
+                        // }
 
                     }
                     .border--item{
@@ -478,77 +500,8 @@
                 } 
                
             }      
-            .filter__group{
-                display: flex;
-                width: 100%;
-                height: 100%;
-                input[type="month"]
-                {
-                    width: 100%;
-                    height: 100%;
-                    margin-right:  1.5vw;
-                    text-align: center;
-                    border-radius:2px;
-                    border:1px solid #8292a2;
-                    border-radius:0.25rem;
-                    padding: 0vw 0.5vw;
-                    font-size: 1vw;
-                    &:focus {
-                        outline:none;
-                        border-color:#3acfff;
-                        box-shadow:0 0 0 0.25rem rgba(0, 120, 250, 0.1);
-                      }
-                      
-                      ::-webkit-datetime-edit {}
-                      ::-webkit-datetime-edit-fields-wrapper {}
-                      ::-webkit-datetime-edit-month-field:hover,
-                      ::-webkit-datetime-edit-day-field:hover,
-                      ::-webkit-datetime-edit-year-field:hover {
-                        background:rgba(0, 120, 250, 0.1);
-                      }
-                      ::-webkit-datetime-edit-text {
-                        opacity:0;
-                      }
-                      ::-webkit-clear-button,
-                      ::-webkit-inner-spin-button {
-                        display:none;
-                      }
-                      ::-webkit-calendar-picker-indicator {
-                        position:absolute;
-                        width:2.5rem;
-                        height:100%;
-                        top:0;
-                        right:0;
-                        bottom:0;
-                        
-                        opacity:0;
-                        cursor:pointer;
-                        
-                        color:rgba(0, 120, 250, 1);
-                        background:rgba(0, 120, 250, 1);
-                       
-                      }
-                }
-                .filter__undo{
-                    border-left:1px solid #8292a2;
-                    width: 5vw;
-                    padding-left: 1.5vw;
-                    button{
-                        background-color: transparent;
-                        width: 2vw;
-                        height: 100%;
-                        border-radius: 0;
-                        img{
-                        width: 50%;
-                        height: 50%;
-                        }
-                        &:hover{
-                            background-color: orangered;
-                            border-radius: 2px;
-                        }
-                    }
-                }
-            }
+           
+           
           
            
         }
@@ -580,10 +533,7 @@
     }
 }
 
-.tool--active{
-    display: block !important;
 
-}
 @keyframes LTR {
     from {
       opacity: 0;
