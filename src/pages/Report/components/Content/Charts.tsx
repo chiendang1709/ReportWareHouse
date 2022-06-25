@@ -48,6 +48,7 @@ const Charts = () => {
   let datasets: data[]= []
   const listValueAlphabet: string[]= [] 
   let fieldValues: string[]=[]  
+  let x: string[]=[]
   
   const dispatch = useAppDispatch()
   const typeCharts = useAppSelector(state => state.typeChart)
@@ -65,7 +66,8 @@ const Charts = () => {
   const [year1, setYear1] =useState<string|boolean>("");
   const [month2, setMonth2] =useState<string|boolean>("");
   const [year2, setYear2] =useState<string|boolean>("");
-  const [select, setSelect]=useState("");
+  const [dep, setDep]=useState("");
+  const [nameDep, setNameDep]=useState("");
   const [value, setValue] = useState<any[]>([])
   const [data, setData]= useState(dtChart)
   
@@ -153,11 +155,14 @@ const Charts = () => {
         datasets.push( insertChart(data))      
       } 
    })
+  for(let i =0; i<value.length;i ++){
+         x.push("*")
+  }
   
    useEffect(()=>
    { 
     setData({
-      labels: listValueAlphabet.length !==0 ? listValueAlphabet : ["*","*","*","*","*"],
+      labels: listValueAlphabet.length !==0 ? listValueAlphabet : x,
       datasets: datasets,
       xAxisID:'xAxis1',
     })
@@ -178,7 +183,7 @@ const Charts = () => {
       },
       title: {
         display: true,
-        text: `Chart ${types}`,
+        text: `Chart ${types} ${nameDep ? "of " + nameDep: ""}`,
         position: 'top' as const,
       },
      
@@ -187,7 +192,7 @@ const Charts = () => {
       x: {
         title: {
           display: true,
-          text: 'Month'
+          text: 'Time'
         }
       },
       y: {
@@ -246,7 +251,7 @@ const Charts = () => {
       month: m1? m1: "NULL",
       year2:  y2? y2 : "NULL",
       month2: m2? m2: "NULL",
-      departments: Number(select) == -1 ||Number(select) ? select: "NULL"
+      departments: Number(dep) == -1 ||Number(dep) ? dep: "NULL"
     } 
     dispatch(filterAction.getFilter(object))
   }
@@ -318,8 +323,9 @@ const Charts = () => {
                      <input type="number" style={{width: "50%", height:"100%"}} placeholder="YYYY" min="2017" max="2100" onChange={(e)=> setYear2(e.target.value) } />
                   </li>
                   <li className='tool__item border--item'>
-                      <select  onChange={(e)=> setSelect(e.target.value) }  >
-                         <option value="-1"> All </option> 
+                      <select  onChange={(e)=> {setDep(e.target.value);setNameDep(e.target.selectedOptions[0].text) ; console.log(e);
+                      } }  >
+                         {/* <option value="-1"> All </option>  */}
                          {
                           listDepartment.listDepartment.map((data: listDepartment)=>(
                             <option key={data.id} value={data.id}>{data.departments_name}</option>
