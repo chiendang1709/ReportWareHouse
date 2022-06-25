@@ -61,8 +61,6 @@ const TableData = () => {
       <GridToolbarContainer>
         <GridToolbar
         csvOptions={{
-          fileName: 'customerDataBase',
-          delimiter: ';',
           utf8WithBom: true,
         }}
         />
