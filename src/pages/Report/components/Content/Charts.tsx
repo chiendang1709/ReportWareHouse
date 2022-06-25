@@ -51,6 +51,8 @@ const Charts = () => {
   const listValueAlphabet: string[]= [] 
   let fieldValues: string[]=[]  
   let x: string[]=[]
+ 
+  let ref = React.useRef<HTMLDivElement>(null)
   
   const dispatch = useAppDispatch()
   const typeCharts = useAppSelector(state => state.typeChart)
@@ -69,6 +71,7 @@ const Charts = () => {
   const [year2, setYear2] =useState<string|boolean>("");
   const [dep, setDep]=useState("");
   const [nameDep, setNameDep]=useState("");
+  const [nameChart, setNameChart]= useState("")
   const [value, setValue] = useState<any[]>([])
   const [data, setData]= useState(dtChart)
   
@@ -77,23 +80,39 @@ const Charts = () => {
   useEffect(()=> setOn(onChart.onChart),[onChart])
   useEffect(()=> setType(typeCharts.typeChart),[typeCharts])
   useEffect(() => {dispatch(departmentAction.getDepartment())}, []);
+  useEffect(()=>  setNameChart(""),[listValueField])
   useEffect(() => {
     if(listFilter.listFilter.length >0){
       setValue(listFilter.listFilter)
   }
   }, [listFilter.listFilter]);
+  useEffect(() => {
+    const handler = (event: TouchEvent | MouseEvent) => {
+      if (onTool && ref.current && !ref.current.contains(event.target as HTMLDivElement)){
+        setOnTool(false);
+      }
+    };
+    document.addEventListener("mousedown", handler );
+    return () => {
+      document.removeEventListener("mousedown", handler );
+    };
+  }, [onTool]);
   
- 
+
   //undo
   const undos = ()=>{
     let arrayCoppy =  listValueField.listValueField.slice()
-    setValue(arrayCoppy)     
+    setValue(arrayCoppy)
+    setNameChart("")     
    }
    
    //getNumber
-   if(value.length > 0){
-    fieldValues = Object.keys(value[0])
-   }
+ 
+    if(value.length > 0){
+      fieldValues = Object.keys(value[0])
+     }
+  
+  
    for(let i =0 ;i<fieldValues.length; i++ ){
     const listValueNumber: string[]= []
     if(fieldValues[i] !=="month_name" &&fieldValues[i] !=="year"){
@@ -140,7 +159,7 @@ const Charts = () => {
         }
    }
     //get value in chart
-   const insertChart =(data:listChart)=> { 
+   const insertChart = (data:listChart)=> { 
      let converNumber = data.de.map((item:string)=> Number(item))
      let random = Math.floor(Math.random()*16777215).toString(16);
      return ( { 
@@ -151,17 +170,21 @@ const Charts = () => {
          data:converNumber ,
    })
  }
- valueChart.map((data)=> { 
-      if(data.de.length >0){
-        datasets.push( insertChart(data))      
-      } 
-   })
+ useEffect(()=>{
+  valueChart.map((data)=> { 
+    if(data.de.length >0){
+      datasets.push( insertChart(data))      
+    } 
+ })
+ },[valueChart])
+
   for(let i =0; i<value.length;i ++){
          x.push("*")
   }
   
    useEffect(()=>
    { 
+   
     setData({
       labels: listValueAlphabet.length !==0 ? listValueAlphabet : x,
       datasets: datasets,
@@ -169,6 +192,8 @@ const Charts = () => {
     })
   }
   ,[value,types])
+
+
   
   const options = {
     responsive: true,
@@ -184,7 +209,7 @@ const Charts = () => {
       },
       title: {
         display: true,
-        text: `Chart ${types} ${nameDep ? "of " + nameDep: ""}`,
+        text: `Chart ${types} ${nameChart}`,
         position: 'top' as const,
       },
      
@@ -199,7 +224,7 @@ const Charts = () => {
       y: {
         title: {
           display: true,
-          text: '%'
+          text: 'Money'
         },
       }},
     
@@ -249,12 +274,13 @@ const Charts = () => {
     let object ={
       params: arrayCheck.join(","),
       year:y1? y1 : "NULL",
-      month: m1? m1: "NULL",
+      month: m1 ? m1: "NULL",
       year2:  y2? y2 : "NULL",
-      month2: m2? m2: "NULL",
-      departments: Number(dep) == -1 ||Number(dep) ? dep: "NULL"
+      month2: m2  ? m2 : "NULL",
+      departments:  Number(dep) ? dep: "NULL"
     } 
     dispatch(filterAction.getFilter(object))
+    setNameChart(nameDep)
   }
 
   return (
@@ -273,7 +299,7 @@ const Charts = () => {
                  <img src={arrow} alt="arrow" title ="use tool" />
               </button>
             </div>
-            <div className={`tool__list ${onTool ? 'tool--active' : ''}`}>
+            <div className={`tool__list ${onTool ? 'tool--active' : ''}`} ref={ref}>
                 <ul>
                   <li className='tool__item border--item'>
                   <div className='filter__group'>
@@ -281,7 +307,7 @@ const Charts = () => {
                       {/* <input type="month" onChange={(e)=> setMonth(e.target.value) } ></input> */}
                       {/* <input type="number" style={{width: "50%",height:"30px"}} placeholder="MMMM" min="1" max="12" onChange={(e)=> setMonth2(e.target.value) } /> */}
                       <select  onChange={(e)=> setMonth1(e.target.value) }  >
-                         <option value="-1"> Choose Month </option> 
+                         <option value="NULL"> Choose Month </option> 
                           <option value="1"> January </option>
                           <option value="2"> February </option>
                           <option value="3"> May </option>
@@ -306,7 +332,7 @@ const Charts = () => {
                      {/* <input type="month" style={{width: "210px"}} onChange={(e)=> setMonth1(e.target.value) } ></input> */}
                      {/* <input type="number" style={{width: "50%",height:"30px"}} placeholder="MMMM" min="1" max="12" onChange={(e)=> setMonth2(e.target.value) } /> */}
                      <select   onChange={(e)=> setMonth2(e.target.value) }  >
-                         <option value="-1"> Choose Month </option> 
+                         <option value="NULL"> Choose Month </option> 
                           <option value="1"> January </option>
                           <option value="2"> February  </option>
                           <option value="3"> May  </option>
@@ -326,7 +352,7 @@ const Charts = () => {
                   <li className='tool__item border--item'>
                       <select  onChange={(e)=> {setDep(e.target.value);setNameDep(e.target.selectedOptions[0].text) ; console.log(e);
                       } }  >
-                         {/* <option value="-1"> All </option>  */}
+                         <option value="NULL"> Choose Despartment </option>  
                          {
                           listDepartment.listDepartment.map((data: listDepartment)=>(
                             <option key={data.id} value={data.id}>{data.departments_name}</option>
