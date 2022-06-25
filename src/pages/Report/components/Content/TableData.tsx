@@ -7,37 +7,43 @@ import { styleMui } from 'components/common/styleMui';
 
 
 const TableData = () => {
-  const [on, setOn] = useState(false);
-  const onTable = useAppSelector(state=> state.onTable) 
-  const classes = styleMui();
-  
+
   const columns: GridColDef[] = [];
   const rows:any =[];
-  const listValueField = useAppSelector(state=> state.listValue) 
+  const classes = styleMui();
 
+  const [on, setOn] = useState(false);
+
+ 
+  const onTable = useAppSelector(state=> state.onTable) 
+  const listValueField = useAppSelector(state=> state.tableData) 
+  const listTable = useAppSelector(state => state.table)
+  
+  useEffect(()=> setOn(onTable.onTable),[onTable])
   const colums =()=>{
-    if(listValueField.listValueField.length !== 0){
-      let nameField =Object.keys(listValueField.listValueField[0])
+    if(listValueField.listData.length !== 0){
+      let nameField =Object.keys(listValueField.listData[0])
       nameField.map((nameField:string)=> {
-        columns.push({ field: nameField, headerName: nameField, width: 200 })
-      })
+        for(let z = 0;z<listTable.listTable.length; z++){
+          if(listTable.listTable[z].key_code ==`${nameField}`){
+        columns.push({ field: nameField, headerName: listTable.listTable[z].value_code, width: 200 })
+          }
+      }})
     }
   }
 
   const row = ()=>{
-    if(listValueField.listValueField.length !== 0){
-      listValueField.listValueField.map((valueField:any, index:number)=> {
+    if(listValueField.listData.length !== 0){
+      listValueField.listData.map((valueField:any, index:number)=> {
         const newObj ={...valueField}
-        newObj.id= index    
+        newObj.id= index 
         rows.push(newObj)
-
       })
     }
   }
   colums();         
   row();  
          
-  useEffect(()=> setOn(onTable.onTable),[onTable])
 
   return (
     <div className='content__table'>

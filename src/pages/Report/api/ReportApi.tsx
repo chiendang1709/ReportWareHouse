@@ -1,5 +1,6 @@
 import { ListData } from "interfaces/components";
 import axiosClient from "services/axiosClient";
+import { Filter } from "../slice/filterSlice";
 
 const dataApi ={
 
@@ -13,18 +14,29 @@ const dataApi ={
           const url =`/category/${params}/reports/`;
           return await axiosClient.get(url)
     },
-    //lấy danh sách tên trường 
-    getListField: async(params : number)=> {
-          const url =`/reports/${params}/get-fields/`;
-          return await axiosClient.post(url)
+    //lấy danh sách tên bộ phận
+    getListDepartment: async()=> {
+          const url ="/departments/";
+          return await axiosClient.get(url)
     },
     //lấy value theo chon 
-    postValueField: async(params: ListData)=> {
+    postValueField: async(params: string)=> {
           
-          const json = JSON.stringify({params: params.listValue});
-          const url =`/reports/${params.id}/get-data/`;
+          const json = JSON.stringify({params: params});
+          const url ="/reports/get-data/";
+      //     console.log("json",json);
           return await axiosClient.post(url, json)
-    }
+    },
+    //lấy filter theo chon 
+    postFilter: async(params: Filter)=> {
+          
+      const json = JSON.stringify(params);
+      const url ="/reports/filter-data/";
+      console.log("json",json);
+      console.log("param",params)
+      
+      return await axiosClient.post(url, json)
+}
 }
 
 export default dataApi;

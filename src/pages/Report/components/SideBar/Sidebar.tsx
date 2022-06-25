@@ -15,7 +15,8 @@ import { getOnChart } from 'pages/Report/slice/onChart'
 const Sidebar = () => {
   const dispatch = useAppDispatch()
   const listCategory = useAppSelector(state => state.category)
-
+   
+   
   //getListCategory
   useEffect(() => {
     dispatch(categoryAction.getCategory())
@@ -55,7 +56,6 @@ const Sidebar = () => {
             </div>
             <div className="sidebar__footer" >
                   <button  onClick={()=>dispatch(apply.getApply("Apply"))}>Apply</button>
-                  {/* <button  onClick={()=> {dispatch(getOnTable(false));  dispatch(getOnChart(false))}}>Refesh</button> */}
              </div>
 
 

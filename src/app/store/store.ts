@@ -8,8 +8,10 @@ import changeChart from "pages/Report/slice/changeChart";
 import  applys  from "pages/Report/slice/applySlice";
 import  onChartSlice from "pages/Report/slice/onChart";
 import onTableSlice  from "pages/Report/slice/onTable";
-import fieldSlice from "pages/Report/slice/fieldSlice";
 import listValueField from "pages/Report/slice/valueField";
+import departmentSlice from "pages/Report/slice/departmentSlice";
+import  filterSlice  from "pages/Report/slice/filterSlice";
+import  tableDataAction  from "pages/Report/slice/tableDataSlice";
 
 const sagaMiddleware = createSagaMiddleware()
 export const store = configureStore({
@@ -17,12 +19,15 @@ export const store = configureStore({
   
    category: categorySlice,
    table: tableSlice,
-   field: fieldSlice,
+   filter: filterSlice,
+   department: departmentSlice,
    listValue: listValueField,
+   tableData: tableDataAction,
    typeChart: changeChart,
    onChart: onChartSlice,
    onTable: onTableSlice,
-   clickApply : applys
+   clickApply : applys,
+  
    
   },
   middleware: (getDefaultMiddleware) =>

@@ -10,7 +10,7 @@ import { listData } from 'interfaces/components';
   
 // }
 export interface ListField {
-  listValueField: Array<any>;
+  listValueField: Array<string>;
   loading:boolean
   
 };
@@ -24,7 +24,7 @@ export const listValueField = createSlice({
   name: 'listFieldChoose',
   initialState,
   reducers: {
-    getlistValueField: (state, action: PayloadAction<any> ) => {
+    getlistValueField: (state, action: PayloadAction<string> ) => {
       state.loading=false
     },
     showListValueFields: (state, action)=> {

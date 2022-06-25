@@ -4,9 +4,10 @@ import { AxiosResponse } from "axios"
 import {categoryAction } from "pages/Report/slice/categorySlice"
 import { tableAction } from "pages/Report/slice/tableSlice"
 import dataApi from "pages/Report/api/ReportApi"
-import { fieldAction } from "pages//Report/slice/fieldSlice"
 import {listValueFieldAction} from "pages/Report/slice/valueField"
 import { ListData } from "interfaces/components"
+import { departmentAction } from "pages/Report/slice/departmentSlice"
+import { Filter, filterAction } from "pages/Report/slice/filterSlice"
 
 // export function * getListTable(){
 //     const res: AxiosResponse = yield call(dataApi.getAll)
@@ -16,28 +17,34 @@ import { ListData } from "interfaces/components"
 // }
 export function * getListCategory(){
     const res: AxiosResponse = yield call(dataApi.getCategory)
-    if(res){
+    if(res ){
         yield put(categoryAction.postCategory(res))
     }
 }
 export function* getListTable({payload}: {payload: number}){
+ 
+    
+    try {
+        const res : AxiosResponse = yield call(dataApi.getListTable, payload)
+        if(res){
+            yield put(tableAction.showListTables(res))
+        }
+      } catch (e : unknown) {
+        console.log('Error')
+      }
+    
+}
+
+export function* getListDepartment(){
 
    
-    const res : AxiosResponse = yield call(dataApi.getListTable, payload)
+    const res : AxiosResponse = yield call(dataApi.getListDepartment)
     if(res){
-        yield put(tableAction.showListTables(res))
+        yield put(departmentAction.showDepartment(res))
     }
 }
-export function* getListField({payload}: {payload: number}){
 
-   
-    const res : AxiosResponse = yield call(dataApi.getListField, payload)
-    if(res){
-        
-        yield put(fieldAction.showListFields(res))
-    }
-}
-export function* getListValue({payload}: {payload: ListData} ){
+export function* getListValue({payload}: {payload: string} ){
   
     
     const res : AxiosResponse = yield call(dataApi.postValueField, payload)
@@ -47,10 +54,21 @@ export function* getListValue({payload}: {payload: ListData} ){
     }
 }
 
+export function* getFilter({payload}: {payload: Filter} ){
+  
+    
+    const res : AxiosResponse = yield call(dataApi.postFilter, payload)
+    if(res){
+       
+        yield put(filterAction.showFilter(res))
+    }
+}
+
 export default function* list (){
     
     yield takeLatest(categoryAction.getCategory.type,getListCategory)
     yield takeLatest(tableAction.getListTables,getListTable)
-    yield takeLatest(fieldAction.getListFields,getListField)
+    yield takeLatest(departmentAction.getDepartment,getListDepartment)
     yield takeLatest(listValueFieldAction.getlistValueField,getListValue)
+    yield takeLatest(filterAction.getFilter,getFilter)
 }
