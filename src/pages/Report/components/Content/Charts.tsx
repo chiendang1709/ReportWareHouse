@@ -60,10 +60,7 @@ const Charts = () => {
   const listDepartment = useAppSelector(state=> state.department) 
   const listFilter = useAppSelector(state=> state.filter) 
   const listTable = useAppSelector(state => state.table)
-  
- console.log("filter", listFilter);
- console.log("valueFiled",listValueField.listValueField);
- 
+
   const [types, setType] = useState<ChartType>('bar');
   const [on, setOn] = useState(false);
   const [onTool, setOnTool] = useState(false);  
