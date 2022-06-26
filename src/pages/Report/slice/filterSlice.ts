@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { listData } from 'interfaces/components';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 // export interface Filter {
@@ -40,8 +40,14 @@ export const filterSlice = createSlice({
       state.loading=false
     },
     showFilter: (state, action)=> {
-      state.listFilter =action.payload;
+      if(action.payload.length ==0){
+        toast.error("No Data!");  
+      }else {
+        state.listFilter =action.payload;
+      }
       state.loading=true
+
+
     }
   
   },

@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { DataGrid, GridColDef,GridToolbarContainer,GridToolbar} from '@mui/x-data-grid';
 
-import { DataGrid, GridColDef, GridToolbarExport,GridToolbarContainer,GridToolbar, GridColTypeDef  } from '@mui/x-data-grid';
-
-
-import { useAppDispatch, useAppSelector } from 'app/store/hooks';
+import { useAppSelector } from 'app/store/hooks';
 import { styleMui } from 'components/common/styleMui';
-
 
 const TableData = () => {
 
@@ -35,7 +32,7 @@ const TableData = () => {
       nameField.map((nameField:string)=> {
         for(let z = 0;z<listTable.listTable.length; z++){
           if(listTable.listTable[z].key_code ==`${nameField}`){
-        columns.push({ field: nameField, headerName: listTable.listTable[z].value_code, width: 200, valueFormatter: ({ value }) => currencyFormatter(Number(value))} )
+         columns.push({ field: nameField, headerName: listTable.listTable[z].value_code, width: 200, valueFormatter: ({ value }) => currencyFormatter(Number(value))} )
           }
       }})
     }
@@ -45,7 +42,6 @@ const TableData = () => {
   const row = ()=>{
     if(listValueField.listData.length !== 0){
       listValueField.listData.map((valueField:any, index:number)=> {
-  
         const newObj ={...valueField}
         newObj.id= index
         rows.push(newObj)
@@ -67,7 +63,6 @@ const TableData = () => {
       </GridToolbarContainer>
     );
   }
-
   return (
     <div className='content__table'>
    <div className='table'>
@@ -77,11 +72,8 @@ const TableData = () => {
               className={classes.root}
               rows={ rows}          
               columns={columns}
-              components={{ Toolbar: MyExportButton }}
-              
-            />
-             
-            
+              components={{ Toolbar: MyExportButton }}  
+            />   
          )
         :<h1> choose your data</h1>
         }   

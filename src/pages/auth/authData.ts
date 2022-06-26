@@ -1,11 +1,11 @@
 import {call, put, takeEvery,all,takeLatest} from "@redux-saga/core/effects"
-
 import { AxiosResponse } from "axios"
+import { ToastContainer, toast } from 'react-toastify';
+
 import {categoryAction } from "pages/Report/slice/categorySlice"
 import { tableAction } from "pages/Report/slice/tableSlice"
 import dataApi from "pages/Report/api/ReportApi"
 import {listValueFieldAction} from "pages/Report/slice/valueField"
-import { ListData } from "interfaces/components"
 import { departmentAction } from "pages/Report/slice/departmentSlice"
 import { Filter, filterAction } from "pages/Report/slice/filterSlice"
 
@@ -54,11 +54,15 @@ export function* getListDepartment(){
 export function* getListValue({payload}: {payload: string} ){
   
     try {
-        const res : AxiosResponse = yield call(dataApi.postValueField, payload)
-        if(res){
-        
-            yield put(listValueFieldAction.showListValueFields(res))
+        if(payload != ""){
+            const res : AxiosResponse = yield call(dataApi.postValueField, payload)
+            if(res){
+                yield put(listValueFieldAction.showListValueFields(res))
+            }
+        } else {
+                yield put(listValueFieldAction.showListValueFields(""))
         }
+        
     } catch (e : unknown) {
         console.log('Error')
       }
@@ -69,11 +73,12 @@ export function* getFilter({payload}: {payload: Filter} ){
     try {
     const res : AxiosResponse = yield call(dataApi.postFilter, payload)
         if(res){
-        
             yield put(filterAction.showFilter(res))
         }
     } catch (e : unknown) {
         console.log('Error')
+       
+
     }
 }
 

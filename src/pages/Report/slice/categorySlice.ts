@@ -1,4 +1,3 @@
-import { SatelliteAlt } from '@mui/icons-material';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { listCategory } from 'interfaces/components';
 
