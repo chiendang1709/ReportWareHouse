@@ -343,7 +343,7 @@ const Charts = () => {
                      </div>
                   </li>
                   <li className='tool__item border--item'>
-                      <select  onChange={(e)=> {setDep(e.target.value);setNameDep(e.target.selectedOptions[0].text) ; console.log(e);
+                      <select  onChange={(e)=> {setDep(e.target.value);setNameDep(e.target.selectedOptions[0].text) ;
                       } }  >
                          <option value="NULL"> Choose Despartment </option>  
                          {
