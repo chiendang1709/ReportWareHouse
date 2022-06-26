@@ -97,7 +97,7 @@
                                 cursor: pointer;
                                 width: 100%;
                                 height: 100%;
-                                font-size:1vw;
+                                font-size:0.8vw;
                                 font-weight: 600;
                                 color:white;
                                 padding: 1vw 1.5vw; 
@@ -122,6 +122,11 @@
                               .content__table{
                                 display: none;
                                 animation: LTR ease 1s;  
+                                    &:nth-child(even){
+                                        button{
+                                        border-top: 1px solid #4B545C;
+                                        }
+                                    }
                                                                        
                                         li{
                                             padding: auto;
@@ -130,9 +135,7 @@
                                                     font-weight:600;
                                                     top:0;
                                                     left: 0;
-                                                    transform: none;
-                                                    border-top: 1px solid #4B545C;
-                                                    border-bottom: 1px solid #4B545C;
+                                                    transform: none;                                           
                                                     text-transform: capitalize;
                                                     
                                                     
@@ -192,7 +195,7 @@
                                                                 width: 100%;
                                                                 height: 100%;
                                                                 color: white;
-                                                                font-size:0.9vw;
+                                                                font-size:0.7vw;
                                                                 padding: 0.5vw;
                                                                 text-transform: capitalize;
                                                                 input {                    
@@ -330,7 +333,7 @@
             left: 50%;
             transform: translate(-50%,-50%);
             h1{
-                width: 34vw;
+                width: 35vw;
                 position: absolute;
                 top: 50%;
                 left: 50%;

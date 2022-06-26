@@ -203,7 +203,8 @@ const Charts = () => {
         labels: {
           font: {
             size: 14,
-            family: "'Montserrat', 'sans-serif'" 
+            family: "'Montserrat', 'sans-serif'" ,
+            
           },
       }
       },
