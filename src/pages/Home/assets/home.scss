@@ -3,16 +3,16 @@
 }
 .navbar{
     width: 100%;
-    padding: 50px 50px;
+    padding: 1.5vw 4.5vw;
     position: absolute;
     animation: 1s ease-out 0s 1 SIFL;
         ul{
             display: flex;
             .navbar__item{
-                margin: 20px;
+                margin: 1.5vw;
                 .navbar__link{
                     .navbar__text{
-                    font-size: 2vw;
+                    font-size: 1.5vw;
                     color: white;
                     text-transform: uppercase;
                     position: relative;
@@ -22,7 +22,7 @@
                     &:before {
                         content: "";
                         position: absolute;
-                        height: 1vw;
+                        height: 0.9vw;
                         background-color: orangered;
                         width:100%;
                         margin-top: 2px;

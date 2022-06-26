@@ -303,7 +303,7 @@ const Charts = () => {
                 <ul>
                   <li className='tool__item border--item'>
                   <div className='filter__group'>
-                     <p> To</p>
+                     <p> From </p>
                       {/* <input type="month" onChange={(e)=> setMonth(e.target.value) } ></input> */}
                       {/* <input type="number" style={{width: "50%",height:"30px"}} placeholder="MMMM" min="1" max="12" onChange={(e)=> setMonth2(e.target.value) } /> */}
                       <select  onChange={(e)=> setMonth1(e.target.value) }  >
@@ -328,7 +328,7 @@ const Charts = () => {
                   </li>
                   <li className='tool__item border--item'>
                   <div className='filter__group'>
-                      <p> From </p>
+                      <p> To </p>
                      {/* <input type="month" style={{width: "210px"}} onChange={(e)=> setMonth1(e.target.value) } ></input> */}
                      {/* <input type="number" style={{width: "50%",height:"30px"}} placeholder="MMMM" min="1" max="12" onChange={(e)=> setMonth2(e.target.value) } /> */}
                      <select   onChange={(e)=> setMonth2(e.target.value) }  >
