@@ -305,7 +305,7 @@ const Charts = () => {
                 <ul>
                   <li className='tool__item border--item'>
                   <div className='filter__group'>
-                     <p> To</p>
+                     <p> From </p>
               
                       <select  onChange={(e)=> setMonth1(e.target.value) }  >
                           <option value="NULL"> Choose Month </option> 
@@ -329,7 +329,7 @@ const Charts = () => {
                   </li>
                   <li className='tool__item border--item'>
                   <div className='filter__group'>
-                      <p> From </p>
+                      <p> To </p>
                      <select   onChange={(e)=> setMonth2(e.target.value) }  >
                          <option value="NULL"> Choose Month </option> 
                           <option value="1"> January </option>
