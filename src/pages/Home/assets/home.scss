@@ -29,12 +29,12 @@
                         border-radius: 2px;
                         bottom: -0.7vw;
                         right: 0;
-                        transition: .3s;
+                        transition: .5s;
                     }
                     &:hover::before {
                         position: absolute;
                         left: 0;
-                        width:100%; 
+                        width:0%; 
                         background-color: #06A9DF;               
                       }
                 }
@@ -44,8 +44,7 @@
 }
 
 .banner{
-    // ../../../ là do phải lấy ở thư mục assets chạy local thì nhận, nhưng up lên host ko nhận//
-    // background-image: url('../../../assets/images/background.jpg')
+   
     background-size: 100% 100%;
     background-position: center top;
     height: 100vh;

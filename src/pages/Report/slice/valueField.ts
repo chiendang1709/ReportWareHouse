@@ -1,14 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { listData } from 'interfaces/components';
 
-// export interface listField {
 
-// export interface listField {
- 
-//     listValue :string,
-//     id:number
-  
-// }
 export interface ListField {
   listValueField: Array<string>;
   loading:boolean
@@ -28,7 +20,12 @@ export const listValueField = createSlice({
       state.loading=false
     },
     showListValueFields: (state, action)=> {
-      state.listValueField =action.payload;
+      if(action.payload.length ==0){
+        state.listValueField =[];
+       
+      }else {
+        state.listValueField =action.payload;
+      }
       state.loading=true
     }
   

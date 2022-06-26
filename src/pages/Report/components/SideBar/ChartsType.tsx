@@ -13,12 +13,9 @@ import pie from 'assets/images/pie__icon.png'
 
  const ChartsType = () => {
   
-
      const typeCharts = useAppSelector(state => state.typeChart)
      const onChart = useAppSelector(state=> state.onChart) 
      const dispatch = useAppDispatch()
-
-  
 
      return (
         <div className='sidebar__chart'>
@@ -26,15 +23,13 @@ import pie from 'assets/images/pie__icon.png'
              <button className={`${onChart.onChart==true && typeCharts.typeChart=='bar' ? 'active__chart' : ''}`} 
 
                         onClick={()=>{dispatch(getTypeChart('bar')); dispatch(getOnChart(true)); }}>
-                     
-                            <img src={bar} title="choose bar chart"  alt="bar" />
+                        <img src={bar} title="choose bar chart"  alt="bar" />
                         
              </button>
              <button className={`${onChart.onChart==true && typeCharts.typeChart=='pie' ? 'active__chart' : ''}`}
                     
                         onClick={()=>{dispatch(getTypeChart('pie')); dispatch(getOnChart(true));}}>
-                       
-                            <img src={pie} title="choose pie chart"  alt="pie" />
+                        <img src={pie} title="choose pie chart"  alt="pie" />
                             
                         
             </button>

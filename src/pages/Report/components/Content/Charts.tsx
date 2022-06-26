@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-
 import { useAppDispatch, useAppSelector } from 'app/store/hooks';
 
 import { Chart as ChartJS, DatasetController, registerables } from "chart.js";
@@ -61,7 +60,10 @@ const Charts = () => {
   const listDepartment = useAppSelector(state=> state.department) 
   const listFilter = useAppSelector(state=> state.filter) 
   const listTable = useAppSelector(state => state.table)
-
+  
+ console.log("filter", listFilter);
+ console.log("valueFiled",listValueField.listValueField);
+ 
   const [types, setType] = useState<ChartType>('bar');
   const [on, setOn] = useState(false);
   const [onTool, setOnTool] = useState(false);  
@@ -76,15 +78,15 @@ const Charts = () => {
   const [data, setData]= useState(dtChart)
   
   useEffect(()=>{dispatch(tableDataAction.getListTableData(value))},[value])
-  useEffect(()=>setValue(listValueField.listValueField),[listValueField.listValueField]) 
   useEffect(()=> setOn(onChart.onChart),[onChart])
   useEffect(()=> setType(typeCharts.typeChart),[typeCharts])
   useEffect(() => {dispatch(departmentAction.getDepartment())}, []);
   useEffect(()=>  setNameChart(""),[listValueField])
+  useEffect(()=>(setValue(listValueField.listValueField)),[listValueField.listValueField]) 
   useEffect(() => {
-    if(listFilter.listFilter.length >0){
-      setValue(listFilter.listFilter)
-  }
+    if(listFilter.listFilter.length >0){ 
+        setValue(listFilter.listFilter)  
+    } 
   }, [listFilter.listFilter]);
   useEffect(() => {
     const handler = (event: TouchEvent | MouseEvent) => {
@@ -105,14 +107,15 @@ const Charts = () => {
     setValue(arrayCoppy)
     setNameChart("")     
    }
-   
-   //getNumber
- 
+  // x null
+  for(let i =0; i<value.length;i ++){
+    x.push("*")
+  }
+  //getNumber
     if(value.length > 0){
       fieldValues = Object.keys(value[0])
-     }
-  
-  
+    }
+
    for(let i =0 ;i<fieldValues.length; i++ ){
     const listValueNumber: string[]= []
     if(fieldValues[i] !=="month_name" &&fieldValues[i] !=="year"){
@@ -178,13 +181,9 @@ const Charts = () => {
  })
  },[valueChart])
 
-  for(let i =0; i<value.length;i ++){
-         x.push("*")
-  }
-  
    useEffect(()=>
    { 
-   
+    
     setData({
       labels: listValueAlphabet.length !==0 ? listValueAlphabet : x,
       datasets: datasets,
@@ -193,8 +192,8 @@ const Charts = () => {
   }
   ,[value,types])
 
-
   
+
   const options = {
     responsive: true,
     plugins: {
@@ -203,8 +202,8 @@ const Charts = () => {
         labels: {
           font: {
             size: 14,
-            family: "'Montserrat', 'sans-serif'" ,
-            
+            weight:"boldness",
+            family: "'Montserrat', 'sans-serif'" 
           },
       }
       },
@@ -230,8 +229,7 @@ const Charts = () => {
       }},
     
   };
-
-
+ 
   //PDF
   const printPDF = () => {
     const domElement: any = document.getElementById("chart");
@@ -245,6 +243,7 @@ const Charts = () => {
       pdf.save(`${new Date().toISOString()}.pdf`);
     });
   };
+
   //filter
   const filter = ()=> {
     let arrayCheck: string[]= []
@@ -254,22 +253,21 @@ const Charts = () => {
     let m2: string|boolean= month2
     let checkbox: any = document.getElementsByName('checkbox')  ;
     for (let item of checkbox) {
-      if( item.checked == true){
+     if( item.checked == true){
         arrayCheck.push(item.value)
       }
      }
-     if(y1 && y2  && m2 == "-1" && m1){
+     if(y1 && y2 && m2 == "NULL" && m1){
        y2 = false
-     } else 
-     if(y1 ==false || m1 == false && y2 && m2 )
-    {
+     } else if(y1 ==false || m1 == false && y2 && m2 )
+     {
        y1 =y2
        m1 = m2
        y2 = false
        m2 = false
-    } else if(y1 && y2 ){
+     } else if(y1 && y2 ){
            if(y1 > y2){
-              toast.error("Vui lòng chọn lại năm");
+              toast.error("Please Choose Year Again!");
            }
     }
     let object ={
@@ -286,7 +284,7 @@ const Charts = () => {
 
   return (
     <div  className='content__chart'>
-      <ToastContainer  position="top-center"  style={{width: "20%", height:"20px"}}   ></ToastContainer>
+      <ToastContainer  position="top-center"  style={{width: "30%", height:"20px"}} ></ToastContainer>
       <div id='chart' className='chart'>
       { on?
           (<Chart options={options}  type='bar' data={data}  />)
@@ -304,11 +302,10 @@ const Charts = () => {
                 <ul>
                   <li className='tool__item border--item'>
                   <div className='filter__group'>
-                     <p> From </p>
-                      {/* <input type="month" onChange={(e)=> setMonth(e.target.value) } ></input> */}
-                      {/* <input type="number" style={{width: "50%",height:"30px"}} placeholder="MMMM" min="1" max="12" onChange={(e)=> setMonth2(e.target.value) } /> */}
+                     <p> To</p>
+              
                       <select  onChange={(e)=> setMonth1(e.target.value) }  >
-                         <option value="NULL"> Choose Month </option> 
+                          <option value="NULL"> Choose Month </option> 
                           <option value="1"> January </option>
                           <option value="2"> February </option>
                           <option value="3"> May </option>
@@ -329,9 +326,7 @@ const Charts = () => {
                   </li>
                   <li className='tool__item border--item'>
                   <div className='filter__group'>
-                      <p> To </p>
-                     {/* <input type="month" style={{width: "210px"}} onChange={(e)=> setMonth1(e.target.value) } ></input> */}
-                     {/* <input type="number" style={{width: "50%",height:"30px"}} placeholder="MMMM" min="1" max="12" onChange={(e)=> setMonth2(e.target.value) } /> */}
+                      <p> From </p>
                      <select   onChange={(e)=> setMonth2(e.target.value) }  >
                          <option value="NULL"> Choose Month </option> 
                           <option value="1"> January </option>
