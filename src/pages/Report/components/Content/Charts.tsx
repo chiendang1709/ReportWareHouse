@@ -47,7 +47,7 @@ const Charts = () => {
  
   const valueChart: Array<listChart>= []  
   let datasets: data[]= []
-  const listValueAlphabet: string[]= [] 
+  let listValueAlphabet: string[]= [] 
   let fieldValues: string[]=[]  
   let x: string[]=[]
  
@@ -72,7 +72,7 @@ const Charts = () => {
   const [nameDep, setNameDep]=useState("");
   const [nameChart, setNameChart]= useState("")
   const [value, setValue] = useState<any[]>([])
-  const [data, setData]= useState(dtChart)
+  const [data, setData]= useState<any>(dtChart)
   
   useEffect(()=>{dispatch(tableDataAction.getListTableData(value))},[value])
   useEffect(()=> setOn(onChart.onChart),[onChart])
@@ -180,16 +180,25 @@ const Charts = () => {
 
    useEffect(()=>
    { 
-    
-    setData({
-      labels: listValueAlphabet.length !==0 ? listValueAlphabet : x,
-      datasets: datasets,
-      xAxisID:'xAxis1',
-    })
+    if(value.length ==0){
+      setOn(false)
+    }
+    else  { 
+      if(onChart.onChart){
+        setOn(true)
+      }
+      setData({
+        labels: listValueAlphabet.length !==0 ? listValueAlphabet : x,
+        datasets: datasets,
+        xAxisID:'xAxis1',
+      })
+    }
+   
   }
   ,[value,types])
-
-  
+   
+ 
+ 
 
   const options = {
     responsive: true,
@@ -306,12 +315,11 @@ const Charts = () => {
                   <li className='tool__item border--item'>
                   <div className='filter__group'>
                      <p> From </p>
-              
-                      <select  onChange={(e)=> setMonth1(e.target.value) }  >
+                      <select id='select'  onChange={(e)=> setMonth1(e.target.value) }  >
                           <option value="NULL"> Choose Month </option> 
                           <option value="1"> January </option>
                           <option value="2"> February </option>
-                          <option value="3"> May </option>
+                          <option value="3"> March </option>
                           <option value="4"> April </option>
                           <option value="5"> May </option>
                           <option value="6"> June </option>
@@ -322,7 +330,7 @@ const Charts = () => {
                           <option value="11"> November </option>
                           <option value="12"> December </option>
                       </select>
-                     <input type="number" style={{width: "50%", height:"100%"}} placeholder="YYYY" min="2017" max="2100" onChange={(e)=> setYear1(e.target.value) } /> 
+                     <input type="number" id='year' style={{width: "50%", height:"100%"}} placeholder="YYYY" min="2017" max="2100" onChange={(e)=> setYear1(e.target.value) } /> 
                     
 
                      </div>
@@ -330,11 +338,11 @@ const Charts = () => {
                   <li className='tool__item border--item'>
                   <div className='filter__group'>
                       <p> To </p>
-                     <select   onChange={(e)=> setMonth2(e.target.value) }  >
+                     <select id='select'  onChange={(e)=> setMonth2(e.target.value) }  >
                          <option value="NULL"> Choose Month </option> 
                           <option value="1"> January </option>
                           <option value="2"> February  </option>
-                          <option value="3"> May  </option>
+                          <option value="3"> March  </option>
                           <option value="4"> April  </option>
                           <option value="5"> May  </option>
                           <option value="6"> June  </option>
@@ -345,7 +353,7 @@ const Charts = () => {
                           <option value="11"> November </option>
                           <option value="12"> December  </option>
                       </select>
-                     <input type="number" style={{width: "50%", height:"100%"}} placeholder="YYYY" min="2017" max="2100" onChange={(e)=> setYear2(e.target.value) } />
+                     <input type="number"  id='year' style={{width: "50%", height:"100%"}} placeholder="YYYY" min="2017" max="2100" onChange={(e)=> setYear2(e.target.value) } />
                      </div>
                   </li>
                   <li className='tool__item border--item'>

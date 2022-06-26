@@ -19,7 +19,7 @@ import { height } from '@mui/system';
      
     },
     '& .MuiDataGrid-virtualScrollerRenderZone':{
-      width:'100% !important',
+       width:'auto !important',
       "&>*:nth-child(even)": {
         backgroundColor: '#dddddd',
       },

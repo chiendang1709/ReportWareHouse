@@ -4,8 +4,46 @@ import { DataGrid, GridColDef,GridToolbarContainer,GridToolbar} from '@mui/x-dat
 import { useAppSelector } from 'app/store/hooks';
 import { styleMui } from 'components/common/styleMui';
 
+const nameTV = [
+  {
+    
+    key_code: "profit",
+    value_code: "Lợi Nhuận"
+  },
+  {
+   
+    key_code: "net_profit",
+    value_code: "Lợi Nhuận Ròng"
+  },
+  {
+    
+    key_code: "gross_profit",
+    value_code: "Lợi Nhuận Gộp"
+  },
+  {
+   
+    key_code: "total_including_tax",
+    value_code: "Doanh Thu Sau Thuế"
+  },
+  {
+   
+    key_code: "month_name",
+    value_code: "Tháng"
+  },
+  {
+   
+    key_code: "year",
+    value_code: "Năm"
+  },
+  {
+    key_code: "departments_name",
+    value_code: "Bộ phận"
+  }
+]
+
 const TableData = () => {
 
+  var regex = new RegExp('^[0-9]*$')
   const columns: GridColDef[] = [];
   const rows:any =[];
   const classes = styleMui();
@@ -16,23 +54,31 @@ const TableData = () => {
   const onTable = useAppSelector(state=> state.onTable) 
   const listValueField = useAppSelector(state=> state.tableData) 
   const listTable = useAppSelector(state => state.table)
-  
-
+   
   useEffect(()=> setOn(onTable.onTable),[onTable])
 
-  function currencyFormatter(cur:number){
-    let sansDec = cur.toFixed(0);
-    let formatted = sansDec.replace(/\B(?=(\d{3})+(?!\d))/g,',');
-    return `${formatted}`;
+  function currencyFormatter(cur:string){
+
+    if(regex.test(cur)){
+      let sansDec = Number(cur).toFixed(0);
+      let formatted = sansDec.replace(/\B(?=(\d{3})+(?!\d))/g,',');
+       return `${formatted}`;
+    } else {
+      return cur
+    }
+   
   }
  
   const colums =()=>{
     if(listValueField.listData.length !== 0){
       let nameField =Object.keys(listValueField.listData[0])
+
       nameField.map((nameField:string)=> {
-        for(let z = 0;z<listTable.listTable.length; z++){
-          if(listTable.listTable[z].key_code ==`${nameField}`){
-         columns.push({ field: nameField, headerName: listTable.listTable[z].value_code, width: 200, valueFormatter: ({ value }) => currencyFormatter(Number(value))} )
+        for(let z = 0;z<nameTV.length; z++){
+          if(nameTV[z].key_code ==`${nameField}` && nameField !=="year"  ){
+           columns.push({ field: nameField, headerName: nameTV[z].value_code, width: 200,valueFormatter: ({ value }) => currencyFormatter(value)} )
+          } else if(nameTV[z].key_code ==`${nameField}` && nameField ==="year" ) {
+           columns.push({ field: nameField, headerName: nameTV[z].value_code, width: 200} )  
           }
       }})
     }
