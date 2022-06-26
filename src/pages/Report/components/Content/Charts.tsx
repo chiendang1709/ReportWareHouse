@@ -276,7 +276,13 @@ const Charts = () => {
       departments:  Number(dep) ? dep: "NULL"
     } 
     dispatch(filterAction.getFilter(object))
-    setNameChart(nameDep)
+    if(nameDep === "Choose Despartment")
+    {
+      setNameChart("")
+    }else {
+      setNameChart(nameDep)
+    }
+   
   }
 
   return (
