@@ -268,6 +268,10 @@ const Charts = () => {
           setValue(arrayCoppy)
           setNameChart("")    
      } else {
+      if( y2=="" && y1==""){
+        toast.error("Please Choose Year!");
+     }
+       else
          if(y1 && y2 && m2 == "NULL" && m1){
            y2 = false
          } else if(y1 ==false || m1 == false && y2 && m2 )
@@ -280,7 +284,8 @@ const Charts = () => {
                if(y1 > y2){
                   toast.error("Please Choose Year Again!");
                }
-        } else if(m1 =="NULL" && y1 && m2 && y2 ==""){
+        }
+         else if(m1 =="NULL" && y1 && m2 && y2 ==""){
            m1 ="NULL"
            y1 =y1
            m2 = "NULL"
