@@ -32,7 +32,7 @@ const dataApi ={
           
       const json = JSON.stringify(params);
       const url ="/reports/filter-data/";
-      // console.log("json",json);
+       console.log("json",json);
       return await axiosClient.post(url, json)
 }
 }

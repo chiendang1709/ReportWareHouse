@@ -268,24 +268,25 @@ const Charts = () => {
           setValue(arrayCoppy)
           setNameChart("")    
      } else {
-      if( y2=="" && y1==""){
+      if(y1 =="" && y2 ==""){
         toast.error("Please Choose Year!");
-     }
-       else
-         if(y1 && y2 && m2 == "NULL" && m1){
-           y2 = false
+      }else
+      if(y1 && y2 ){
+        if(y1 > y2){
+           toast.error("Please Choose Year Again!");
+         }
+ } else
+         if(y1 && y2 && m2 == "NULL" && m1 =="NULL"){
+           y2 = y2
          } else if(y1 ==false || m1 == false && y2 && m2 )
          {
            y1 =y2
            m1 = m2
            y2 = false
            m2 = false
-         } else if(y1 && y2 ){
-               if(y1 > y2){
-                  toast.error("Please Choose Year Again!");
-               }
-        }
-         else if(m1 =="NULL" && y1 && m2 && y2 ==""){
+         } else 
+        
+          if(m1 =="NULL" && y1 && m2 && y2 ==""){
            m1 ="NULL"
            y1 =y1
            m2 = "NULL"
