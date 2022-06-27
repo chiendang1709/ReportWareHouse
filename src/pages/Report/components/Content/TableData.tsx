@@ -38,6 +38,11 @@ const nameTV = [
   {
     key_code: "departments_name",
     value_code: "Bộ phận"
+  },
+  {
+   
+    key_code: "total_excluding_tax",
+    value_code: "Doang Thu Trước Thuế"
   }
 ]
 
@@ -57,21 +62,11 @@ const TableData = () => {
    
   useEffect(()=> setOn(onTable.onTable),[onTable])
 
-  function currencyFormatter(cur:string){
 
-    if(regex.test(cur)){
-      let sansDec = Number(cur).toFixed(0);
-      let formatted = sansDec.replace(/\B(?=(\d{3})+(?!\d))/g,',');
-       return `${formatted}`;
-    } else {
-      return cur
-    }
-   
-  }
   const formatter = new Intl.NumberFormat("it-IT", {
     style: "currency",
     currency: "VND",
-    minimumFractionDigits: 0
+    minimumFractionDigits: 3
   });
   const colums =()=>{
     if(listValueField.listData.length !== 0){

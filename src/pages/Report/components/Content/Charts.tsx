@@ -64,11 +64,11 @@ const Charts = () => {
   const [types, setType] = useState<ChartType>('bar');
   const [on, setOn] = useState(false);
   const [onTool, setOnTool] = useState(false);  
-  const [month1, setMonth1] =useState<string|boolean>("");
+  const [month1, setMonth1] =useState<string|boolean>("NULL");
   const [year1, setYear1] =useState<string|boolean>("");
-  const [month2, setMonth2] =useState<string|boolean>("");
+  const [month2, setMonth2] =useState<string|boolean>("NULL");
   const [year2, setYear2] =useState<string|boolean>("");
-  const [dep, setDep]=useState("");
+  const [dep, setDep]=useState("NULL");
   const [nameDep, setNameDep]=useState("");
   const [nameChart, setNameChart]= useState("")
   const [value, setValue] = useState<any[]>([])
@@ -263,30 +263,35 @@ const Charts = () => {
         arrayCheck.push(item.value)
       }
      }
-
-     if(y1 && y2 && m2 == "NULL" && m1){
-       y2 = false
-     } else if(y1 ==false || m1 == false && y2 && m2 )
-     {
-       y1 =y2
-       m1 = m2
-       y2 = false
-       m2 = false
-     } else if(y1 && y2 ){
-           if(y1 > y2){
-              toast.error("Please Choose Year Again!");
-           }
-    }
-    let object ={
-      params: arrayCheck.join(","),
-      year:y1? y1 : "NULL",
-      month: m1 ? m1: "NULL",
-      year2:  y2? y2 : "NULL",
-      month2: m2  ? m2 : "NULL",
-      departments:  Number(dep) ? dep: "NULL"
-    } 
-    dispatch(filterAction.getFilter(object))
-
+     if(year1 =="" && month1==="NULL" && year2 =="" && month2 ==="NULL" &&  dep==="NULL"){
+          let arrayCoppy =  listValueField.listValueField.slice()
+          setValue(arrayCoppy)
+          setNameChart("")    
+     } else {
+         if(y1 && y2 && m2 == "NULL" && m1){
+           y2 = false
+         } else if(y1 ==false || m1 == false && y2 && m2 )
+         {
+           y1 =y2
+           m1 = m2
+           y2 = false
+           m2 = false
+         } else if(y1 && y2 ){
+               if(y1 > y2){
+                  toast.error("Please Choose Year Again!");
+               }
+        }
+        let object ={
+          params: arrayCheck.join(","),
+          year:y1? y1 : "NULL",
+          month: m1 ? m1: "NULL",
+          year2:  y2? y2 : "NULL",
+          month2: m2  ? m2 : "NULL",
+          departments:  Number(dep) ? dep: "NULL"
+        } 
+        dispatch(filterAction.getFilter(object))
+     } 
+     
     
     if(nameDep === "Choose Despartment")
     {
