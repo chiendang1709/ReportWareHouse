@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { DataGrid, GridColDef,GridToolbarContainer,GridToolbar} from '@mui/x-data-grid';
+import { DataGrid, GridColDef,GridToolbarContainer,GridToolbar,GridCellParams} from '@mui/x-data-grid';
 
 import { useAppSelector } from 'app/store/hooks';
 import { styleMui } from 'components/common/styleMui';
@@ -68,17 +68,21 @@ const TableData = () => {
     }
    
   }
- 
+  const formatter = new Intl.NumberFormat("it-IT", {
+    style: "currency",
+    currency: "VND",
+    minimumFractionDigits: 0
+  });
   const colums =()=>{
     if(listValueField.listData.length !== 0){
       let nameField =Object.keys(listValueField.listData[0])
 
       nameField.map((nameField:string)=> {
         for(let z = 0;z<nameTV.length; z++){
-          if(nameTV[z].key_code ==`${nameField}` && nameField !=="year"  ){
-           columns.push({ field: nameField, headerName: nameTV[z].value_code, width: 200,valueFormatter: ({ value }) => currencyFormatter(value)} )
-          } else if(nameTV[z].key_code ==`${nameField}` && nameField ==="year" ) {
-           columns.push({ field: nameField, headerName: nameTV[z].value_code, width: 200} )  
+          if(nameTV[z].key_code ==`${nameField}` && nameField !=="year" && nameField !=="month_name" && nameField !=="departments_name"  ){
+           columns.push({ field: nameField, headerName: nameTV[z].value_code, width: 180,renderCell: (params: GridCellParams) => formatter.format(params.value), type: "number"} )
+          } else if(nameTV[z].key_code ==`${nameField}` && nameField ==="year" || nameTV[z].key_code ==`${nameField}` && nameField ==="month_name" || nameTV[z].key_code ==`${nameField}` && nameField ==="departments_name") {
+           columns.push({ field: nameField, headerName: nameTV[z].value_code, width: 100,type: "number"} )  
           }
       }})
     }

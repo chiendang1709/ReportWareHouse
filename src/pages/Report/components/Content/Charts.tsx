@@ -263,6 +263,7 @@ const Charts = () => {
         arrayCheck.push(item.value)
       }
      }
+
      if(y1 && y2 && m2 == "NULL" && m1){
        y2 = false
      } else if(y1 ==false || m1 == false && y2 && m2 )
@@ -285,6 +286,8 @@ const Charts = () => {
       departments:  Number(dep) ? dep: "NULL"
     } 
     dispatch(filterAction.getFilter(object))
+
+    
     if(nameDep === "Choose Despartment")
     {
       setNameChart("")
