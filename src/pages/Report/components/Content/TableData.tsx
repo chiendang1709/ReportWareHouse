@@ -42,7 +42,7 @@ const nameTV = [
   {
    
     key_code: "total_excluding_tax",
-    value_code: "Doang Thu Trước Thuế"
+    value_code: "Doanh Thu Trước Thuế"
   }
 ]
 
