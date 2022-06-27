@@ -280,6 +280,11 @@ const Charts = () => {
                if(y1 > y2){
                   toast.error("Please Choose Year Again!");
                }
+        } else if(m1 =="NULL" && y1 && m2 && y2 ==""){
+           m1 =m2 
+           y1 =y1
+           m2 = "NULL"
+           y2 =""
         }
         let object ={
           params: arrayCheck.join(","),
