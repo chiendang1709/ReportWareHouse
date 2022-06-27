@@ -275,7 +275,7 @@ const Charts = () => {
         if(y1 > y2){
            toast.error("Please Choose Year Again!");
          }
- } else
+      } else
          if(y1 && y2 && m2 == "NULL" && m1 =="NULL"){
            y2 = y2
          } else if(y1 ==false || m1 == false && y2 && m2 )
