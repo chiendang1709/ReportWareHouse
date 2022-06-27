@@ -270,9 +270,17 @@ const Charts = () => {
           setNameChart("")    
      } 
      else {
-        if(y1 =="" && y2 ==""){
+     
+        if(y1 =="" && m1==="NULL" && y2 =="" && m2 ==="NULL" &&  dep!=="NULL"){
+          m1 ="NULL"
+          y1 =""
+          m2 = "NULL"
+          y2 =""
+          setDep(dep)
+         }  else
+        if(y1 =="" && y2 ==""  ){
            toast.error("Please Choose Year!");
-         }
+         } 
        else   
         if(y1 !== "" && y2 !="" &&  y1 > y2){
            toast.error("Please Choose Year Again!");
@@ -280,6 +288,10 @@ const Charts = () => {
        else 
          if(y1 && y2 && m2 == "NULL" && m1 =="NULL"){
            y2 = y2
+         } 
+         else 
+         if(y1 === y2 && m1 !=="" && m2 !=="" && m1 > m2 ){
+          toast.error("Please Choose Month Again!");
          } 
         else
           if(y1 !=="" && y2 !=="" && m2 !== "NULL" && m1 !=="NULL"){
