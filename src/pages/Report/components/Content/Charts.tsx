@@ -263,35 +263,46 @@ const Charts = () => {
         arrayCheck.push(item.value)
       }
      }
+     // 4 null
      if(year1 =="" && month1==="NULL" && year2 =="" && month2 ==="NULL" &&  dep==="NULL"){
           let arrayCoppy =  listValueField.listValueField.slice()
           setValue(arrayCoppy)
           setNameChart("")    
-     } else {
-      if(y1 =="" && y2 ==""){
-        toast.error("Please Choose Year!");
-      }else
-      if(y1 && y2 ){
-        if(y1 > y2){
+     } 
+     else {
+        if(y1 =="" && y2 ==""){
+           toast.error("Please Choose Year!");
+         }
+       else   
+        if(y1 !== "" && y2 !="" &&  y1 > y2){
            toast.error("Please Choose Year Again!");
          }
-      } else
+       else 
          if(y1 && y2 && m2 == "NULL" && m1 =="NULL"){
            y2 = y2
-         } else if(y1 ==false || m1 == false && y2 && m2 )
+         } 
+        else 
+         if(y1 ==false || m1 == false && y2 && m2 )
          {
            y1 =y2
            m1 = m2
            y2 = false
            m2 = false
-         } else 
-        
-          if(m1 =="NULL" && y1 && m2 && y2 ==""){
+         } 
+        else 
+         if(m1 =="NULL" && y1 !=="" && m2 && y2 ==""){
            m1 ="NULL"
            y1 =y1
            m2 = "NULL"
            y2 =""
-        }
+        }  
+         else
+          if(m1 !== "NULL" && y1 !=="" && y2 !=="" || m1 !=="NULL"){
+            m1 =m1
+            y1 = y1
+            y2 =""
+            m2 = "NULL"
+          }
         let object ={
           params: arrayCheck.join(","),
           year:y1? y1 : "NULL",
