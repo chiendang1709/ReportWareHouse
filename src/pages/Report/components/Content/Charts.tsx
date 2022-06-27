@@ -281,6 +281,13 @@ const Charts = () => {
          if(y1 && y2 && m2 == "NULL" && m1 =="NULL"){
            y2 = y2
          } 
+        else
+          if(y1 !=="" && y2 !=="" && m2 !== "NULL" && m1 !=="NULL"){
+            y1 =y1
+            y2 =y2
+            m1 =m1
+            m2 = m2
+          }
         else 
          if(y1 ==false || m1 == false && y2 && m2 )
          {
