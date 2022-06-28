@@ -10,7 +10,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
 import { listChart, listDepartment } from 'interfaces/components';
-import arrow from 'assets/images/arrow__icon.png'
 import undo  from 'assets/images/undo__icon.png'
 import fil from 'assets/images/filter__icon.png'
 import ex from 'assets/images/export__icon.png'
@@ -56,6 +55,7 @@ const Charts = () => {
   const dispatch = useAppDispatch()
   const typeCharts = useAppSelector(state => state.typeChart)
   const onChart = useAppSelector(state=> state.onChart) 
+  const onTool = useAppSelector(state=> state.onTool)
   const listValueField = useAppSelector(state=> state.listValue) 
   const listDepartment = useAppSelector(state=> state.department) 
   const listFilter = useAppSelector(state=> state.filter) 
@@ -63,7 +63,7 @@ const Charts = () => {
 
   const [types, setType] = useState<ChartType>('bar');
   const [on, setOn] = useState(false);
-  const [onTool, setOnTool] = useState(false);  
+  const [Tool, setTool] = useState(false);  
   const [month1, setMonth1] =useState<string|boolean>("NULL");
   const [year1, setYear1] =useState<string|boolean>("");
   const [month2, setMonth2] =useState<string|boolean>("NULL");
@@ -76,6 +76,7 @@ const Charts = () => {
   
   useEffect(()=>{dispatch(tableDataAction.getListTableData(value))},[value])
   useEffect(()=> setOn(onChart.onChart),[onChart])
+  useEffect(() => setTool(onTool.onTool),[onTool])
   useEffect(()=> setType(typeCharts.typeChart),[typeCharts])
   useEffect(() => {dispatch(departmentAction.getDepartment())}, []);
   useEffect(()=>  setNameChart(""),[listValueField])
@@ -88,7 +89,7 @@ const Charts = () => {
   useEffect(() => {
     const handler = (event: TouchEvent | MouseEvent) => {
       if (onTool && ref.current && !ref.current.contains(event.target as HTMLDivElement)){
-        setOnTool(false);
+        setTool(false);
       }
     };
     document.addEventListener("mousedown", handler );
@@ -204,7 +205,7 @@ const Charts = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'bottom' as const,
+        position: 'right' as const,
         labels: {
           font: {
             size: 14,
@@ -344,9 +345,9 @@ const Charts = () => {
   }
 
   return (
-    <div  className='content__chart'>
+    <div  className='content__item content__chart'>
       <ToastContainer  position="top-center"  style={{width: "30%", height:"20px"}} ></ToastContainer>
-      <div id='chart' className='chart'>
+      <div id='chart' className=' item chart'>
       { on?
           (<Chart options={options}  type='bar' data={data}  />)
           :(<h1> Choose your chart</h1>)
@@ -354,12 +355,7 @@ const Charts = () => {
       </div>
       { on?
       (   <div className="chart__tool">
-            <div className={`open__tool ${onTool ? 'open--active' : ''}`}>
-              <button aria-expanded={onTool ? "true" : "false"}  onClick={()=> setOnTool((prev) => !prev)} >Tool
-                 <img src={arrow} alt="arrow" title ="use tool" />
-              </button>
-            </div>
-            <div className={`tool__list ${onTool ? 'tool--active' : ''}`} ref={ref}>
+            <div className={`tool__list ${Tool ? 'tool--active' : ''}`} ref={ref}>
                 <ul>
                   <li className='tool__item border--item'>
                   <div className='filter__group'>

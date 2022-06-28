@@ -3,19 +3,20 @@ import logo from 'assets/images/logo.png'
 import icon__cate from 'assets/images/cate__icon.png'
 import { useAppDispatch, useAppSelector } from 'app/store/hooks'
 import { categoryAction } from 'pages/Report/slice/categorySlice'
+import {getOnTool} from 'pages/Report/slice/onTool'
 import MenuItem from './MenuItem'
 import { listCategory } from 'interfaces/components'
 import ChartsType from './ChartsType'
-import { getTypeChart } from 'pages/Report/slice/changeChart'
 import { apply } from 'pages/Report/slice/applySlice'
 import ap from 'assets/images/apply__icon.png'
-import { getOnTable } from 'pages/Report/slice/onTable'
-import { getOnChart } from 'pages/Report/slice/onChart'
+import arrow from 'assets/images/arrow__icon.png'
+
 
 
 const Sidebar = () => {
   const dispatch = useAppDispatch()
   const listCategory = useAppSelector(state => state.category)
+  const onTool = useAppSelector(state=> state.onTool)
    
    
   //getListCategory
@@ -42,6 +43,13 @@ const Sidebar = () => {
              </div>
              <div className="sidebar__header" >
                   <ChartsType/>
+             </div>
+             <div className={`sidebar__header tool--header ${onTool.onTool ? "open--active" :" "}`}>  
+          
+              <button className={`tool__button `} aria-expanded={onTool.onTool ? "true" : "false"}  onClick={()=>dispatch(getOnTool())} >
+                <p>Tool</p>
+                 <img src={arrow} alt="arrow" title ="use tool" />
+              </button>
              </div>
              <div className="sidebar__header height--small">
                 <div className="sidebar__title">

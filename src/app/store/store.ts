@@ -12,6 +12,7 @@ import listValueField from "pages/Report/slice/valueField";
 import departmentSlice from "pages/Report/slice/departmentSlice";
 import  filterSlice  from "pages/Report/slice/filterSlice";
 import  tableDataAction  from "pages/Report/slice/tableDataSlice";
+import  onToolSlice  from "pages/Report/slice/onTool";
 
 const sagaMiddleware = createSagaMiddleware()
 export const store = configureStore({
@@ -26,7 +27,9 @@ export const store = configureStore({
    typeChart: changeChart,
    onChart: onChartSlice,
    onTable: onTableSlice,
+   onTool: onToolSlice,
    clickApply : applys,
+   
   
    
   },

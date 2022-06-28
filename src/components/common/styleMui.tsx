@@ -5,6 +5,10 @@ import { height } from '@mui/system';
  export  const styleMui = makeStyles((theme) => ({
    
   root: {
+    '.css-1r5v9hu-MuiDataGrid-root':{
+        height:'50vw !important',
+        marginTop:'2.5vw',
+    },
     '.MuiDataGrid-main':{
       borderCollapse: 'collapse',
     },
@@ -19,7 +23,7 @@ import { height } from '@mui/system';
      
     },
     '& .MuiDataGrid-virtualScrollerRenderZone':{
-       width:'auto !important',
+       width:'100% !important',
       "&>*:nth-child(even)": {
         backgroundColor: '#dddddd',
       },
@@ -34,12 +38,27 @@ import { height } from '@mui/system';
       
 
     },
-    '&.MuiDataGrid-root .MuiDataGrid-columnHeaders': {
-      border: 0,
-      backgroundColor: '#ff4500',
-      maxheight: '30px !important'
+    '&.MuiDataGrid-root .css-ptiqhd-MuiSvgIcon-root': {
+    
+     fill: `#F4F4F4 !important`,
     },   
     
+    '&.MuiDataGrid-root .css-i4bv87-MuiSvgIcon-root':{
+           fill: `#F4F4F4 !important`,
+
+    },
+
+      '&.MuiDataGrid-root .MuiDataGrid-columnHeaderTitle': {
+      color:`#F4F4F4 !important`,
+    },   
+
+    '&.MuiDataGrid-root .MuiDataGrid-columnHeaders': {
+      border: 0,
+      backgroundColor: '#1582ef',
+      maxHeight: '100% !important',
+      width:'100%'  ,
+      color:`#F4F4F4 !important`,
+    },   
     '& .MuiDataGrid-cell .MuiDataGrid-cell--textLeft': {
       
       whiteSpace: 'normal',

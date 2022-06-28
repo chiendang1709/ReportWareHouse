@@ -109,8 +109,8 @@ const TableData = () => {
     );
   }
   return (
-    <div className='content__table'>
-   <div className='table'>
+    <div className='content__item content__table'>
+   <div className='item table'>
       {on?
          ( <DataGrid 
               rowHeight={29}
