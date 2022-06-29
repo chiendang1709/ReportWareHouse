@@ -6,7 +6,7 @@ import { height } from '@mui/system';
    
   root: {
     '.css-1r5v9hu-MuiDataGrid-root':{
-        height:'50vw !important',
+        height:'100% !important',
         marginTop:'2.5vw',
     },
     '.MuiDataGrid-main':{
@@ -31,7 +31,7 @@ import { height } from '@mui/system';
     '&.MuiDataGrid-root .MuiDataGrid-row': {
       backgroundColor: 'white',
       borderRadius: '2px',
-      width:'100% !important',
+      width:'auto !important',
       fontSize: '12px',
       textTransform: 'capitalize',
      

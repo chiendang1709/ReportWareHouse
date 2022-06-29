@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'app/store/hooks';
 
 import { Chart as ChartJS, DatasetController, registerables } from "chart.js";
-import { Chart } from 'react-chartjs-2';
 import {ChartType} from 'chart.js';
+
+import { Chart } from 'react-chartjs-2';
+
+
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { ToastContainer, toast } from 'react-toastify';
@@ -211,16 +214,16 @@ const Charts = () => {
     clamp: true,
     plugins: {
       datalabels: {
-     
-      formatter: (value:any, ctx:any) => {
-            let sum = 0;
-            let dataArr = ctx.chart.data.datasets[0].data;
-            dataArr.map((data:any) => {
-                sum += data;
-            });
-            let percentage = (value*100 / sum).toFixed(2)+"%";
-            return percentage;
-        },
+        display: 'auto',
+        formatter: (value:any, ctx:any) => {
+          let sum = 0;
+          let dataArr = ctx.chart.data.datasets[0].data;
+          dataArr.map((data:any) => {
+              sum += data;
+          });
+          let percentage = (value*100 / sum).toFixed(2)+"%";
+          return percentage;
+      },
         color: '#fff',
         font:(context: any) => {
           var width = context.chart.width;
@@ -263,7 +266,7 @@ const Charts = () => {
   };
   
   const options = {
-    responsive: true,
+    responsive: true  ,
     plugins: {
       datalabels: {
          display: false

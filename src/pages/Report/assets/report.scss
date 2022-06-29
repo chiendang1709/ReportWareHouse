@@ -406,7 +406,7 @@ $icon-hover: brightness(0) invert(1);
         .item{
             position: absolute;
             top:50%;
-            left:45%;
+            left:50%;
             transform: translate(-50%,-50%);
             height: 100%;
             width: 70vw;
@@ -427,14 +427,13 @@ $icon-hover: brightness(0) invert(1);
        
     
         .chart{    
-            height: 30vh;
-            max-height: 100vh;
-            width: 100vw;
-           
+
+         
+                
             canvas {
-              height: 100% !important;
+              height: 100%;
               object-fit: contain;
-              width: 100%;
+              
               
             }
           
@@ -538,12 +537,12 @@ $icon-hover: brightness(0) invert(1);
        
     }
     .content__table {
-       
+        display:flex;
+        height: 100% ;
        .table {
-            margin-bottom: 0px;
-            height: 30vh;
-            max-height: 100vh;
-            width: 70%;
+            flex-grow: 1;
+            margin-top: 10vw;
+            width: 70vw;
        }
       
       

@@ -161,6 +161,8 @@ const TableData = () => {
    <div className='item table'>
       {on?
          ( <DataGrid 
+              
+              autoHeight
               rowHeight={29}
               className={classes.root}
               rows={ rows}          
