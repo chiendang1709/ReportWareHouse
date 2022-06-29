@@ -426,12 +426,16 @@ $icon-hover: brightness(0) invert(1);
     .content__chart {
        
     
-        .chart{
+        .chart{    
+            height: 30vh;
+            max-height: 100vh;
+            width: 100vw;
            
             canvas {
               height: 100% !important;
               object-fit: contain;
-              width: 100%!important;
+              width: 100%;
+              
             }
           
         }
@@ -539,7 +543,7 @@ $icon-hover: brightness(0) invert(1);
             margin-bottom: 0px;
             height: 30vh;
             max-height: 100vh;
-            width: 49vw;
+            width: 70%;
        }
       
       
