@@ -23,7 +23,7 @@ import { height } from '@mui/system';
      
     },
     '& .MuiDataGrid-virtualScrollerRenderZone':{
-       width:'100% !important',
+       width:'auto !important',
       "&>*:nth-child(even)": {
         backgroundColor: '#dddddd',
       },
@@ -71,7 +71,7 @@ import { height } from '@mui/system';
       width: '100%',
     },
     '& .MuiDataGrid-footerContainer':{
-      display: 'none'
+     
     },
     '& .MuiToolbar-root MuiToolbar-gutters' :{
       maxheight: '30px !important',

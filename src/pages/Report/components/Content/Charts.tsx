@@ -8,7 +8,9 @@ import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
+import { chartColors } from 'constant/color';
 import { listChart, listDepartment } from 'interfaces/components';
 import undo  from 'assets/images/undo__icon.png'
 import fil from 'assets/images/filter__icon.png'
@@ -18,12 +20,12 @@ import { departmentAction } from 'pages/Report/slice/departmentSlice';
 import { ListField } from 'pages/Report/slice/valueField';
 import { filterAction } from 'pages/Report/slice/filterSlice';
 import { tableDataAction } from 'pages/Report/slice/tableDataSlice';
-ChartJS.register(...registerables);
+ChartJS.register(...registerables ,ChartDataLabels);
 
 export interface data {
   type:ChartType,
   label:string,
-  backgroundColor:string[],
+  backgroundColor:string,
   borderColor:string,
   data:number[] ,
   
@@ -160,17 +162,20 @@ const Charts = () => {
         }
    }
     //get value in chart
-   const insertChart = (data:listChart)=> { 
-     let converNumber = data.de.map((item:string)=> Number(item))
-     let random = Math.floor(Math.random()*16777215).toString(16);
-     return ( { 
-         type: types,
-         label:data.name,
-         backgroundColor: [ `#${random}`],
-         borderColor:"#FDF3F4",
-         data:converNumber ,
-   })
- }
+    let y : number = 0
+    const insertChart = (data:listChart)=> { 
+     
+      let converNumber = data.de.map((item:string)=> Number(item))
+       let random =  chartColors[y++];
+      return ( { 
+          type: types,
+          label:data.name,
+          backgroundColor:random,
+          borderColor:types ==="pie"? "#F7EDE6":random  ,
+          data:converNumber ,
+          
+    })
+  }
  useEffect(()=>{
   valueChart.map((data)=> { 
     if(data.de.length >0){
@@ -201,9 +206,69 @@ const Charts = () => {
  
  
 
+  const optionPie = {
+    responsive: true,
+    clamp: true,
+    plugins: {
+      datalabels: {
+     
+      formatter: (value:any, ctx:any) => {
+            let sum = 0;
+            let dataArr = ctx.chart.data.datasets[0].data;
+            dataArr.map((data:any) => {
+                sum += data;
+            });
+            let percentage = (value*100 / sum).toFixed(2)+"%";
+            return percentage;
+        },
+        color: '#fff',
+        font:(context: any) => {
+          var width = context.chart.width;
+          var size = Math.round(width / 55);
+            return {
+              size: size,
+             
+            };
+        },
+        
+       
+    },
+   
+      legend: {
+        position: 'right' as const,
+        labels: {
+          font: {
+            size: 14,
+            weight:"boldness",
+            family: "'Montserrat', 'sans-serif'" 
+          },
+      }
+      },
+      title: {
+        display: true,
+        text: `Chart ${types} ${nameChart}`,
+        position: 'top' as const,
+      },
+     
+    },
+    scales: {
+      x: {
+        display:false
+      },
+      y: {
+        display:false
+      }},
+     
+   
+  };
+  
   const options = {
     responsive: true,
     plugins: {
+      datalabels: {
+         display: false
+    },
+   
       legend: {
         position: 'right' as const,
         labels: {
@@ -234,7 +299,8 @@ const Charts = () => {
           text: 'Money'
         },
       }},
-    
+     
+   
   };
  
   //PDF
@@ -349,7 +415,7 @@ const Charts = () => {
       <ToastContainer  position="top-center"  style={{width: "30%", height:"20px"}} ></ToastContainer>
       <div id='chart' className=' item chart'>
       { on?
-          (<Chart options={options}  type='bar' data={data}  />)
+          (<Chart options={types !=="pie" ? options: optionPie}  type='bar' data={data}  />)
           :(<h1> Choose your chart</h1>)
       }
       </div>
