@@ -349,19 +349,30 @@ const Charts = () => {
           setDep(dep)
          }  else
         if(y1 =="" && y2 ==""  ){
-           toast.error("Please Choose Year!");
+          return toast.error("Please Choose Year!");
          } 
        else   
-        if(y1 !== "" && y2 !="" &&  y1 > y2){
-           toast.error("Please Choose Year Again!");
+        if(y1 !== "" && y2 !="" &&  Number(y1)  > Number(y2)){
+           return toast.error("Please Choose Year Again!");
          }
        else 
          if(y1 && y2 && m2 == "NULL" && m1 =="NULL"){
            y2 = y2
          } 
-         else 
-         if(y1 === y2 && m1 !=="" && m2 !=="" && m1 > m2 ){
-          toast.error("Please Choose Month Again!");
+      else 
+         if(y1 === y2 && m1 !=="" && m2 !=="" && Number(m1)  > Number(m2) ){
+         
+          let object ={
+            params: arrayCheck.join(","),
+            year:y1,
+            month: m1,
+            year2:  y2,
+            month2: m2  ,
+            departments: dep
+          } 
+          console.log("test ", object);
+          
+          return  toast.error("Please Choose Month Again!");
          } 
         else
           if(y1 !=="" && y2 !=="" && m2 !== "NULL" && m1 !=="NULL"){
