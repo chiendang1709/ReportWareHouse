@@ -65,7 +65,8 @@ const Sidebar = () => {
             </div>
             <div className="sidebar__footer" >
                   <button  onClick={()=>dispatch(apply.getApply("Apply"))}>
-                      <img src={ap} alt="apply" title="apply data" />
+                      {/* <img src={ap} alt="apply" title="apply data" /> */}
+                      <p>Apply</p>
                   </button>
              </div>
 
