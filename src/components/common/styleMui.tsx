@@ -9,6 +9,12 @@ import { height } from '@mui/system';
         height:'100% !important',
         marginTop:'2.5vw',
     },
+    '&.MuiDataGrid-root .MuiDataGrid-columnHeader .MuiDataGrid-cell': {
+      "&:focus-within":{
+        outline: 'none !impotant',
+      },
+    
+    },
     '.MuiDataGrid-main':{
       borderCollapse: 'collapse',
     },
@@ -38,15 +44,16 @@ import { height } from '@mui/system';
       
 
     },
-    '&.MuiDataGrid-root .css-ptiqhd-MuiSvgIcon-root': {
-    
-     fill: `#F4F4F4 !important`,
-    },   
+  
     
     '&.MuiDataGrid-root .css-i4bv87-MuiSvgIcon-root':{
-           fill: `#F4F4F4 !important`,
+           fill: `#c2c7d0 !important`,
 
     },
+    '&.MuiDataGrid-icon .css-i4bv87-MuiSvgIcon-root':{
+      fill: `#c2c7d0 !important`,
+
+},
 
       '&.MuiDataGrid-root .MuiDataGrid-columnHeaderTitle': {
       color:`#F4F4F4 !important`,
@@ -73,6 +80,7 @@ import { height } from '@mui/system';
     '& .MuiDataGrid-footerContainer':{
      
     },
+
     '& .MuiToolbar-root MuiToolbar-gutters' :{
       maxheight: '30px !important',
       minheight:'30px !important',

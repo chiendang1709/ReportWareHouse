@@ -427,14 +427,16 @@ const Charts = () => {
   return (
     <div  className='content__item content__chart'>
       <ToastContainer  position="top-center"  style={{width: "30%", height:"20px"}} ></ToastContainer>
-      <div id='chart' className=' item chart'>
       { on?
-          (<Chart options={types !=="pie" ? options: optionPie}  type='bar' data={data}  />)
-          :(<h1> Choose your chart</h1>)
-      }
-      </div>
-      { on?
-      (   <div className="chart__tool">
+       (<div id='chart' className=' item card chart'>
+         <Chart options={types !=="pie" ? options: optionPie}  type='bar' data={data}  />
+         
+
+   
+      </div>)
+         :''
+        }
+     <div className="chart__tool">
             <div className={`tool__list ${Tool ? 'tool--active' : ''}`} ref={ref}>
                 <ul>
                   <li className='tool__item border--item'>
@@ -513,8 +515,7 @@ const Charts = () => {
                   </li>            
                  </ul>
             </div>        
-          </div>) :""
-     }
+          </div>
     </div>
   );
 }
