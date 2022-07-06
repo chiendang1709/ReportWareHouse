@@ -10,6 +10,7 @@ import ChartsType from './ChartsType'
 import { apply } from 'pages/Report/slice/applySlice'
 import ap from 'assets/images/apply__icon.png'
 import arrow from 'assets/images/arrow__icon.png'
+import loading from 'assets/images/loading.svg'
 
 
 
@@ -17,7 +18,8 @@ const Sidebar = () => {
   const dispatch = useAppDispatch()
   const listCategory = useAppSelector(state => state.category)
   const onTool = useAppSelector(state=> state.onTool)
-   
+  const listValueField = useAppSelector(state=> state.listValue) 
+  
    
   //getListCategory
   useEffect(() => {
@@ -27,7 +29,7 @@ const Sidebar = () => {
   const categorys = () => {
     let list = listCategory.listCategory.map((data :listCategory, index:number) => 
         (
-             <MenuItem key={data.id} listCategory={data} />
+             <MenuItem key={data.id} listCategory={data}  />
          ));
        return list
     };
@@ -67,6 +69,10 @@ const Sidebar = () => {
                   <button  onClick={()=>dispatch(apply.getApply("Apply"))}>
                       {/* <img src={ap} alt="apply" title="apply data" /> */}
                       <p>Apply</p>
+                      {
+                        listValueField.loading ? (""): ( <img src={loading} alt="loading" title="loading"/>)
+                      }
+                     
                   </button>
              </div>
 

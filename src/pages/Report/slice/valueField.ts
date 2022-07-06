@@ -8,7 +8,7 @@ export interface ListField {
 };
 const initialState: ListField = {
   listValueField:[],
-  loading:false
+  loading:true
 };
 
 

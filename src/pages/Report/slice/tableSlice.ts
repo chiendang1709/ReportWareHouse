@@ -11,7 +11,7 @@ export interface ListTable {
 
 const initialState: ListTable = {
    listTable:[],
-   loading:false,
+   loading: false,
  
 };
 
@@ -21,7 +21,7 @@ export const tableSlice = createSlice({
   initialState,
   reducers: {
     getListTables: (state, action: PayloadAction<number>) => {
-      state.loading= false
+      // state.loading= false
     },
     showListTables: (state, action) => {
       state.listTable= action.payload

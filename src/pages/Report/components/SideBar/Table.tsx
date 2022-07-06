@@ -8,7 +8,7 @@ import { listValueFieldAction } from 'pages/Report/slice/valueField';
 import { apply } from 'pages/Report/slice/applySlice'
 import { getOnTable } from 'pages/Report/slice/onTable'
 import triangle from 'assets/images/triangle__icon.png'
-export interface test {
+export interface listTable {
   table_name: string,
   key_code: string,
   value_code:string,
@@ -16,7 +16,7 @@ export interface test {
 };
 
 
-const Table = ( props :{ listTable: test[], name: string }) => {  
+const Table = ( props :{ listTable: listTable[], name: string, loading:boolean }) => {  
   let arrayCheck: string[]= []
  
   const dispatch = useAppDispatch()
@@ -40,10 +40,13 @@ const Table = ( props :{ listTable: test[], name: string }) => {
         toast.error("Please Choose Data!");
         dispatch(apply.getApply("null") )  
        }
+      
     }  
   
+   
     useEffect(()=>{
       if(arrayCheck.length >0){
+        console.log("check", arrayCheck);
         let array =arrayCheck.join(",")
         dispatch(listValueFieldAction.getlistValueField(array)) 
         dispatch(apply.getApply("null") )  
@@ -53,7 +56,7 @@ const Table = ( props :{ listTable: test[], name: string }) => {
  
   
   const listField = () => {
-    let list = props.listTable.map((data : test, index:number) => {
+    let list = props.listTable.map((data : listTable, index:number) => {
       if(data.table_name ===props.name){  
         return( <Field key={index}  keyField ={data.key_code}  nameField={data.value_code}/>)    
      } 
@@ -61,20 +64,22 @@ const Table = ( props :{ listTable: test[], name: string }) => {
     return list
     };
     
-  return (     
-      <li  ref={ref}>
-              <button  className={`content__btn submenu__btn ${submenu ? "table__active" : " "} `} 
-               type="button" aria-haspopup="menu" aria-expanded={submenu ? "true" : "false"}
-
-                onClick={()=> {setSubmenu((prev) => !prev); dispatch(getOnTable(true));  } }>
-                  {props.name}
-                  <img src={triangle} alt="triangle" title="list field" />
-              </button>
-              <ul className={`content__field .content__submenu ${submenu ? "show" : " "}`}  >                
-                 {listField()}
-
-                  </ul>
-      </li>   
+  return (  
+    
+     <li  ref={ref}>
+         <button  className={`content__btn submenu__btn ${submenu ? "table__active" : " "} `} 
+         type="button" aria-haspopup="menu" aria-expanded={submenu ? "true" : "false"}
+          onClick={()=> {setSubmenu((prev) => !prev); dispatch(getOnTable(true));  } }>
+            {props.name}
+            <img src={triangle} alt="triangle" title="list field" />
+        </button>
+        <ul className={`content__field .content__submenu ${submenu ? "show" : " "}`}  >                
+           {listField()}
+        </ul>
+     
+    </li>
+     
+    
   )
 }
 

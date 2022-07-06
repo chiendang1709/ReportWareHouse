@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from 'app/store/hooks';
 
+import { useAppDispatch, useAppSelector } from 'app/store/hooks';
 import { Chart as ChartJS, DatasetController, registerables } from "chart.js";
 import {ChartType} from 'chart.js';
-
 import { Chart } from 'react-chartjs-2';
-
-
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { ToastContainer, toast } from 'react-toastify';
@@ -20,7 +17,6 @@ import fil from 'assets/images/filter__icon.png'
 import ex from 'assets/images/export__icon.png'
 
 import { departmentAction } from 'pages/Report/slice/departmentSlice';
-import { ListField } from 'pages/Report/slice/valueField';
 import { filterAction } from 'pages/Report/slice/filterSlice';
 import { tableDataAction } from 'pages/Report/slice/tableDataSlice';
 ChartJS.register(...registerables ,ChartDataLabels);
@@ -205,34 +201,53 @@ const Charts = () => {
    
   }
   ,[value,types])
-   
+
+  
  
- 
+  
 
   const optionPie = {
     responsive: true,
     clamp: true,
+    
     plugins: {
       datalabels: {
-        display: 'auto',
-        formatter: (value:any, ctx:any) => {
-          let sum = 0;
-          let dataArr = ctx.chart.data.datasets[0].data;
-          dataArr.map((data:any) => {
-              sum += data;
-          });
-          let percentage = (value*100 / sum).toFixed(2)+"%";
+      //   display: function(context:any) {
+      //     return context.dataset.data[context.dataIndex] >= 1;
+      // },
+        formatter: (value:any, ctx:any) => { 
+          let percentage:string =""
+          let dataArr = ctx.chart.data.datasets;
+          for(let i =0; i<dataArr.length;i++){
+            let sum = 0;
+            ctx.chart.data.datasets[i].data.map((item: number)=>{
+              sum += item; 
+            })
+            ctx.chart.data.datasets[i].data.map((item: number)=>{
+                if(value ===item){
+                  percentage = (value * 100 / sum).toFixed(1) + "%";
+                  return percentage
+                }
+               
+            })
+          }
           return percentage;
+         
       },
         color: '#fff',
         font:(context: any) => {
+          console.log("context",context);
+          
           var width = context.chart.width;
-          var size = Math.round(width / 55);
+          var size = Math.round(width / 65);
+          console.log("size",size);
+          
             return {
               size: size,
              
             };
         },
+       
         
        
     },
@@ -340,7 +355,6 @@ const Charts = () => {
           setNameChart("")    
      } 
      else {
-     
         if(y1 =="" && m1==="NULL" && y2 =="" && m2 ==="NULL" &&  dep!=="NULL"){
           m1 ="NULL"
           y1 =""
@@ -429,7 +443,7 @@ const Charts = () => {
       <ToastContainer  position="top-center"  style={{width: "30%", height:"20px"}} ></ToastContainer>
       { on?
        (<div id='chart' className=' item card chart'>
-         <Chart options={types !=="pie" ? options: optionPie}  type='bar' data={data}  />
+         <Chart options={types !=="pie" ? options: optionPie}  type='bar' data={data} />
          
 
    
