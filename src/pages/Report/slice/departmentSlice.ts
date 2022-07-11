@@ -18,7 +18,7 @@ export const departmentSlice = createSlice({
   initialState,
   reducers: {
     getDepartment:(state) => {
-     state.loading = false;
+
       
     },
     showDepartment: (state, action)=> {

@@ -17,7 +17,7 @@ export const listValueField = createSlice({
   initialState,
   reducers: {
     getlistValueField: (state, action: PayloadAction<string> ) => {
-      state.loading=false
+
     },
     showListValueFields: (state, action)=> {
       if(action.payload.length ==0){

@@ -21,7 +21,7 @@ export const tableSlice = createSlice({
   initialState,
   reducers: {
     getListTables: (state, action: PayloadAction<number>) => {
-      // state.loading= false
+
     },
     showListTables: (state, action) => {
       state.listTable= action.payload

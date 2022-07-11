@@ -18,7 +18,6 @@ export const tableDataSlice = createSlice({
   reducers: {
     getListTableData: (state, action: PayloadAction<any> ) => {
         state.listData =action.payload;
-        state.loading=true
     },
   },
   
