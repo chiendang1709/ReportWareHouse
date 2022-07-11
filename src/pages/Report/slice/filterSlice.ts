@@ -37,7 +37,7 @@ export const filterSlice = createSlice({
   initialState,
   reducers: {
     getFilter: (state, action: PayloadAction<any> ) => {
-
+      state.loading=false
     },
     showFilter: (state, action)=> {
       if(action.payload.length ==0){
