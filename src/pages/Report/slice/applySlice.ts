@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export interface t {
-   apply: string; // sẽ thay đổi
+export interface Apply {
+   apply: string; 
   
 };
-const initialState: t = {
+const initialState: Apply = {
     apply:"",
 };
 

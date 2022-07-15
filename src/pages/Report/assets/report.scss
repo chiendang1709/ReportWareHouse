@@ -1,259 +1,28 @@
 
-.sidebar{
-    background-color: #343A40;
-     position: fixed;
-    width: 15%;
-    height: 100%;
-    border-right:  1px solid #4B545C;
-    box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
-    0 4px 6px -2px rgba(71, 63, 79, 0.16);
-    .sidebar__header{  
-        border-bottom: 2px solid #4B545C;
-        padding:1vw;
-        width: 100%;
-        position: relative;
+$primary-bg: #343a40;
+$second-bg: #1C262D;
+$border-color: #4f5962;
+$font-color:#9cb9ca;
+$font-color-2: #F4F4F4;
+$button:#0072E9;
+$button-hover:#17a3e8f3;
+$icon-hover: brightness(0) invert(1);
 
-        .sidebar__logo{
-            width: 10vw;
-            height: 5.5vw;
-            margin: auto;
-               img{
-                   width: 100%;
-                   height: 100%;                
-                   
-         } 
-        }  
-        .sidebar__chart{
-            display: flex;
-            justify-content:space-around;
+@import './content.scss';
+@import './sidebar.scss';
 
-             button{
-                 background-color: transparent;
-                 border:none;
-                 cursor: pointer;
-                 width: 100%;
-                 padding: 1vw;
-                 border-radius: 5px;
-                 img{
-                     width: 2.0vw;
-                 }
-                 &:hover {
-                    background-color: orangered;
-                  
 
-              
-                    
-                }
-              
 
-             }
-        }
-        .sidebar__title{
-            display: flex;
-            align-items: center;
-            position:absolute;
-            left: 50%;
-            top: 50%;          
-            transform: translate(-50%,-50%);
-            img{
-               
-                width: 1.5vw;
-            }
-            h3{
-                margin-left:0.5vw;
-               font-size:1.5vw;
-               color:white;
-            }
-           
-        }
-    } 
-    .sidebar__content{
-        display: flex;
-        align-items: center;
-        margin: 0 auto;
-        position: relative;
-                .content__type{
-                    width: 100%;
-                   
-                        .content__item{
-                            //  display: inline-block;
-                             width: 100%;
-                             margin: auto;
-                             height: auto;
-                            
-                              .content__btn{     
-                                text-align: left;                    
-                                border: none;
-                                background-color: transparent;
-                                cursor: pointer;
-                                width: 100%;
-                                font-size:1vw;
-                                font-weight: 600;
-                                color:white;
-                                padding: 1.5vw; 
-                                text-transform: capitalize;
-                                    &:hover {
-                                    background-color: #6C757D;
-                                    svg{
-                                        color: white;
-                                    }
-                                        
-                                }
 
-                              }
-                              .content__table{
-                                display: none;
-                                animation: LTR ease 0.5s;  
-                                                                       
-                                        li{
-                                            padding: auto;
-                                                .submenu__btn{
-                                                    text-align: center;
-                                                    font-weight:600;
-                                                    top:0;
-                                                    left: 0;
-                                                    transform: none;
-                                                    border-top: 1px solid #4B545C;
-                                                    border-bottom: 1px solid #4B545C;
-                                                    text-transform: capitalize;
-                                                    &:hover {
-                                                        background-color: orangered;
-                                                        color: black;
-                                                            
-                                                    }
-                                                }
-                                                .content__field{
-                                                    display: none;
-                                                    animation: TTB ease 0.5s; 
-                                                    li{
-                                                        text-align: center;
-                                                        color:white;
-                                                        font-size:1.0vw;
-                                                        margin: 1.5vw;
-                                                        text-transform: capitalize;
-                                                        border-bottom:none;
-                                                    }
-
-                                                }    
-                                             
-                    
-                                        
-                                        }
-                                                               
-                            }
-                          
-                            .content__submenu{
-                                background-color: #343A40;
-                                left: 100%;
-                                position:absolute;
-                                width: 100%;
-                                overflow-y: scroll;
-                                max-height: 300px;
-                                top: 0px;
-                                border-right:  1px solid #4B545C;
-                                border-left:  1px solid #4B545C;
-                                box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
-                                0 4px 6px -2px rgba(71, 63, 79, 0.16);
-                                        li{
-                                            padding: 0px    ;
-                                        }
-                                        &::-webkit-scrollbar{
-                                            opacity: 1;
-                                            width: 2px;
-                                            color: #343A40;
-                                            height: 2px;
-                                        }
-                            }
-
-                        
-    
-    
-
-                        }                  
-                }    
-        
-    }
-    .sidebar__footer{
-        border-top: 2px solid #4B545C;
-        padding:1vw;
-        width: 100%;
-        position: relative;
-    }
-
-}
-
-.show{
-    display: block !important;
-
-}
-
-.active{
-  background-color: #6C757D !important;
-}
-
-.table__active{
-    background-color:orangered!important;
-    color: black !important;
-}
-.height--small{
-    height: 5vw;
-}
-
-.main__content {
-    background-color: #e5e6e9;
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    left: 15%;
-    width: 85%;
-    height: 100%;
-   
-    z-index: -1;
-    .content__chart {
-        position: relative;
-        height: 60%;
-      
-        margin-top: 10px;
-        .chart{
-            width:65%;
-            height: 100%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-            canvas {
-              height: 100% !important;
-              object-fit: contain;
-            }
-        }
-    }
-    .content__table {
-        position: relative;
-        height: 40%;
-        margin: 5px 0;
-       .table {
-        position: absolute;
-        padding:5px 10%;
-        height: 100%;
-        width: 100%;
-        top:50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-       
-       }
-      
-    }
-}
 
 @keyframes LTR {
     from {
       opacity: 0;
-      transform: translateX(-5px);
     }
   
     to {
-      opacity: 1;
-      transform: translateX(0);
+    opacity: 1;
+
     }
   }
   @keyframes TTB {
@@ -267,3 +36,16 @@
       transform: translateY(0);
     }
   }
+  @keyframes RTL {
+    from {
+      opacity: 0;
+      transform: translateX(5px);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+

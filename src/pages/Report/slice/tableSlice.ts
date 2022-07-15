@@ -1,11 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { listTable } from 'interfaces/components';
+
 
 export interface ListTable {
-  listReport: any; // sẽ thay đổi
-  
+  listTable: Array<listTable>;
+  loading:boolean;
+ 
 };
+
+
 const initialState: ListTable = {
-  listReport:[],
+   listTable:[],
+   loading: false,
+ 
 };
 
 
@@ -14,12 +21,14 @@ export const tableSlice = createSlice({
   initialState,
   reducers: {
     getListTables: (state, action: PayloadAction<number>) => {
-      // console.log('kiem tra',action.payload);
+
     },
-    postListTables: (state, action) => {
-      state.listReport= action.payload
+    showListTables: (state, action) => {
+      state.listTable= action.payload
+      state.loading= true
     }
   },
+ 
   
 });
 

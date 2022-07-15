@@ -1,27 +1,29 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { listCategory } from 'interfaces/components';
 
 
-export interface ListData {
-  id: number;
-  name:string
-  
-};
+
 export interface ListCategory {
-  listCategory: Array<ListData>;
+  listCategory: Array<listCategory>;
+  loading:boolean;
   
 };
 const initialState: ListCategory = {
     listCategory:[],
+    loading:false,
 };
 
 export const categorySlice = createSlice({
-  name: 'get',
+  name: 'category',
   initialState,
   reducers: {
-    getCategory:() => {
+    getCategory:(state) => {
+     state.loading = false;
+      
     },
     postCategory: (state, action)=> {
       state.listCategory =action.payload;
+      state.loading= true;
     }
     
   },

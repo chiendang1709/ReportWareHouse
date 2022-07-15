@@ -1,0 +1,407 @@
+
+.sidebar{
+    background-color: $primary-bg;
+     position: fixed;
+    width: 15%;
+    height: 100%;
+    border-right:  1px solid $border-color;
+    box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
+    0 4px 6px -2px rgba(71, 63, 79, 0.16);
+    z-index: 2;
+    .sidebar__header{  
+        border-bottom: 1px solid $border-color;
+        padding:1vw;
+        width: 100%;
+        position: relative;
+
+        .sidebar__logo{
+            width: 10vw;
+            height: 5.5vw;
+            margin: auto;
+               img{
+                   width: 100%;
+                   height: 100%;                
+                   
+         } 
+        }  
+        .sidebar__chart{
+            display: flex;
+            justify-content:space-between;
+             
+             .active__chart{
+                background-color:  $button !important;
+                img{
+                    filter: $icon-hover;
+                }
+             }
+             .char_button{
+                 background-color: transparent;
+                 border:none;
+                 cursor: pointer;
+                 width: 4vw;
+                 padding: 0.5vw 1vw;
+                 border-radius: 5px;
+                 
+                 
+                 img{
+                     width: 2.0vw;
+                 }
+                 
+                 &:hover {
+                    background-color:  $button;
+                   
+                     img{
+                        filter: $icon-hover;
+                     }
+                            
+                }
+             }
+        }
+      
+           
+           .tool__button{
+
+                margin: auto;
+                text-align: left;
+                width: 100%;
+                height: 100%;
+                background-color: transparent;
+               
+                border:  none;
+                border-radius: 2px;
+                cursor: pointer;
+                font-size: 1vw;
+                font-weight: 600;
+                padding: 0.5vw 1.5vw;
+                color: $font-color;   
+                text-transform: uppercase;
+                   
+              
+                img{
+                    justify-self: flex-end;
+                    width: 1.5vw;
+                    height: 1.5vw;                  
+                    float: right;
+                    
+                }
+
+                
+                
+            }
+        .sidebar__title{
+            display: flex;
+            align-items: center;
+            img{
+               
+                width: 1.5vw;
+            }
+            h3{
+                margin-left:0.5vw;
+               font-size:1vw;
+               color:$font-color;
+            }
+           
+        }
+    } 
+    .tool--header{
+        padding: 0.5vw 1.5vw;
+        height: 3vw ;
+        border-bottom: none;
+            &:hover{
+                background-color: $button;
+                button{
+                     color: $font-color-2 !important;
+                  }
+                 img{
+                    filter: $icon-hover;
+                }
+            }
+    }
+   
+    .open--active{
+                background-color: $button;
+                 button{
+
+                    color: $font-color-2 !important;
+                 }
+                 img{
+                    filter: $icon-hover;
+                }
+    }
+    .sidebar__content{
+        display: flex;
+        position: relative;
+        max-height: 50vw;
+
+        min-height: 30vh;
+                .content__type{
+                    width: 100%;
+                    .active{
+                        background-color: $second-bg !important;
+                        color:$font-color-2 !important;
+                        img{
+                            filter: $icon-hover;
+                        }
+                      }
+                     
+                        .content__item{
+                             width: 100%;
+                             height: auto;
+                             padding: 0.5vw;
+                              .content__btn{  
+                                margin:auto;   
+                                text-align: left;                    
+                                border: none;
+                                background-color: transparent;
+                                cursor: pointer;
+                                width: 100%;
+                                height: 100%;
+                                font-size:0.8vw;
+                                font-weight: 600;
+                                color: $font-color;
+                                padding: 1vw 1.5vw; 
+                                text-transform: capitalize;
+                                    &:hover {
+                                    background-color: $second-bg;
+                                    color: $font-color-2;
+                                    img{
+                                        filter: $icon-hover;
+                                    }
+
+                                    
+                                        
+                                }
+                                img {
+                                    height: 1vw;
+                                    width: 1vw;
+                                    float: right;
+                                }
+
+                              }
+                          
+                              .content__table{
+                                visibility: hidden;
+                                opacity: 0;
+                                transition: opacity 2s ease;
+                                left:0;
+                                max-width:  0;  
+                                        li{
+                                            padding: auto;
+                                                .submenu__btn{
+                                                    text-align: center;
+                                                    font-weight:600;
+                                                    top:0;
+                                                    left: 0;
+                                                    transform: none;                                           
+                                                    text-transform: capitalize;
+                                                    border-top: 1px solid $border-color;
+                                                    opacity: 0;
+                                                    font-size:0;
+                                                    max-height: 80px;
+                                                    
+                                                    
+                                                    img{
+                                                        height: 1vw;
+                                                        width: 1vw;
+                                                        float: right;
+                                                         transition: transform 1s;
+                                                       
+                                                    }
+                                                    &:hover {
+                                                        background-color: $button;
+                                                        color: $font-color-2;
+                                                         img{
+                                                             filter: $icon-hover;
+                                                         }
+                                                            
+                                                    }
+                                                  
+                                                    
+                                                  
+                                                }
+                                                .table__active{
+                                                    background-color: $button!important;
+                                                    color: $font-color-2 !important;
+                                                        img{
+                                                            transform: rotate(180deg);
+                                                            filter: $icon-hover;
+                                                        }
+                                                  
+                                                }
+                                                .field__show{
+                                                    visibility: visible !important;
+                                                    opacity: 1 !important;
+                                                    max-height: 500px!important;
+                                                }
+                                                .content__field{
+                                                    overflow-y: scroll;
+                                                    visibility: hidden;
+                                                    opacity: 0;                                       
+                                                    max-height:0;
+                                                    transition: visibility 0s,  max-height 0.4s linear, opacity 0.3s linear;
+                                                    &::-webkit-scrollbar{
+                                                        opacity: 1;
+                                                        width: 2px;
+                                                        color: #343A40;
+                                                        height: 2px;
+                                                    }
+                                                        li{                                                    
+                                                            // margin: 1vw 1.5vw;
+                                                            border-bottom:none;
+                                                             padding: 0.5vw;
+                                                             button{
+
+                                                                &:hover{
+                                                                    background-color: rgb(91, 88, 85);
+                                                                    border-radius: 2px;
+                                                                }
+                                                             }
+                                                            .active{
+                                                                background-color: rgb(91, 88, 85) !important;
+                                                            }
+                                                            .name__field {
+                                                                border: none;
+                                                                opacity:0;
+                                                                background-color: transparent;
+                                                                cursor: pointer;
+                                                                display: flex;
+                                                                text-align: left;
+                                                                width: 100%;
+                                                                height: 100%;
+                                                                color: $font-color-2;
+                                                                font-size:0;
+                                                                padding: 0.5vw;
+                                                                text-transform: capitalize;
+                                                              
+                                                                input {                    
+                                                                    width: 1vw;
+                                                                    height: 1vw;
+                                                                    }
+                                                                label{
+                                                                        color: $font-color-2;
+                                                                        margin-left: 4px;
+                                                                       
+                                                                       
+                                                                 }
+                                                                
+                                                               
+                                                            }
+                                                             
+                                                         
+                                                            ul{
+                                                                margin-left: 3vw;
+                                                                display: none;                                                             
+                                                                animation: TTB ease 0.5s; 
+                                                                li{
+                                                                    display:flex;
+                                                                    align-items: center;
+                                                                    .child--field{
+                                                                     width: 5vw;
+                                                                      
+                                                                    }
+                                                                    input {                    
+                                                                        width: 1vw;
+                                                                        height: 1vw;
+
+                                                                        }
+                                                                }
+                                                            }
+                                                           
+                                                        }
+                                                    
+                                                   
+                                                }    
+               
+                                        }
+                                                               
+                            }
+                            .show{
+                                visibility: visible !important;
+                                opacity: 1 !important;
+                                max-width: 400px!important;
+                                max-height: 500px!important;
+                                    .submenu__btn{
+                                        opacity: 1 !important;
+                                        font-size: 0.8vw !important;
+                                       
+                                    }
+                                    .name__field {
+                                        opacity: 1 !important;
+                                        font-size:0.7vw !important;
+                                    }
+                         
+                            
+                            }
+                            .content__submenu{
+                                background-color: #343A40;
+                                left: 100%;
+                                transform: translateX(7.5%);
+                                position:absolute;
+                                width: 100%;
+                                min-height: auto;
+                                top: 0px;
+                                text-align: center;
+                                border-right:  1px solid $border-color;
+                                border-left:  1px solid $border-color;
+                                box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
+                                0 4px 6px -2px rgba(71, 63, 79, 0.16);
+                                z-index: 2;     
+                                        li{
+                                            padding: 0px    ;
+                                            
+                                        }
+                                                                   
+                                      img {
+                                        width: 20%;
+                                      }
+                                       
+                            }
+
+                        
+    
+    
+
+                        }                  
+                }    
+        
+    }
+    .sidebar__footer{
+        border-top: 1px solid $border-color;
+        padding:1vw;
+        width: 100%;
+        position: relative;
+                button{
+                    display: flex;
+                    width: 10vw;
+                    margin: 0.5vw 1vw;
+                    padding: 0.5vw;
+                    border:  1px solid transparent;
+                    border-radius:10px;
+                    background-color: $button;
+                    color:black;
+                    font-size: 1.5vw;
+                    font-weight: 600;
+                    cursor: pointer;
+                    text-align: center;
+                    p{
+                        width: 100%;
+                        height:100%;
+                        color: $font-color;
+                        margin: auto 0;
+                    }
+                    img {
+                        width: 20%;
+                        height: 20%;
+                        margin: auto 0;
+                    }
+                    &:hover{
+                        background-color: $button-hover;
+                        p{
+                            filter: $icon-hover;
+                        }
+                    }
+
+                }
+    }
+
+}
