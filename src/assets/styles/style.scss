@@ -22,6 +22,9 @@ body{
 }
 button{
     display: block;
+    background: transparent;
+    border: none;
+    cursor: pointer;
 }
 .container{
     padding: 0 16px;

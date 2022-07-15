@@ -4,7 +4,8 @@ import { useAppDispatch, useAppSelector } from 'app/store/hooks';
 import { Chart as ChartJS, DatasetController, registerables } from "chart.js";
 import {ChartType} from 'chart.js';
 import { Chart } from 'react-chartjs-2';
-
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
@@ -14,7 +15,7 @@ import { listChart, listDepartment } from 'interfaces/components';
 
 import { departmentAction } from 'pages/Report/slice/departmentSlice';
 import { tableDataAction } from 'pages/Report/slice/tableDataSlice';
-import Tools from './Tools';
+
 ChartJS.register(...registerables ,ChartDataLabels);
 
 export interface data {
@@ -52,14 +53,13 @@ const Charts = () => {
   const dispatch = useAppDispatch()
   const typeCharts = useAppSelector(state => state.typeChart)
   const onChart = useAppSelector(state=> state.onChart) 
-  const onTool = useAppSelector(state=> state.onTool)
   const listValueField = useAppSelector(state=> state.listValue) 
   const listFilter = useAppSelector(state=> state.filter) 
   const listTable = useAppSelector(state => state.table)
 
   const [types, setType] = useState<ChartType>('bar');
   const [on, setOn] = useState(false);
-  const [Tool, setTool] = useState(false);  
+
  
   const [nameChart, setNameChart]= useState("")
   const [value, setValue] = useState<any[]>([])
@@ -67,23 +67,11 @@ const Charts = () => {
   
   useEffect(()=>{dispatch(tableDataAction.getListTableData(value))},[value])
   useEffect(()=> setOn(onChart.onChart),[onChart])
-  useEffect(() => setTool(onTool.onTool),[onTool])
-  useEffect(()=> setType(typeCharts.typeChart),[typeCharts])
+
   useEffect(() => {dispatch(departmentAction.getDepartment())}, []);
   useEffect(()=>  setNameChart(""),[listValueField])
   useEffect(()=>(setValue(listValueField.listValueField)),[listValueField.listValueField]) 
  
-  useEffect(() => {
-    const handler = (event: TouchEvent | MouseEvent) => {
-      if (onTool && ref.current && !ref.current.contains(event.target as HTMLDivElement)){
-        setTool(false);
-      }
-    };
-    document.addEventListener("mousedown", handler );
-    return () => {
-      document.removeEventListener("mousedown", handler );
-    };
-  }, [onTool]);
   
 
   //getFilter
@@ -308,6 +296,18 @@ const Charts = () => {
   };
  
   //PDF
+const printPDF = () => {
+  const domElement: any = document.getElementById("chart");
+  html2canvas(domElement,{
+    scale: 5,
+   
+  }).then(canvas => {
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF();
+    pdf.addImage(imgData, "JPEG",10,10,180,100);
+    pdf.save(`${new Date().toISOString()}.pdf`);
+  });
+};
  
 
   //filter
@@ -316,14 +316,11 @@ const Charts = () => {
   return (
     <div  className='content__item content__chart'>
       <ToastContainer  position="top-center"  style={{width: "30%", height:"20px"}} ></ToastContainer>
-      { on?
-       (<div id='chart' className=' item card chart'>
+       <div id='chart' className=' item card chart'>
          <Chart options={types !=="pie" ? options: optionPie}  type='bar' data={data} />
    
-      </div>)
-         :''
-        }
-    <Tools Tool={Tool} ref={ref} callBackData={getdata}></Tools>
+      </div>
+
     </div>
   );
 }

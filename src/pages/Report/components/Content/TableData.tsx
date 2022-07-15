@@ -158,9 +158,7 @@ const TableData = () => {
   }
   return (
     <div className='content__item content__table'>
-   
-   {on?
-         ( <div className='item card table'>
+<div className='item card table'>
             <DataGrid 
               
               autoHeight
@@ -175,10 +173,7 @@ const TableData = () => {
               pagination
             />   
         
-     </div>
-         )
-         : ''
-        }  
+     </div>  
      </div>
    
   )

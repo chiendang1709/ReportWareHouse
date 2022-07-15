@@ -1,0 +1,202 @@
+.main__content {
+    background-color: #e5e6e9;
+   display: flex;
+   flex-direction: column;
+   width: 85%;
+   z-index: -2;
+   margin-left: 15%;
+   min-height: 100vh;
+   height:  auto;
+   .header{
+       width: 100%;
+       background-color: white;      
+       border: 0px solid rgba(0,0,0,.125);
+       box-shadow: 0 0 1px rgba(0,0,0,0.13), 0 1px 3px rgba(0,0,0,0.20);
+       padding: 8px;
+       .header__navbar{
+        height: 2vw;
+        display: flex;
+        align-items: center ;
+            .sidebar__button{
+                width: 1.3vw;
+                height: 1.3vw;
+                img{
+                    width: 100%;
+                    height: auto;
+                }
+            }
+            .tool__button{
+                margin-left: auto;
+                width: 1.3vw;
+                height: 1.3vw;
+                img{
+                    width: 100%;
+                    height: auto;
+                }
+            }
+   
+   }
+        .tool__content{
+            width: 100%;
+            height: 0;
+            visibility: hidden;
+            transition: visibility 0s, height 1s ease;
+                .tool__group{
+                    display: flex;
+                }
+        }
+        .tool--active{
+            visibility: visible;
+            height: 15vw;
+        }
+}
+   .content__item{
+       // position: relative;  
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       width: 100%;
+       .card{
+           box-shadow: 0 0 1px rgba(0,0,0,0.13), 0 1px 3px rgba(0,0,0,0.20);
+           margin-bottom: 1rem;
+           min-width: 0;
+           word-wrap: break-word;
+           background-color: #fff;
+           background-clip: border-box;
+           border: 0 solid rgba(0,0,0,.125);
+           border-radius: 0.25rem;
+           padding: 1.25rem;
+       }
+   
+       .item{
+           margin-top: 1vw;
+   
+           
+           h1{
+               width: 45vw;
+               font-size: 3vw;
+               text-transform:uppercase;
+           }
+        
+       }
+   }
+
+   .content__chart {
+      
+       .chart{    
+           width: 60vw;
+               
+           canvas {
+             object-fit: contain;
+                         
+           }
+         
+       }
+    //    .chart__tool{
+    //        padding: 0;
+    //        position: fixed;
+    //        z-index: 2;
+    //        left: 15%;
+    //        top: 31vw;
+    //         display: flex;
+    //         height: 18vw;
+    //         background-color: #343A40;
+       
+           
+    //        .tool--active{
+    //            display: block !important;
+                   
+    //        }
+    //        .tool__list{ 
+    //            display:none; 
+    //            animation: RTL ease 1s;  
+    //            border-right: 1px solid $border-color;  
+    //            ul{     
+    //                display: flex;
+    //                flex-direction: column;             
+    //                li{
+    //                    height: 4.5vw;
+    //                    padding: 1vw 1.5vw;
+    //                    .filter__group{
+    //                        display: flex;
+    //                        width: 100%;
+    //                        height: 100%;
+    //                        align-items: center;
+    //                        justify-content: center;
+    //                        p{
+    //                            width: 5.5vw;
+    //                            font-size: 1.0vw;
+    //                            color: $font-color-2;
+    //                        }
+                          
+                                        
+    //                    }
+    //                    select{
+    //                        width:  100%;
+    //                        height: 100%;
+    //                        margin: auto;
+    //                        font-size: 1vw;
+    //                        text-align: center;
+    //                        border-radius:2px;
+    //                        border:1px solid  $border-color;
+    //                        padding: 0vw 0.5vw;
+    //                        resize: vertical;
+                           
+    //                    }
+                     
+    //                    .filter__border{
+    //                        border-right:1px solid $border-color;
+    //                        border-left:1px solid $border-color;
+    //                    }
+    //                    .filter__button{
+                           
+    //                        width: 6vw;
+    //                        padding:0 0.5vw;
+
+                          
+    //                        button{
+    //                            background-color: transparent;
+    //                            width: 100%;
+    //                            height: 3vw;
+    //                            border-radius: 0;
+    //                            border: none;
+    //                            margin: auto;
+    //                            font-size: 1vw;
+                               
+    //                            img{
+    //                            width: 35%;
+    //                            height: 57%;
+    //                            }
+    //                            &:hover{
+    //                                background-color: $button;
+    //                                border-radius: 2px;
+    //                                img{
+    //                                    filter: $icon-hover;
+    //                                }
+    //                            }
+    //                        }
+    //                    }
+                     
+    //                }
+    //                .border--item{
+    //                    border-bottom: 1px solid $border-color;  
+    //                }
+    //            } 
+              
+    //        }      
+          
+          
+         
+          
+    //    }
+      
+   }
+   .content__table {
+      .table {
+          width: 60vw;
+          flex-grow: 25%;
+      }
+     
+     
+   }
+}

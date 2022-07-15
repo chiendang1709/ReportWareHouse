@@ -73,7 +73,7 @@ const Table = ( props :{ listTable: listTable[], name: string, loading:boolean }
             {props.name}
             <img src={triangle} alt="triangle" title="list field" />
         </button>
-        <ul className={`content__field .content__submenu ${submenu ? "show" : " "}`}  >                
+        <ul className={`content__field .content__submenu ${submenu ? "field__show" : " "}`}  >                
            {listField()}
         </ul>
      
