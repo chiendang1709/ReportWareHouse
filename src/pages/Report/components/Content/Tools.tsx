@@ -37,7 +37,7 @@ const Tools = () => {
 
   const [dateFrom, setDateFrom]= useState("")
   const [dateTo, setDateTo]= useState("") 
-  const top100Films = ["Elephant","Zebra", "Tiger", "Rabbit"]
+  const top100Films = ["Elephant","Zebra", "Tiger", "Rabbit","Cat", "Tree", "Pig","Hello","hi"]
 
   //filter
   // useEffect(() => {
@@ -249,12 +249,13 @@ const renderContent = React.useCallback(() => {
                       <div className='filter_name--col'>
                         <div className="form__group ">
                     <Autocomplete
+                        noOptionsText={'No Options'}
                          multiple
                          id="tags-standard"
-                         limitTags={3}
-                         freeSolo
+                         limitTags={3}    
                          filterSelectedOptions
                          options={top100Films}
+                         
                          onChange={(e, newValue) =>{setDepart(newValue)
                          } }
                          getOptionLabel={option => option}
@@ -292,10 +293,10 @@ const renderContent = React.useCallback(() => {
                         
                         <div className="form__group ">
                     <Autocomplete
+                         noOptionsText={'No Options'}
                          multiple
                          id="tags-standard"
-                         limitTags={3}
-                         freeSolo
+                         limitTags={3}                       
                          filterSelectedOptions
                          options={top100Films}
                          onChange={(e, newValue) =>{setStaff(newValue); console.log("new", newValue);
@@ -335,7 +336,7 @@ const renderContent = React.useCallback(() => {
                          multiple
                          id="tags-standard"
                          limitTags={3}
-                         freeSolo
+                         noOptionsText={'No Options'}
                          filterSelectedOptions
                          options={top100Films}
                          onChange={(e, newValue) =>{setCustomer(newValue); console.log("new", newValue);
@@ -374,7 +375,7 @@ const renderContent = React.useCallback(() => {
                          multiple
                          id="tags-standard"
                          limitTags={3}
-                         freeSolo
+                         noOptionsText={'No Options'}
                          filterSelectedOptions
                          options={top100Films}
                          onChange={(e, newValue) =>{setMvv(newValue); console.log("new", newValue);
