@@ -20,22 +20,22 @@ import pie from 'assets/images/pie__icon.png'
      return (
         <div className='sidebar__chart'>
        
-             <button className={`char_button ${onChart.onChart==true && typeCharts.typeChart=='bar' ? 'active__chart' : ''}`} 
+             <button className={`char_button ${ typeCharts.typeChart=='bar' ? 'active__chart' : ''}`} 
 
-                        onClick={()=>{dispatch(getTypeChart('bar')); dispatch(getOnChart(true)); }}>
+                        onClick={()=>{dispatch(getTypeChart('bar')) }}>
                         <img src={bar} title="choose bar chart"  alt="bar" />
                         
              </button>
-             <button className={` char_button ${onChart.onChart==true && typeCharts.typeChart=='pie' ? 'active__chart' : ''}`}
+             <button className={` char_button ${ typeCharts.typeChart=='pie' ? 'active__chart' : ''}`}
                     
-                        onClick={()=>{dispatch(getTypeChart('pie')); dispatch(getOnChart(true));}}>
+                        onClick={()=>{dispatch(getTypeChart('pie'))}}>
                         <img src={pie} title="choose pie chart"  alt="pie" />
                             
                         
             </button>
-            <button   className={` char_button ${onChart.onChart==true && typeCharts.typeChart=='line' ? 'active__chart' : ''}`}
+            <button   className={` char_button ${ typeCharts.typeChart=='line' ? 'active__chart' : ''}`}
                                           
-                        onClick={()=>{dispatch(getTypeChart('line')); dispatch(getOnChart(true));}}>
+                        onClick={()=>{dispatch(getTypeChart('line'))}}>
                    
                             <img src={line} title="choose line chart"  alt="line" />
                            

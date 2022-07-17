@@ -66,7 +66,7 @@ const Charts = () => {
   const [data, setData]= useState<any>(dtChart)
   
   useEffect(()=>{dispatch(tableDataAction.getListTableData(value))},[value])
-  useEffect(()=> setOn(onChart.onChart),[onChart])
+  useEffect(()=> setType(typeCharts.typeChart),[typeCharts])
 
   useEffect(() => {dispatch(departmentAction.getDepartment())}, []);
   useEffect(()=>  setNameChart(""),[listValueField])
