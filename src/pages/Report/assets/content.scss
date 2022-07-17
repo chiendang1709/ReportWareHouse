@@ -13,6 +13,7 @@
        border: 0px solid rgba(0,0,0,.125);
        box-shadow: 0 0 1px rgba(0,0,0,0.13), 0 1px 3px rgba(0,0,0,0.20);
        padding: 8px;
+       height: auto;
        .header__navbar{
         height: 2vw;
         display: flex;
@@ -40,15 +41,168 @@
             width: 100%;
             height: 0;
             visibility: hidden;
+           
             transition: visibility 0s, height 1s ease;
-                .tool__group{
+            .tool__group{
                     display: flex;
+            }
+            .tool__header {
+                .tool__component {
+                    width: 100%;
+                    padding: 0 5%;
+                    margin-bottom: 10px ;
+                .filter__name {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                  
+                    .filter_name--col{
+                        display: flex;
+                        text-align: center;
+                        
+                        .form__group {
+                            position: relative;
+                            margin:10px 15px 10px ;
+                            width: 60%;                                
+                            text-align: center;
+                            .MuiInputBase-root {
+                                height: auto !important;
+                                max-height: 100px !important;
+                            }
+                            .MuiChip-root {
+                                height: 20px !important;
+                                font-size: 12px;
+                            }
+                            .MuiAutocomplete-hasPopupIcon .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"], .MuiAutocomplete-hasClearIcon .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
+                                padding-right: 0px !important; 
+                            }
+                            .MuiAutocomplete-endAdornment {
+                                display: none;
+                            }
+                            .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
+                                padding: 5px !important;
+                            }
+                            
+                               
+                          .form__field {   
+                            margin-top: 5px;
+                            width: auto;
+                            border: 0;
+                            outline: 0;
+                            font-size: 0.7rem;
+                            color: #4e4f50;
+                            padding: 2px 0;
+                            background: transparent;               
+                            margin-left: 2px;                                                 
+                          }                
+                          label {  
+                            font-size: 1.2vw;
+                            font-weight: 600;
+                            color: $button-hover ;
+                            background-color: white;
+                            font-family: 'Montserrat', sans-serif !important;
+                          }
+                          path {
+                            color:$border-color ;
+                            width: 80% !important;
+                          }
+                        
+                        
+                    }
+                   
+                    }
                 }
+                .filter__time {
+                    display: flex;
+                    width: 100%;
+                    height: 69px;
+                    margin-top: 5px;
+                    .select__time {
+                        position: relative;
+                        margin:10px 15px 10px ;
+                        width: 10%;
+                        height: auto;
+                        border: 1px solid #C4C4C4 ;
+                        text-align: center;
+                        border-radius: 4px;
+                    }
+                    .time__date {
+                        display: flex;
+                        width: 60%;
+                        .time__group{
+                            position: relative;
+                            padding: 5px 10px;
+                            margin:10px 15px 10px ;
+                            width: 50%;
+                            border-radius: 4px;
+                            border: 1px solid #C4C4C4 ;
+                            height: auto;
+                            .time__field {
+                                position: absolute;
+                                left: 50%;
+                                top: 50%;          
+                                transform: translate(-50%,-50%);
+                                width: 80%;
+                                border: 0;
+                                outline: 0;
+                                font-size: 1rem;
+                                color: #4e4f50;
+                                margin-top: 2px;
+                                background: transparent;
+                                transition: border-color 0.2s;
+                                
+                          
+                              }
+                            .time__label {
+                                position: absolute;
+                                top: -10px;
+                                left: 5px;
+                                display: block;
+                                padding: 0 5px;                              
+                                font-size: 1.2vw;
+                                color: $button-hover ;
+                                background-color: white;
+                              } 
+                              .time__field{
+                                &:required,&:invalid { box-shadow:none; }
+                              } 
+                        }
+                    }
+    
+                }
+                .group__tool{
+                    display: flex;
+                    height: 69px;
+                    .tool__group {
+                        position: relative;
+                        padding: 5px 10px;
+                        margin:10px 15px 10px;
+                        border-radius: 4px;
+                        width: calc(100% /3);
+                        border: 1px solid #C4C4C4 ;
+                        height: auto;
+                    }
+                    button {
+                        margin:5px 20px 10px ;
+                        position: relative;
+                        padding: 5px 10px;
+                        margin:10px 15px 10px;
+                        border-radius: 4px;
+                        width: calc(100% /3);
+                        border: 1px solid #C4C4C4 ;
+                        height: auto;
+                    }
+                }
+            }
+        }
+            
         }
         .tool--active{
             visibility: visible;
-            height: 15vw;
+            height: auto;
+            margin: 0 auto;
         }
+       
 }
    .content__item{
        // position: relative;  

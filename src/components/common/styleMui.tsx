@@ -90,7 +90,12 @@ import { height } from '@mui/system';
     }
     
   },
-  
+  textField : {
+    '& .MuiInputLabel-outlined': {             
+      transform: 'translate(14px, 15px) scale(1)'}
+    
+  }
+
   }));
  
 
