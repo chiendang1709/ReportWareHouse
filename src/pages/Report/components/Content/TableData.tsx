@@ -158,9 +158,16 @@ const TableData = () => {
   }
   return (
     <div className='content__item content__table'>
-<div className='item card table'>
-            <DataGrid 
-              
+       <div className='item card table'>
+              <div className='header__item'>
+                  <div className='title__item'>
+                        Table
+                  </div>
+                  <div className='button__item'>
+                      
+                  </div>
+              </div>
+            <DataGrid            
               autoHeight
               rowHeight={29}
               className={classes.root}
@@ -173,8 +180,8 @@ const TableData = () => {
               pagination
             />   
         
-     </div>  
-     </div>
+      </div>  
+    </div>
    
   )
 }

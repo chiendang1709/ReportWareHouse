@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 
 import { useAppDispatch, useAppSelector } from 'app/store/hooks';
 import { Chart as ChartJS, DatasetController, registerables } from "chart.js";
@@ -12,6 +12,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 import { chartColors } from 'constant/color';
 import { listChart, listDepartment } from 'interfaces/components';
+import ChartsType from '../Content/ChartsType'
 
 import { departmentAction } from 'pages/Report/slice/departmentSlice';
 import { tableDataAction } from 'pages/Report/slice/tableDataSlice';
@@ -314,14 +315,24 @@ const printPDF = () => {
   
 
   return (
-    <div  className='content__item content__chart'>
+    <Fragment>
       <ToastContainer  position="top-center"  style={{width: "30%", height:"20px"}} ></ToastContainer>
-       <div id='chart' className=' item card chart'>
-         <Chart options={types !=="pie" ? options: optionPie}  type='bar' data={data} />
-   
+      <div className='content__item  content__chart'>
+        <div className=' item card chart'>
+          <div className='header__item'>
+              <div className='title__item'>
+                    Chart
+              </div>
+              <div className='button__item'>
+                    <ChartsType/>
+              </div>
+          </div>
+          <div id='chart'>
+              <Chart options={types !=="pie" ? options: optionPie}  type='bar' data={data} /> 
+          </div>
+          </div>
       </div>
-
-    </div>
+    </Fragment>
   );
 }
 

@@ -18,9 +18,8 @@ import pie from 'assets/images/pie__icon.png'
      const dispatch = useAppDispatch()
 
      return (
-        <div className='sidebar__chart'>
+        <div className='group__chart'>
        
-<<<<<<< HEAD
              <button className={`char_button ${ typeCharts.typeChart=='bar' ? 'active__chart' : ''}`} 
 
                         onClick={()=>{dispatch(getTypeChart('bar')) }}>
@@ -30,30 +29,13 @@ import pie from 'assets/images/pie__icon.png'
              <button className={` char_button ${ typeCharts.typeChart=='pie' ? 'active__chart' : ''}`}
                     
                         onClick={()=>{dispatch(getTypeChart('pie'))}}>
-=======
-             <button className={`char_button ${onChart.onChart==true && typeCharts.typeChart=='bar' ? 'active__chart' : ''}`} 
-
-                        onClick={()=>{dispatch(getTypeChart('bar')); dispatch(getOnChart(true)); }}>
-                        <img src={bar} title="choose bar chart"  alt="bar" />
-                        
-             </button>
-             <button className={` char_button ${onChart.onChart==true && typeCharts.typeChart=='pie' ? 'active__chart' : ''}`}
-                    
-                        onClick={()=>{dispatch(getTypeChart('pie')); dispatch(getOnChart(true));}}>
->>>>>>> fc20cb84a7d29d9f5b8ba9c5ad64b5caa78e9808
                         <img src={pie} title="choose pie chart"  alt="pie" />
                             
                         
             </button>
-<<<<<<< HEAD
             <button   className={` char_button ${ typeCharts.typeChart=='line' ? 'active__chart' : ''}`}
                                           
                         onClick={()=>{dispatch(getTypeChart('line'))}}>
-=======
-            <button   className={` char_button ${onChart.onChart==true && typeCharts.typeChart=='line' ? 'active__chart' : ''}`}
-                                          
-                        onClick={()=>{dispatch(getTypeChart('line')); dispatch(getOnChart(true));}}>
->>>>>>> fc20cb84a7d29d9f5b8ba9c5ad64b5caa78e9808
                    
                             <img src={line} title="choose line chart"  alt="line" />
                            

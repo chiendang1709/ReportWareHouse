@@ -5,9 +5,9 @@ import { height } from '@mui/system';
  export  const styleMui = makeStyles((theme) => ({
    
   root: {
-    '.css-1r5v9hu-MuiDataGrid-root':{
-        height:'100% !important',
-        marginTop:'2.5vw',
+    '&.MuiDataGrid-root.css-1r5v9hu-MuiDataGrid-root':{
+        marginTop:'1vw',
+
     },
     '&.MuiDataGrid-root .MuiDataGrid-columnHeader .MuiDataGrid-cell': {
       "&:focus-within":{

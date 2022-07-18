@@ -24,70 +24,10 @@
                    
          } 
         }  
-        .sidebar__chart{
-            display: flex;
-            justify-content:space-between;
-             
-             .active__chart{
-                background-color:  $button !important;
-                img{
-                    filter: $icon-hover;
-                }
-             }
-             .char_button{
-                 background-color: transparent;
-                 border:none;
-                 cursor: pointer;
-                 width: 4vw;
-                 padding: 0.5vw 1vw;
-                 border-radius: 5px;
-                 
-                 
-                 img{
-                     width: 2.0vw;
-                 }
-                 
-                 &:hover {
-                    background-color:  $button;
-                   
-                     img{
-                        filter: $icon-hover;
-                     }
-                            
-                }
-             }
-        }
+    
       
            
-           .tool__button{
-
-                margin: auto;
-                text-align: left;
-                width: 100%;
-                height: 100%;
-                background-color: transparent;
-               
-                border:  none;
-                border-radius: 2px;
-                cursor: pointer;
-                font-size: 1vw;
-                font-weight: 600;
-                padding: 0.5vw 1.5vw;
-                color: $font-color;   
-                text-transform: uppercase;
-                   
-              
-                img{
-                    justify-self: flex-end;
-                    width: 1.5vw;
-                    height: 1.5vw;                  
-                    float: right;
-                    
-                }
-
-                
-                
-            }
+         
         .sidebar__title{
             display: flex;
             align-items: center;
@@ -131,8 +71,7 @@
     .sidebar__content{
         display: flex;
         position: relative;
-        max-height: 50vw;
-
+        max-height: 70vw;
         min-height: 30vh;
                 .content__type{
                     width: 100%;
@@ -180,11 +119,12 @@
                               }
                           
                               .content__table{
-                                visibility: hidden;
+                                // visibility: hidden;
+                                // display: none;
                                 opacity: 0;
-                                transition: opacity 2s ease;
-                                left:0;
-                                max-width:  0;  
+                                transition: all 1s ease-in-out;
+                                left:100%;
+                                max-width: 0;  
                                         li{
                                             padding: auto;
                                                 .submenu__btn{
@@ -227,12 +167,7 @@
                                                             filter: $icon-hover;
                                                         }
                                                   
-                                                }
-                                                .field__show{
-                                                    visibility: visible !important;
-                                                    opacity: 1 !important;
-                                                    max-height: 500px!important;
-                                                }
+                                                }                                           
                                                 .content__field{
                                                     overflow-y: scroll;
                                                     visibility: hidden;
@@ -311,33 +246,22 @@
                                                     
                                                    
                                                 }    
+                                                .field__show{
+                                                    visibility: visible !important;
+                                                    opacity: 1 !important;
+                                                    max-height: 500px!important;
+                                                }
                
                                         }
                                                                
                             }
-                            .show{
-                                visibility: visible !important;
-                                opacity: 1 !important;
-                                max-width: 400px!important;
-                                max-height: 500px!important;
-                                    .submenu__btn{
-                                        opacity: 1 !important;
-                                        font-size: 0.8vw !important;
-                                       
-                                    }
-                                    .name__field {
-                                        opacity: 1 !important;
-                                        font-size:0.7vw !important;
-                                    }
-                         
-                            
-                            }
+                          
                             .content__submenu{
                                 background-color: #343A40;
-                                left: 100%;
                                 transform: translateX(7.5%);
                                 position:absolute;
                                 width: 100%;
+                                max-height: 0px;
                                 min-height: auto;
                                 top: 0px;
                                 text-align: center;
@@ -356,7 +280,26 @@
                                       }
                                        
                             }
-
+                            .show{
+                                // visibility: visible !important;
+                                left: 100%;
+                                max-height: 1000px;
+                                opacity: 1 !important;
+                                // display: block;
+                                max-width: 400px!important;
+                                max-height: 500px!important;
+                                    .submenu__btn{
+                                        opacity: 1 !important;
+                                        font-size: 0.8vw !important;
+                                       
+                                    }
+                                    .name__field {
+                                        opacity: 1 !important;
+                                        font-size:0.7vw !important;
+                                    }
+                         
+                            
+                            }
                         
     
     
@@ -386,7 +329,7 @@
                     p{
                         width: 100%;
                         height:100%;
-                        color: $font-color;
+                        color: $font-color-2;
                         margin: auto 0;
                     }
                     img {
