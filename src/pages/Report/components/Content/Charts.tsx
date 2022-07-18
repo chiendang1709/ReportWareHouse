@@ -13,7 +13,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { chartColors } from 'constant/color';
 import { listChart, listDepartment } from 'interfaces/components';
 import ChartsType from '../Content/ChartsType'
-
+import ex from 'assets/images/export__icon.png'
 import { departmentAction } from 'pages/Report/slice/departmentSlice';
 import { tableDataAction } from 'pages/Report/slice/tableDataSlice';
 
@@ -324,11 +324,17 @@ const printPDF = () => {
                     Chart
               </div>
               <div className='button__item'>
+              <button id="print" onClick={printPDF}>
+                             <img src={ex} alt="export" title="export pdf" />
+                    </button>
                     <ChartsType/>
+                   
               </div>
           </div>
-          <div id='chart'>
-              <Chart options={types !=="pie" ? options: optionPie}  type='bar' data={data} /> 
+          <div className="chart__item">
+              <div id='chart'>
+                  <Chart options={types !=="pie" ? options: optionPie}  type='bar' data={data} /> 
+              </div>
           </div>
           </div>
       </div>

@@ -119,12 +119,9 @@
                               }
                           
                               .content__table{
-                                // visibility: hidden;
-                                // display: none;
+                                visibility: hidden;
                                 opacity: 0;
-                                transition: all 1s ease-in-out;
-                                left:100%;
-                                max-width: 0;  
+                                transition: visibility 0s, opacity 1s ease-in-out;
                                         li{
                                             padding: auto;
                                                 .submenu__btn{
@@ -258,7 +255,6 @@
                           
                             .content__submenu{
                                 background-color: #343A40;
-                                transform: translateX(7.5%);
                                 position:absolute;
                                 width: 100%;
                                 max-height: 0px;
@@ -269,7 +265,7 @@
                                 border-left:  1px solid $border-color;
                                 box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
                                 0 4px 6px -2px rgba(71, 63, 79, 0.16);
-                                z-index: 2;     
+                              ;     
                                         li{
                                             padding: 0px    ;
                                             
@@ -281,13 +277,10 @@
                                        
                             }
                             .show{
-                                // visibility: visible !important;
-                                left: 100%;
+                                visibility: visible;
+                                opacity:1;
+                                left: 13.8vw;
                                 max-height: 1000px;
-                                opacity: 1 !important;
-                                // display: block;
-                                max-width: 400px!important;
-                                max-height: 500px!important;
                                     .submenu__btn{
                                         opacity: 1 !important;
                                         font-size: 0.8vw !important;

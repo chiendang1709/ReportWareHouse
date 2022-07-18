@@ -8,10 +8,14 @@
    min-height: 100vh;
    height:  auto;
    .header{
+    align-self: flex-start;
+    position: sticky;
+    top:0;
+    z-index: 3;
        width: 100%;
        background-color: white;      
        border: 0px solid rgba(0,0,0,.125);
-       box-shadow: 0 0 1px rgba(0,0,0,0.13), 0 1px 3px rgba(0,0,0,0.20);
+       box-shadow: 0 0 10px rgba(0,0,0,0.13), 0 1px 3px rgba(0,0,0,0.20);
        padding: 8px;
        height: auto;
        .header__navbar{
@@ -40,8 +44,9 @@
         .tool__content{
             width: 100%;
             max-height: 0;
-            display: none;
-            transition: max-height 2s ease-in, display 5s ease-in-out;
+            opacity: 0;
+            visibility: hidden;
+            transition: visibility 0s,max-height 0.5s linear, opacity 0.4s ease-in-out;
             .tool__group{
                     display: flex;
             }
@@ -203,10 +208,10 @@
             
         }
         .tool--active{
-            display: block;
+            visibility: visible;
             opacity: 1;
             height: auto;
-            max-height: 1000px;
+            max-height: 2000px;
             margin: 0 auto;
         }
        
@@ -217,6 +222,7 @@
        justify-content: center;
        align-items: center;
        width: 100%;
+       padding: 0 1vw;
        .card{
            box-shadow: 0 0 1px rgba(0,0,0,0.13), 0 1px 3px rgba(0,0,0,0.20);
            margin-bottom: 1rem;
@@ -230,7 +236,8 @@
        }
    
        .item{
-           margin-top: 1vw;       
+            width: 100%;
+              
            .header__item{
                 display: flex;
                 padding: 0.5vw 1vw;
@@ -242,6 +249,7 @@
                 }
                 .button__item{
                     margin-left: auto;
+                    display: flex;
                     .group__chart{
                         display: flex;
                         justify-content:space-between;
@@ -252,15 +260,14 @@
                                 filter: $icon-hover;
                             }
                         }
-                        .char_button{
+                        .chart__button{
                             background-color: transparent;
                             border:none;
                             cursor: pointer;
                             width: 4vw;
                             padding: 0.5vw 1vw;
                             margin-right: 0.5vw;
-                            border-radius: 5px;
-                            
+                            border-radius: 5px;                         
                             
                             img{
                                 width: 2.0vw;
@@ -275,6 +282,24 @@
                                         
                             }
                         }
+                     
+                    }
+                    #print{
+                        width: 4vw;
+                        padding: 0.5vw 1vw;
+                        margin-right: 0.5vw;
+                        border-radius: 5px; 
+                        img{
+                            width: 2vw;
+                        }
+                        &:hover {
+                            background-color:  $button;
+                        
+                            img{
+                                filter: $icon-hover;
+                            }
+                                    
+                        }   
                     }
                 }
          }
@@ -282,23 +307,26 @@
    }
 
    .content__chart {
-      
        .chart{   
-           width: 60vw;
-
-               
-           canvas {
-             object-fit: contain;
-                         
-           }
-         
+        margin-top: 1vw;
+        .chart__item{
+            display: flex;
+            justify-content: center;
+        
+           #chart{
+            width: 75%;           
+            
+            canvas {
+                object-fit: contain;
+                            
+            }
+        }
        }
-    
+    }
       
    }
    .content__table {
       .table {
-          width: 60vw;
           flex-grow: 25%;
       }
      

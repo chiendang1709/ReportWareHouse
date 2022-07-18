@@ -161,7 +161,7 @@ const TableData = () => {
        <div className='item card table'>
               <div className='header__item'>
                   <div className='title__item'>
-                        Table
+                        Data List
                   </div>
                   <div className='button__item'>
                       
