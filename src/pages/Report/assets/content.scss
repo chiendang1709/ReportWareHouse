@@ -8,10 +8,14 @@
    min-height: 100vh;
    height:  auto;
    .header{
+    align-self: flex-start;
+    position: sticky;
+    top:0;
+    z-index: 3;
        width: 100%;
        background-color: white;      
        border: 0px solid rgba(0,0,0,.125);
-       box-shadow: 0 0 1px rgba(0,0,0,0.13), 0 1px 3px rgba(0,0,0,0.20);
+       box-shadow: 0 0 10px rgba(0,0,0,0.13), 0 1px 3px rgba(0,0,0,0.20);
        padding: 8px;
        height: auto;
        .header__navbar{
@@ -39,15 +43,18 @@
    }
         .tool__content{
             width: 100%;
-            height: 0;
+            max-height: 0;
+            opacity: 0;
             visibility: hidden;
-           
-            transition: visibility 0s, height 1s ease;
+            transition: visibility 0s,max-height  linear, opacity 0.4s ease-in-out;
             .tool__group{
                     display: flex;
             }
-            .tool__header {
-                .tool__component {
+            // .tool__header { 
+                
+            // }
+            .tool__component {
+                min-height: 1px;
                     width: 100%;
                     padding: 0 5%;
                     margin-bottom: 10px ;
@@ -82,7 +89,9 @@
                             .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
                                 padding: 5px !important;
                             }
-                            
+                            .MuiCheckbox-colorPrimary.Mui-checked {
+                                color: #e82997 !important;
+                                }
                                
                           .form__field {   
                             margin-top: 5px;
@@ -96,7 +105,7 @@
                             margin-left: 2px;                                                 
                           }                
                           label {  
-                            font-size: 1.2vw;
+                            font-size: 1vw;
                             font-weight: 600;
                             color: $button-hover ;
                             background-color: white;
@@ -159,7 +168,7 @@
                                 left: 5px;
                                 display: block;
                                 padding: 0 5px;                              
-                                font-size: 1.2vw;
+                                font-size: 1vw;
                                 color: $button-hover ;
                                 background-color: white;
                               } 
@@ -167,6 +176,25 @@
                                 &:required,&:invalid { box-shadow:none; }
                               } 
                         }
+                    }
+                    .br {
+                        position: relative;
+                        
+                        margin:10px 0px 10px;
+                        border-radius: 4px;
+                        background-color: #C4C4C4;
+                        width: 2px;
+                        height: auto;
+                    }
+                    .tool__top {
+                        position: relative;
+                        padding: 5px 10px;
+                        margin:10px 15px 10px;
+                        border-radius: 4px;
+                        width: calc(100% /3);
+                        border: 1px solid #C4C4C4 ;
+                        height: auto;
+                        text-align: center;
                     }
     
                 }
@@ -181,25 +209,31 @@
                         width: calc(100% /3);
                         border: 1px solid #C4C4C4 ;
                         height: auto;
+                        text-align: center;
                     }
                     button {
                         margin:5px 20px 10px ;
                         position: relative;
+                        background-color:$button;
                         padding: 5px 10px;
-                        margin:10px 15px 10px;
+                        // margin:10px 15px 10px;
+                        margin-left: auto;
                         border-radius: 4px;
-                        width: calc(100% /3);
+                        width: 6vw;
+                        color: $font-color-2;
                         border: 1px solid #C4C4C4 ;
                         height: auto;
                     }
                 }
             }
-        }
+       
             
         }
         .tool--active{
             visibility: visible;
+            opacity: 1;
             height: auto;
+            max-height: 2000px;
             margin: 0 auto;
         }
        
@@ -210,6 +244,7 @@
        justify-content: center;
        align-items: center;
        width: 100%;
+       padding: 0 1vw;
        .card{
            box-shadow: 0 0 1px rgba(0,0,0,0.13), 0 1px 3px rgba(0,0,0,0.20);
            margin-bottom: 1rem;
@@ -223,132 +258,101 @@
        }
    
        .item{
-           margin-top: 1vw;
-   
-           
-           h1{
-               width: 45vw;
-               font-size: 3vw;
-               text-transform:uppercase;
-           }
-        
+            width: 100%;
+              
+           .header__item{
+                display: flex;
+                padding: 0.5vw 1vw;
+                border-bottom: 0.5px solid $border-color;
+                align-items: center;
+                .title__item{
+                  font-size: 1vw;
+                  text-transform: capitalize;      
+                }
+                .button__item{
+                    margin-left: auto;
+                    display: flex;
+                    .group__chart{
+                        display: flex;
+                        justify-content:space-between;
+                      
+                        .active__chart{
+                            background-color:  $button !important;
+                            img{
+                                filter: $icon-hover;
+                            }
+                        }
+                        .chart__button{
+                            background-color: transparent;
+                            border:none;
+                            cursor: pointer;
+                            width: 4vw;
+                            padding: 0.5vw 1vw;
+                            margin-right: 0.5vw;
+                            border-radius: 5px;                         
+                            
+                            img{
+                                width: 2.0vw;
+                            }
+                            
+                            &:hover {
+                                background-color:  $button;
+                            
+                                img{
+                                    filter: $icon-hover;
+                                }
+                                        
+                            }
+                        }
+                     
+                    }
+                    #print{
+                        width: 4vw;
+                        padding: 0.5vw 1vw;
+                        margin-right: 0.5vw;
+                        border-radius: 5px; 
+                        img{
+                            width: 2vw;
+                        }
+                        &:hover {
+                            background-color:  $button;
+                        
+                            img{
+                                filter: $icon-hover;
+                            }
+                                    
+                        }   
+                    }
+                }
+         }
        }
    }
 
    .content__chart {
-      
-       .chart{    
-           width: 60vw;
-               
-           canvas {
-             object-fit: contain;
-                         
-           }
-         
+       .chart{   
+        margin-top: 1vw;
+        .chart__item{
+            display: flex;
+            justify-content: center;
+        
+           #chart{
+            width: 75%;           
+            
+            canvas {
+                object-fit: contain;
+                            
+            }
+        }
        }
-    //    .chart__tool{
-    //        padding: 0;
-    //        position: fixed;
-    //        z-index: 2;
-    //        left: 15%;
-    //        top: 31vw;
-    //         display: flex;
-    //         height: 18vw;
-    //         background-color: #343A40;
-       
-           
-    //        .tool--active{
-    //            display: block !important;
-                   
-    //        }
-    //        .tool__list{ 
-    //            display:none; 
-    //            animation: RTL ease 1s;  
-    //            border-right: 1px solid $border-color;  
-    //            ul{     
-    //                display: flex;
-    //                flex-direction: column;             
-    //                li{
-    //                    height: 4.5vw;
-    //                    padding: 1vw 1.5vw;
-    //                    .filter__group{
-    //                        display: flex;
-    //                        width: 100%;
-    //                        height: 100%;
-    //                        align-items: center;
-    //                        justify-content: center;
-    //                        p{
-    //                            width: 5.5vw;
-    //                            font-size: 1.0vw;
-    //                            color: $font-color-2;
-    //                        }
-                          
-                                        
-    //                    }
-    //                    select{
-    //                        width:  100%;
-    //                        height: 100%;
-    //                        margin: auto;
-    //                        font-size: 1vw;
-    //                        text-align: center;
-    //                        border-radius:2px;
-    //                        border:1px solid  $border-color;
-    //                        padding: 0vw 0.5vw;
-    //                        resize: vertical;
-                           
-    //                    }
-                     
-    //                    .filter__border{
-    //                        border-right:1px solid $border-color;
-    //                        border-left:1px solid $border-color;
-    //                    }
-    //                    .filter__button{
-                           
-    //                        width: 6vw;
-    //                        padding:0 0.5vw;
-
-                          
-    //                        button{
-    //                            background-color: transparent;
-    //                            width: 100%;
-    //                            height: 3vw;
-    //                            border-radius: 0;
-    //                            border: none;
-    //                            margin: auto;
-    //                            font-size: 1vw;
-                               
-    //                            img{
-    //                            width: 35%;
-    //                            height: 57%;
-    //                            }
-    //                            &:hover{
-    //                                background-color: $button;
-    //                                border-radius: 2px;
-    //                                img{
-    //                                    filter: $icon-hover;
-    //                                }
-    //                            }
-    //                        }
-    //                    }
-                     
-    //                }
-    //                .border--item{
-    //                    border-bottom: 1px solid $border-color;  
-    //                }
-    //            } 
-              
-    //        }      
-          
-          
-         
-          
-    //    }
+    }
       
    }
    .content__table {
       .table {
-          width: 60vw;
           flex-grow: 25%;
+      }
+      .hello{
+        color: aqua;
       }
      
      

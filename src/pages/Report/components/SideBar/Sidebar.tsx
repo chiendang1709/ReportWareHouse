@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from 'app/store/hooks'
 import { categoryAction } from 'pages/Report/slice/categorySlice'
 import MenuItem from './MenuItem'
 import { listCategory } from 'interfaces/components'
-import ChartsType from './ChartsType'
+
 import { apply } from 'pages/Report/slice/applySlice'
 import ap from 'assets/images/apply__icon.png'
 import arrow from 'assets/images/arrow__icon.png'
@@ -53,10 +53,7 @@ const Sidebar = () => {
                      </ul>
             </div>
              </div>
-            
-            <div className="sidebar__header" >
-                  <ChartsType/>
-             </div>
+        
            
             <div className="sidebar__footer" >
                   <button  onClick={()=>dispatch(apply.getApply("Apply"))}>
