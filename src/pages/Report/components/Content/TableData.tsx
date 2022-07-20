@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { DataGrid, GridColDef,GridToolbarContainer,GridToolbar,GridCellParams,GridToolbarExport,GridToolbarColumnsButton,GridToolbarFilterButton,GridToolbarDensitySelector} from '@mui/x-data-grid';
 
+
 import { useAppSelector } from 'app/store/hooks';
 import { styleMui } from 'components/common/styleMui';
 
+
 const nameTV = [
+  {
+    
+    key_code: "id",
+    value_code: "STT"
+  },
   {
     
     key_code: "profit",
@@ -27,6 +34,15 @@ const nameTV = [
   },
   {
    
+    key_code: "total_excluding_tax",
+    value_code: "Doanh Thu Trước Thuế"
+  },
+  {
+    key_code: "departments_name",
+    value_code: "Bộ phận"
+  },
+  {
+   
     key_code: "month_name",
     value_code: "Tháng"
   },
@@ -41,14 +57,10 @@ const nameTV = [
     value_code: "Thời Gian"
   },
   {
-    key_code: "departments_name",
-    value_code: "Bộ phận"
-  },
-  {
-   
-    key_code: "total_excluding_tax",
-    value_code: "Doanh Thu Trước Thuế"
+    key_code: "total",
+    value_code: "Tổng"
   }
+  
 ]
 
 const TableData = () => {
@@ -61,13 +73,18 @@ const TableData = () => {
 
   const [on, setOn] = useState(false);
   const [pageSize, setPageSize] = useState<number>(5);
- 
+  const [total, setTotal] = useState(0);
   const onTable = useAppSelector(state=> state.onTable) 
   const listValueField = useAppSelector(state=> state.tableData) 
   const listTable = useAppSelector(state => state.table)
    
   useEffect(()=> setOn(onTable.onTable),[onTable])
 
+  const formatter = new Intl.NumberFormat("it-IT", {
+    style: "currency",
+    currency: "VND",
+    minimumFractionDigits: 3
+  });
   if(listValueField.listData.length !== 0){
     let nameField =Object.keys(listValueField.listData[0])
     if(nameField.includes('month_name') && nameField.includes('year') )
@@ -77,6 +94,7 @@ const TableData = () => {
         let month = valueField["month_name"]
         let coppy ={...valueField}
         coppy.time = `${month}/ ${year}`
+        coppy.total = ""
         delete coppy["year"]
         delete coppy["month_name"]
         listChange.push(coppy)      
@@ -87,62 +105,105 @@ const TableData = () => {
         let year =valueField["year"]
         let coppy ={...valueField}
         coppy.time = `${year}`
+        coppy.total = ""
         delete coppy["year"]
         listChange.push(coppy)      
     })
     }else if(nameField.includes('month_name') ==false && nameField.includes('year') ==false){
       listValueField.listData.map((valueField:any, index:number)=> {
-        listChange.push(valueField)    
+        let coppy ={...valueField}
+        coppy.total = ""
+        listChange.push(coppy)    
     })
   }}
+  if(listChange.length !=0){
+    for(let i =0; i < listChange.length; i++){
+      let total : number =0
+      let array :string[] = Object.values(listChange[i])
+         array.map((value:string)=> {
+          if(regex.test(value)){
+              total += Number(value)      
+          }
+         })
+      listChange[i].total = total   
+      }
+  }
+  const converNumber = (value: GridCellParams)=>{
+    if(regex.test(value.value)) {
+      return  formatter.format(value.value)
+    }
+  }
+  // const getRowIndex = React.useCallback<GridSortApi['getRowIndex']>(
+  //   (id:any) => apiRef.current.getSortedRowIds().indexOf(id),
+  //   [apiRef],
+  // );
+ 
+  function getIndex(params:any) {
 
-
-  const formatter = new Intl.NumberFormat("it-IT", {
-    style: "currency",
-    currency: "VND",
-    minimumFractionDigits: 3
-  });
+    if(params.row.stt){
+      return params.row.stt
+    }else {
+      return  params.api.getRowIndex (params.row.id)
+    }
+    
+    
+  }
   const colums =()=>{
     if(listChange.length !== 0){
       let nameField =Object.keys(listChange[0])
-
+      nameField.unshift("id")
       nameField.map((nameField:string)=> {
         if(nameField =="departments_name"){
           for(let z = 0;z<nameTV.length; z++){
             if(nameTV[z].key_code ==`${nameField}`){
               columns.push({ field: nameField, headerName: nameTV[z].value_code, width: 100,type: "number"} )  
             }
+        } 
         }
-        }
-       })
-       nameField.map((nameField:string)=> {
-        if(nameField !=="departments_name"){
+        
+        else {
           for(let z = 0;z<nameTV.length; z++){
-            if(nameTV[z].key_code ==`${nameField}` && nameField !=="time"){
-              columns.push({ field: nameField, headerName: nameTV[z].value_code, width: 180,renderCell: (params: GridCellParams) => formatter.format(params.value), type: "number"} )
-             } else if(nameTV[z].key_code ==`${nameField}` && nameField ==="time") {
-              columns.push({ field: nameField, headerName: nameTV[z].value_code, width: 100,type: "number"} )  
+            if(nameTV[z].key_code ==`${nameField}` && nameField !=="id"){
+              columns.push({ field: nameField, headerName: nameTV[z].value_code, width: 180,renderCell:(params: GridCellParams) =>converNumber(params), type: "number"} )
+             } else if(nameTV[z].key_code ==`${nameField}` && nameField ==="id") {
+              columns.push( {field: 'stt',headerName: 'STT',width: 10,valueGetter: getIndex, sortable: false})
              }
         }
         }
-       }) 
+       })
     }
    
   }
-  
+  const addTotal = ()=> {
+    if(listChange.length !== 0){
+    let nameField =Object.keys(listChange[0])
+    let field: any ={stt:"Total"}
+    for(let i =0; i<nameField.length; i++){
+      let sum = 0
+        for(let j=0; j< listChange.length;j++ ){
+             sum = sum + Number(listChange[j][nameField[i]])
+        }
+         field[nameField[i]]=sum 
+    }
+    listChange.unshift(field)
+    
+    }
+   }
+   addTotal();
   const row = ()=>{
     if(listChange.length !== 0){
+      let y =0
       listChange.map((valueField:any, index:number)=> {
         const newObj ={...valueField}
-        newObj.id= index
-        rows.push(newObj)
+         newObj.id= index
+         rows.push(newObj)
       })
     }
   }
+  
+  
   colums();           
   row();  
-   
-  
   function MyExportButton() {
     return (
       <GridToolbarContainer>
@@ -169,11 +230,11 @@ const TableData = () => {
               </div>
             <DataGrid            
               autoHeight
-              rowHeight={29}
+              rowHeight={29}      
               className={classes.root}
               rows={ rows}          
               columns={columns}
-              components={{ Toolbar: MyExportButton }}  
+              components={{ Toolbar: MyExportButton}}  
               pageSize={pageSize}
               onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
               rowsPerPageOptions={[5, 10, 20]}

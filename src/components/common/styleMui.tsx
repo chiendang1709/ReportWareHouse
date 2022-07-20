@@ -94,8 +94,13 @@ import { height } from '@mui/system';
     '& .MuiInputLabel-outlined': {             
       transform: 'translate(14px, 15px) scale(1)'}
     
-  }
-
+  },
+  checkbox : {
+    
+      color: '#e82997 !important'
+    
+  },
+  
   }));
  
 
