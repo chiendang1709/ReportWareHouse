@@ -189,7 +189,7 @@ const TableData = () => {
     
     }
    }
-   addTotal();
+  addTotal();
   const row = ()=>{
     if(listChange.length !== 0){
       let y =0

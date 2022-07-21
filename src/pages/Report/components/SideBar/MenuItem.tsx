@@ -49,7 +49,7 @@ const MenuItems = (props:{listCategory:listCategory}) => {
       <li  className='content__item' ref={ref} >
           
             <button className={`content__btn ${dropright ? "active": ""}`}aria-expanded={dropright ? "true" : "false"}
-              onClick={()=> { setDropright((prev) => !prev);dispatch(tableAction.getListTables(props.listCategory.id)) ;}}>
+              onClick={()=> { setDropright((prev) => !prev);dispatch(tableAction.getListTables());}}>
               {props.listCategory.reports_category_name}
               
               <img src={arrow} alt="arrow" title="click ra"/>

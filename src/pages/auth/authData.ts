@@ -25,11 +25,10 @@ export function * getListCategory(){
         console.log('Error')
       }
 }
-export function* getListTable({payload}: {payload: number}){
+export function* getListTable(){
  
-    
     try {
-        const res : AxiosResponse = yield call(dataApi.getListTable, payload)
+        const res : AxiosResponse = yield call(dataApi.getListTable)
         if(res){
             yield put(tableAction.showListTables(res))
         }

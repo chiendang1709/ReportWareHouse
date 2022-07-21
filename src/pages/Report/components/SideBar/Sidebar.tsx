@@ -12,20 +12,30 @@ import arrow from 'assets/images/arrow__icon.png'
 import loading from 'assets/images/loading.svg'
 
 
-
+const listCategorys= [
+  {
+    id: 1,
+    reports_category_name: "Kinh doanh" },
+  {
+    id: 2,
+    reports_category_name: "Nhân sự" },
+  {
+    id: 3,
+    reports_category_name: "Kỹ thuật" }
+]
 const Sidebar = () => {
   const dispatch = useAppDispatch()
-  const listCategory = useAppSelector(state => state.category)
+  // const listCategory = useAppSelector(state => state.category)
   const listValueField = useAppSelector(state=> state.listValue) 
   
    
   //getListCategory
-  useEffect(() => {
-    dispatch(categoryAction.getCategory())
-  }, []);
+  // useEffect(() => {
+  //   dispatch(categoryAction.getCategory())
+  // }, []);
 
   const categorys = () => {
-    let list = listCategory.listCategory.map((data :listCategory, index:number) => 
+    let list = listCategorys.map((data :listCategory, index:number) => 
         (
              <MenuItem key={data.id} listCategory={data}  />
          ));

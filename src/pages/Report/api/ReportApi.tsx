@@ -10,13 +10,14 @@ const dataApi ={
           return await axiosClient.get(url)
      },
     //lấy danh sách tên bảng
-    getListTable: async(params : number)=> {
-          const url =`/category/${params}/reports/`;
+    getListTable: async()=> {
+          const url ="/get-fields/";
+          console.log("url");
           return await axiosClient.get(url)
     },
     //lấy danh sách tên bộ phận
     getListDepartment: async()=> {
-          const url ="/departments/";
+          const url ="/departments/";     
           return await axiosClient.get(url)
     },
     //lấy value theo chon 
