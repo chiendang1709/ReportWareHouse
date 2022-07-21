@@ -23,11 +23,7 @@
                    height: 100%;                
                    
          } 
-        }  
-    
-      
-           
-         
+        }         
         .sidebar__title{
             display: flex;
             align-items: center;
@@ -43,20 +39,6 @@
            
         }
     } 
-    .tool--header{
-        padding: 0.5vw 1.5vw;
-        height: 3vw ;
-        border-bottom: none;
-            &:hover{
-                background-color: $button;
-                button{
-                     color: $font-color-2 !important;
-                  }
-                 img{
-                    filter: $icon-hover;
-                }
-            }
-    }
    
     .open--active{
                 background-color: $button;
@@ -121,7 +103,7 @@
                               .content__table{
                                 visibility: hidden;
                                 opacity: 0;
-                                transition: visibility 0s, opacity 1s ease-in-out;
+                                transition: visibility 0s, opacity 0.5s ease-in-out;
                                         li{
                                             padding: auto;
                                                 .submenu__btn{
@@ -246,7 +228,7 @@
                                                 .field__show{
                                                     visibility: visible !important;
                                                     opacity: 1 !important;
-                                                    max-height: 500px!important;
+                                                    max-height: 150px!important;
                                                 }
                
                                         }

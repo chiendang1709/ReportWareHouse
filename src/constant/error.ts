@@ -4,5 +4,6 @@ export const error = {
     ERROR_INPUT_YEAR : "Please Choose Year Again!",
     ERROR_INPUT_MONTH: "Please Choose Month Again!",
     ERROR_INPUT_DAY: "Please Choose Day Again!",
-    ERROR_NO_FIELD : "No Data"
+    ERROR_NO_FIELD : "No Data",
+    ERROR_NO_CHECK_FIELD:"Please Choose Data Field!"
 }

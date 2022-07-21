@@ -1,59 +1,21 @@
 import React, {useEffect, useState }  from 'react'
-import {toast } from 'react-toastify';
-
 
 import Field from './Field'
 import {useAppSelector,useAppDispatch } from 'app/store/hooks';
-import { listValueFieldAction } from 'pages/Report/slice/valueField';
-import { apply } from 'pages/Report/slice/applySlice'
 import { getOnTable } from 'pages/Report/slice/onTable'
 import triangle from 'assets/images/triangle__icon.png'
+
 export interface listTable {
   table_name: string,
   key_code: string,
   value_code:string,
-  
 };
 
-
 const Table = ( props :{ listTable: listTable[], name: string, loading:boolean }) => {  
-  let arrayCheck: string[]= []
  
   const dispatch = useAppDispatch()
   const [submenu, setSubmenu] = useState(false);
-  const applys = useAppSelector(state => state.clickApply)
   let ref = React.useRef<HTMLLIElement>(null)
-    
- 
-  
- 
-    if(applys.apply === 'Apply'){ 
-      let checkbox: any = document.getElementsByName('checkbox')  ;
-      for (let item of checkbox) {
-        if( item.checked == true){
-          arrayCheck.push(item.value)
-        }
-      }
-     
-       if(arrayCheck.length ==0){
-        dispatch(listValueFieldAction.getlistValueField("")) 
-        toast.error("Please Choose Data!");
-        dispatch(apply.getApply("null") )  
-       }
-      
-    }  
-  
-   
-    useEffect(()=>{
-      if(arrayCheck.length >0){
-        console.log("check", arrayCheck);
-        let array =arrayCheck.join(",")
-        dispatch(listValueFieldAction.getlistValueField(array)) 
-        dispatch(apply.getApply("null") )  
-       }
-    }, [arrayCheck])
-  
- 
   
   const listField = () => {
     let list = props.listTable.map((data : listTable, index:number) => {
@@ -64,8 +26,7 @@ const Table = ( props :{ listTable: listTable[], name: string, loading:boolean }
     return list
     };
     
-  return (  
-    
+  return (   
      <li  ref={ref}>
          <button  className={`content__btn submenu__btn ${submenu ? "table__active" : " "} `} 
          type="button" aria-haspopup="menu" aria-expanded={submenu ? "true" : "false"}
@@ -79,7 +40,6 @@ const Table = ( props :{ listTable: listTable[], name: string, loading:boolean }
      
     </li>
      
-    
   )
 }
 

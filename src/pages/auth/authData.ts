@@ -27,6 +27,7 @@ export function * getListCategory(){
 }
 export function* getListTable(){
  
+    
     try {
         const res : AxiosResponse = yield call(dataApi.getListTable)
         if(res){

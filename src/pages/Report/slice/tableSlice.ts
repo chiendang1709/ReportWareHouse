@@ -20,12 +20,10 @@ export const tableSlice = createSlice({
   name: 'ListTable',
   initialState,
   reducers: {
-    getListTables: () => {
-        console.log("hello");
-        
+    getListTables: (state, action: PayloadAction<number>) => {
+
     },
     showListTables: (state, action) => {
-      console.log("hello",action.payload);
       state.listTable= action.payload
       state.loading= true
     }

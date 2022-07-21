@@ -6,78 +6,85 @@ import { useAppSelector } from 'app/store/hooks';
 import { styleMui } from 'components/common/styleMui';
 
 
-const nameTV = [
-  {
+// const nameTV = [
+//   {
     
-    key_code: "id",
-    value_code: "STT"
-  },
-  {
+//     key_code: "id",
+//     value_code: "STT"
+//   },
+//   {
     
-    key_code: "profit",
-    value_code: "Lợi Nhuận"
-  },
-  {
+//     key_code: "profit",
+//     value_code: "Lợi Nhuận"
+//   },
+//   {
    
-    key_code: "net_profit",
-    value_code: "Lợi Nhuận Ròng"
-  },
-  {
+//     key_code: "net_profit",
+//     value_code: "Lợi Nhuận Ròng"
+//   },
+//   {
     
-    key_code: "gross_profit",
-    value_code: "Lợi Nhuận Gộp"
-  },
-  {
+//     key_code: "gross_profit",
+//     value_code: "Lợi Nhuận Gộp"
+//   },
+//   {
    
-    key_code: "total_including_tax",
-    value_code: "Doanh Thu Sau Thuế"
-  },
-  {
+//     key_code: "total_including_tax",
+//     value_code: "Doanh Thu Sau Thuế"
+//   },
+//   {
    
-    key_code: "total_excluding_tax",
-    value_code: "Doanh Thu Trước Thuế"
-  },
-  {
-    key_code: "departments_name",
-    value_code: "Bộ phận"
-  },
-  {
+//     key_code: "total_excluding_tax",
+//     value_code: "Doanh Thu Trước Thuế"
+//   },
+//   {
+//     key_code: "departments_name",
+//     value_code: "Bộ phận"
+//   },
+//   {
    
-    key_code: "month_name",
-    value_code: "Tháng"
-  },
-  {
+//     key_code: "month_name",
+//     value_code: "Tháng"
+//   },
+//   {
    
-    key_code: "year",
-    value_code: "Năm"
-  },
-  {
+//     key_code: "year",
+//     value_code: "Năm"
+//   },
+//   {
    
-    key_code: "time",
-    value_code: "Thời Gian"
-  },
-  {
-    key_code: "total",
-    value_code: "Tổng"
-  }
+//     key_code: "time",
+//     value_code: "Thời Gian"
+//   },
+//   {
+//     key_code: "total",
+//     value_code: "Tổng"
+//   }
   
-]
+// ]
 
 const TableData = () => {
 
   var regex = new RegExp('^[0-9]*$')
   const columns: GridColDef[] = [];
   const rows:any =[];
+ 
   const listChange:any =[]
   const classes = styleMui();
+
+  const onTable = useAppSelector(state=> state.onTable) 
+  const listValueField = useAppSelector(state=> state.tableData) 
+  const listTable = useAppSelector(state => state.table)
 
   const [on, setOn] = useState(false);
   const [pageSize, setPageSize] = useState<number>(5);
   const [total, setTotal] = useState(0);
-  const onTable = useAppSelector(state=> state.onTable) 
-  const listValueField = useAppSelector(state=> state.tableData) 
-  const listTable = useAppSelector(state => state.table)
-   
+  const nameTV= [...listTable.listTable
+    ,{
+        key_code: "total",
+         value_code: "Tổng",
+         table_name: "total",
+   }];
   useEffect(()=> setOn(onTable.onTable),[onTable])
 
   const formatter = new Intl.NumberFormat("it-IT", {
@@ -137,7 +144,9 @@ const TableData = () => {
   //   (id:any) => apiRef.current.getSortedRowIds().indexOf(id),
   //   [apiRef],
   // );
- 
+
+  
+  //add STT
   function getIndex(params:any) {
 
     if(params.row.stt){
@@ -189,7 +198,7 @@ const TableData = () => {
     
     }
    }
-  addTotal();
+   addTotal();
   const row = ()=>{
     if(listChange.length !== 0){
       let y =0

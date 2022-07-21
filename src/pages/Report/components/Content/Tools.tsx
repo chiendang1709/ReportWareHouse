@@ -20,6 +20,7 @@ import { color } from '@mui/system';
 type getdata = (arrayCoppy:string[], nameDep: string) => void;
 // props:{ callBackData:getdata}
 const Tools = () => {
+  const selectGroup = ['ws_code','emp_name','dept_name','cus_name']
   const classes = styleMui();
   const checkedIcon = <CheckBoxIcon fontSize="small"   className={classes.checkbox} />;
   const icon = <CheckBoxOutlineBlankIcon fontSize="small"  className={classes.checkbox}/>;
@@ -28,7 +29,7 @@ const Tools = () => {
   const listValueField = useAppSelector(state=> state.listValue)
   const listFilter = useAppSelector(state=> state.filter)
   const onTool = useAppSelector(state=> state.onTool)
-
+  let checFields = listValueField.listCheckField.split(",")
   const [depart, setDepart] = useState<any[]>([]);
   const [customer, setCustomer] = useState<any[]>([]);
   const [staff, setStaff] = useState<any[]>([]);
@@ -150,6 +151,19 @@ const Tools = () => {
     { title: "Monty Python and the Holy Grail", year: 1975 }
   ];
   
+  useEffect(()=>{
+  for(let i =0; i< selectGroup.length;i++){
+    let select: HTMLElement|null = document.getElementById(`${selectGroup[i]}`)
+    if(checFields.indexOf(selectGroup[i]) === -1){
+      if(select !== null){
+        select.setAttribute('disabled', '');
+      }
+    }else {
+      if(select !== null){
+        select.removeAttribute('disabled');
+      }
+    }
+  }},[checFields])
   //filter
   // useEffect(() => {
   //   if(listFilter.listFilter.length >0){ 
@@ -264,13 +278,18 @@ const Tools = () => {
        }
 //filter test
 const filtertest= ()=>{
+  console.log("checkfield",listValueField.listCheckField);
+  
+  
+ 
   let date1 = dateFrom.split('-')
   let date2 =dateTo.split('-')
   console.log("dep",depart);
   console.log("staff",staff);
   console.log("cus",customer);
   console.log("mvv",mvv);
- 
+  // console.log("select", select);
+  
   switch(time){
     case 'Day': 
        if(date1[0] > date2[0]){
@@ -358,7 +377,7 @@ const renderContent = React.useCallback(() => {
         <div className='tool__component' >
                     <div className='filter__name'>
                       <div className='filter_name--col'>
-                        <div className="form__group ">
+                        <div className="form__group " >
                         <Autocomplete
                          noOptionsText={'No Options'}
                          multiple
@@ -389,6 +408,7 @@ const renderContent = React.useCallback(() => {
                             <TextField 
                             { ...restParams }                                          
                             className={classes.textField}
+                           
                             label="Department" 
                             variant="outlined"
                             placeholder="enter"                                                                    
@@ -582,10 +602,12 @@ const renderContent = React.useCallback(() => {
                     </div>
                     
                     <div className='group__tool'>
-                      <select id='select' className='tool__group'>
-                          <option value="NULL"> Group by </option> 
-                          <option value="1"> January </option>
-                          <option value="2"> February </option>                          
+                    <select id='selectGroup' className='tool__group'>
+                          <option  value="NULL"> Group by </option> 
+                          <option id='ws_code' value="ws_code"> Bộ Phận </option>
+                          <option id='emp_name' value="emp_name" > Nhân Viên </option> 
+                          <option id='dept_name' value="dept_name"> Khách Hàng </option>
+                          <option id='cus_name' value="cus_name"> Mã Workspase </option>                                   
                       </select>
                       <button id="filter" onClick={()=>filtertest()} >Fitler </button>                     
                       

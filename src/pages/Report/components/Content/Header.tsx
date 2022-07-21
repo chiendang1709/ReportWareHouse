@@ -13,7 +13,8 @@ const Header = () => {
             <button className="sidebar__button">
                 <img src={burger} alt="burger__icon" title="burger icon"/>
             </button>
-            <button className="tool__button" onClick={()=>{setTool((prev) => !prev)}} >
+            <button className="tool__button" onClick={()=>{setTool((prev) => !prev)}}> 
+                <p>Tool</p> 
                 <img src={tool} alt="tool__icon" title="tool icon"/>
             </button>
         </nav>
