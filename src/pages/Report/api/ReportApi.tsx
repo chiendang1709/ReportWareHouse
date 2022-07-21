@@ -21,7 +21,6 @@ const dataApi ={
     },
     //lấy value theo chon 
     postValueField: async(params: string)=> {
-          
           const json = JSON.stringify({params: params});
           const url ="/reports/get-data/";
       //     console.log("json",json);
