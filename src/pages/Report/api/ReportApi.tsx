@@ -10,8 +10,8 @@ const dataApi ={
           return await axiosClient.get(url)
      },
     //lấy danh sách tên bảng
-    getListTable: async(params : number)=> {
-          const url =`/category/${params}/reports/`;
+    getListTable: async()=> {
+          const url ="/get-fields/";
           return await axiosClient.get(url)
     },
     //lấy danh sách tên bộ phận

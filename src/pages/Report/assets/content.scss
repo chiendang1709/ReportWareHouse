@@ -32,10 +32,15 @@
             }
             .tool__button{
                 margin-left: auto;
-                width: 1.3vw;
+                width: 5.3vw;
                 height: 1.3vw;
+                display: flex;
+                align-items: center;
+                font-size: 1vw;
+                text-transform:uppercase;
                 img{
-                    width: 100%;
+                    margin-left: 1vw;
+                    width: 1.3vw;
                     height: auto;
                 }
             }
@@ -46,7 +51,7 @@
             max-height: 0;
             opacity: 0;
             visibility: hidden;
-            transition: visibility 0s,max-height 1s linear, opacity 0.8s ease-in-out;
+            transition: visibility 0s,max-height 0.5s linear, opacity 0.6s ease-in-out;
             .tool__group{
                     display: flex;
             }
@@ -211,6 +216,7 @@
                         height: auto;
                         text-align: center;
                     }
+          
                     button {
                         margin:5px 20px 10px ;
                         position: relative;
@@ -230,7 +236,7 @@
             
         }
         .tool--active{
-            visibility: visible;
+            visibility: visible;          
             opacity: 1;
             height: auto;
             max-height: 2000px;

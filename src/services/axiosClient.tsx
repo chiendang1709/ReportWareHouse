@@ -7,6 +7,7 @@ const axiosClient = axios.create({
         'content-type' : 'application/json',
     },
     paramsSerializer : params => queryString.stringify(params), // params null (chuoi truy van)
+  
     
 });
 axiosClient.interceptors.response.use((response)=> {

@@ -23,11 +23,7 @@
                    height: 100%;                
                    
          } 
-        }  
-    
-      
-           
-         
+        }         
         .sidebar__title{
             display: flex;
             align-items: center;
@@ -43,20 +39,6 @@
            
         }
     } 
-    .tool--header{
-        padding: 0.5vw 1.5vw;
-        height: 3vw ;
-        border-bottom: none;
-            &:hover{
-                background-color: $button;
-                button{
-                     color: $font-color-2 !important;
-                  }
-                 img{
-                    filter: $icon-hover;
-                }
-            }
-    }
    
     .open--active{
                 background-color: $button;
@@ -246,7 +228,7 @@
                                                 .field__show{
                                                     visibility: visible !important;
                                                     opacity: 1 !important;
-                                                    max-height: 500px!important;
+                                                    max-height: 150px!important;
                                                 }
                
                                         }
