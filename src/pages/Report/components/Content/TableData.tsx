@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { DataGrid, GridColDef,GridToolbarContainer,GridToolbar,GridCellParams,GridToolbarExport,GridToolbarColumnsButton,GridToolbarFilterButton,GridToolbarDensitySelector} from '@mui/x-data-grid';
 
 
@@ -253,18 +253,21 @@ const TableData = () => {
     );
   }
   return (
-    <div className='content__item content__table'>
-       {/* <div className='item card table'>
-              <div className='header__item'>
-                  <div className='title__item'>
-                        Data List
-                  </div>
-              </div>
-              <div className='table__item'>
+    // <div className='content__item content__table'>
+    //    {/* <div className='item card table'>
+    //           <div className='header__item'>
+    //               <div className='title__item'>
+    //                     Data List
+    //               </div>
+    //           </div>
+    //           <div className='table__item'>
            
-              </div>
+    //           </div>
         
-      </div>   */}
+    //   </div>   */}
+      
+    // </div>
+    <Fragment>
          <DataGrid            
               autoHeight
               rowHeight={29}      
@@ -278,7 +281,7 @@ const TableData = () => {
               
               pagination
             />   
-    </div>
+    </Fragment>
    
   )
 }
