@@ -5,8 +5,11 @@ import { height } from '@mui/system';
  export  const styleMui = makeStyles((theme) => ({
    
   root: {
-    '&.MuiDataGrid-root.css-1r5v9hu-MuiDataGrid-root':{
+    '&.MuiDataGrid-root':{
         marginTop:'1vw',
+        top:'0',
+        pointerEvents:'auto',
+        padding: '0 0',
 
     },
     '&.MuiDataGrid-root .MuiDataGrid-columnHeader .MuiDataGrid-cell': {
@@ -15,10 +18,10 @@ import { height } from '@mui/system';
       },
     
     },
-    '.MuiDataGrid-main':{
+    '&.MuiDataGrid-root .MuiDataGrid-main':{
       borderCollapse: 'collapse',
     },
-    ' .MuiDataGrid-columnsContainer' :{
+    ' &.MuiDataGrid-root .MuiDataGrid-columnsContainer' :{
       position:  'relative !important',
       backgroundColor: 'rgba(255, 0, 100, 0.20)',
       
