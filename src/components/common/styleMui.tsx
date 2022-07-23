@@ -61,7 +61,7 @@ import { height } from '@mui/system';
 
     '&.MuiDataGrid-root .MuiDataGrid-columnHeaders': {
       border: 0,
-      backgroundColor: '#1582ef',
+      backgroundColor: '#1582ef !important',
       maxHeight: '100% !important',
       width:'100%'  ,
       color:`#F4F4F4 !important`,
@@ -72,7 +72,7 @@ import { height } from '@mui/system';
       
       whiteSpace: 'normal',
     },
-    '&.css-1r5v9hu-MuiDataGrid-root .MuiDataGrid-columnHeaderTitleContainerContent':{
+    '& .MuiDataGrid-columnHeaderTitleContainerContent':{
       margin: '0 auto'
     },
     '& .MuiDataGrid-row': {
@@ -97,9 +97,7 @@ import { height } from '@mui/system';
   textField : {
     '& .MuiInputLabel-outlined': {             
       transform: 'translate(14px, 15px) scale(1)'},
-    // '&.MuiAutocomplete-popper':{
-    //     display: "none"
-    //   }
+    
   },
   checkbox : {
     
