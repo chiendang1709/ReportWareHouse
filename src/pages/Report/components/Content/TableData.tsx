@@ -270,8 +270,7 @@ const TableData = () => {
                   components={{ Toolbar: MyExportButton}}  
                   pageSize={pageSize}
                   onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                  rowsPerPageOptions={[5, 10, 20]}
-                  
+                  rowsPerPageOptions={[5, 10, 20]}                 
                   pagination
                 />   
               </div>
