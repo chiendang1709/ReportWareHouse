@@ -3,21 +3,20 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'app/store/hooks';
 import { Chart as ChartJS, DatasetController, registerables } from "chart.js";
 import {ChartType} from 'chart.js';
-import { Chart } from 'react-chartjs-2';
+import  {Chart}  from 'react-chartjs-2';
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import zoom from "chartjs-plugin-zoom";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 import { chartColors } from 'constant/color';
 import { listChart, listDepartment } from 'interfaces/components';
 import ChartsType from '../Content/ChartsType'
 import ex from 'assets/images/export__icon.png'
-import { departmentAction } from 'pages/Report/slice/departmentSlice';
 import { tableDataAction } from 'pages/Report/slice/tableDataSlice';
-
-ChartJS.register(...registerables ,ChartDataLabels);
+ChartJS.register(...registerables ,ChartDataLabels,zoom);
 
 export interface data {
   type:ChartType,
@@ -42,7 +41,7 @@ let dtChart : dataChart = {
 
 const Charts = () => {
 
- 
+  const listfieldnumber =["opt_budget","opt_expect_revenue","opt_profit","opt_gross_profit","opt_commit_revenue","scon_ex_ct_value"]
   const valueChart: Array<listChart>= []  
   let datasets: data[]= []
   let listValueAlphabet: string[]= [] 
@@ -57,7 +56,10 @@ const Charts = () => {
   const listValueField = useAppSelector(state=> state.listValue) 
   const listFilter = useAppSelector(state=> state.filter) 
   const listTable = useAppSelector(state => state.table)
-
+  const categoryGroup = useAppSelector(state => state.categoryGroup)
+  
+ 
+ 
   const [types, setType] = useState<ChartType>('bar');
   const [on, setOn] = useState(false);
 
@@ -69,37 +71,44 @@ const Charts = () => {
   useEffect(()=> setType(typeCharts.typeChart),[typeCharts])
   useEffect(()=>{dispatch(tableDataAction.getListTableData(value))},[value])
   useEffect(()=> setOn(onChart.onChart),[onChart])
-  useEffect(() => {dispatch(departmentAction.getDepartment())}, []);
-  useEffect(()=>  setNameChart(""),[listValueField])
+  useEffect(()=> setNameChart(""),[listValueField])
   useEffect(()=>(setValue(listValueField.listValueField)),[listValueField.listValueField]) 
- 
-  
+  useEffect(()=>(setValue(listFilter.listFilter)),[listFilter.listFilter]) 
 
-  //getFilter
-   const getdata= (arrayCoppy:string[], nameDep: string)=>{  
-      setValue(arrayCoppy)
-      setNameChart(nameDep)  
-   }
- 
-  // x null
-  for(let i =0; i<value.length;i ++){
-    x.push("*")
-  }
+  
   //getNumber
+
     if(value.length > 0){
       fieldValues = Object.keys(value[0])
+    }else if(value.length === 0) {
+      fieldValues=[]
+      x=[]
     }
-
+// x null
+  useEffect(()=>{
+      if(value.length ==0){
+        setData({
+          labels: [],
+          datasets: [],
+          xAxisID:'xAxis1',
+        })
+      }
+    },[value])
+for(let i =0; i<value.length;i ++){
+   
+  x.push("*")
+}
+    
+    
    for(let i =0 ;i<fieldValues.length; i++ ){
     const listValueNumber: string[]= []
-    if(fieldValues[i] !=="month_name" &&fieldValues[i] !=="year"){
+    if(listfieldnumber.indexOf(fieldValues[i]) !==-1){
       for(let y = 0; y <value.length;y++)
       {  
-         const list= value[y][`${fieldValues[i]}`];
+         const list= value[y][`${fieldValues[i]}`];       
          listValueNumber.push(list)
       }
-    }
-    for(let z = 0;z<listTable.listTable.length; z++){
+      for(let z = 0;z<listTable.listTable.length; z++){
       if(listTable.listTable[z].key_code ==`${fieldValues[i]}`){
         valueChart.push({
           name:`${listTable.listTable[z].value_code}`,
@@ -107,34 +116,59 @@ const Charts = () => {
         }) 
       }
     } 
+   }
   }
     
    
     //getAlphabet
-    if(fieldValues.includes('month_name') && fieldValues.includes('year') )
+    const getAlphabet =(name:string, group :string)=>{
+      if(group === ""){
+        for(let y = 0; y <value.length;y++)
+        {  
+         let list =`${value[y][name]}`
+         listValueAlphabet.push(list) 
+        }
+      }else if(group === "DAY" || group ==="MONTH" ||group ==="YEAR") {
+        if(group ==="DAY"){
+          for(let y = 0; y <value.length;y++)
+          {  
+           let list =`${value[y][name]}`
+           listValueAlphabet.push(list) 
+          }
+        }else {
+          for(let y = 0; y <value.length;y++)
+          {  
+           let list =`${value[y][group]}`
+           listValueAlphabet.push(list) 
+          }
+        }
+        
+      }else if(group !== "DAY") {
+       
+        for(let y = 0; y <value.length;y++)
+        {  
+         let list =`${value[y][name]} - ${value[y][group.replace("code","name")]}`
+         listValueAlphabet.push(list) 
+        }
+      }
+      
+    }
+
+    if(fieldValues.includes('opt_bid_open_date'))
     {
-        for(let y = 0; y <value.length;y++)
-        {  
-           const year= value[y]['year'];
-           const month_name= value[y]['month_name'];
-           let list =`${month_name}/ ${year}`
-           listValueAlphabet.push(list) 
-        }
-    }else if(fieldValues.includes('month_name') && fieldValues.includes('year')== false) 
-    {
-        for(let y = 0; y <value.length;y++)
-        {  
-           const list= value[y]['month_name'];
-           listValueAlphabet.push(list) 
-        }
-   } else if(fieldValues.includes('month_name')== false && fieldValues.includes('year')) 
-   {
-        for(let y = 0; y <value.length;y++)
-        {  
-           const list= value[y]['year'];
-           listValueAlphabet.push(list) 
-        }
-   }
+      getAlphabet("opt_bid_open_date",categoryGroup.group)
+    }else if(fieldValues.includes('opt_bid_open_date')== false && fieldValues.includes('opt_bid_close_date') ) {
+      getAlphabet("opt_bid_close_date",categoryGroup.group)
+    }else if(fieldValues.includes('opt_bid_open_date')== false && fieldValues.includes('opt_bid_close_date')==false ) 
+    {  
+      if(categoryGroup.group =="DAY"){
+        getAlphabet("DATE",categoryGroup.group)
+      }
+      if(categoryGroup.group !=="DAY")
+      getAlphabet("DATE",categoryGroup.group)
+    }
+    
+  
     //get value in chart
     let y : number = 0
     const insertChart = (data:listChart)=> { 
@@ -167,19 +201,23 @@ const Charts = () => {
       if(onChart.onChart){
         setOn(true)
       }
-      setData({
-        labels: listValueAlphabet.length !==0 ? listValueAlphabet : x,
-        datasets: datasets,
-        xAxisID:'xAxis1',
-      })
-    }
+      
+        setData({
+          labels: listValueAlphabet.length !==0 ? listValueAlphabet : x,
+          datasets: datasets,
+          xAxisID:'xAxis1',
+        })
+    
+        
+        
+      }
+      
+    
    
-  }
+  
+}
   ,[value,types])
 
-  
- 
-  
 
   const optionPie = {
     responsive: true,
@@ -187,35 +225,44 @@ const Charts = () => {
     
     plugins: {
       datalabels: {
-      //   display: function(context:any) {
-      //     return context.dataset.data[context.dataIndex] >= 1;
-      // },
         formatter: (value:any, ctx:any) => { 
           let percentage:string =""
           let dataArr = ctx.chart.data.datasets;
+    
+          console.log("t", dataArr);
           for(let i =0; i<dataArr.length;i++){
             let sum = 0;
-            ctx.chart.data.datasets[i].data.map((item: number)=>{
-              sum += item; 
-            })
-            ctx.chart.data.datasets[i].data.map((item: number)=>{
-                if(value ===item){
-                  percentage = (value * 100 / sum).toFixed(1) + "%";
-                  return percentage
+            let total =  dataArr[i].data.reduce((pre: number, val: number)=>pre + val,sum
+            ) 
+            console.log("data", ctx.chart.data.datasets[i].data);
+            dataArr[i].data.map((item: number)=>{
+                if(value === item){
+                  percentage = (item * 100 / total).toFixed(1);
+                  if(Number(percentage) >5){
+                    percentage=percentage +"%"
+                    return percentage;
+                  }else {
+                    percentage="" 
+                    return percentage;
+                  }
+                  
+                  
+                 
                 }
-               
             })
+            
+           
           }
-          return percentage;
          
+           return percentage;
+           
+              
+            
       },
         color: '#fff',
-        font:(context: any) => {
-          console.log("context",context);
-          
+        font:(context: any) => {          
           var width = context.chart.width;
           var size = Math.round(width / 65);
-          console.log("size",size);
           
             return {
               size: size,
@@ -242,7 +289,7 @@ const Charts = () => {
         text: `Chart ${types} ${nameChart}`,
         position: 'top' as const,
       },
-     
+      
     },
     scales: {
       x: {
@@ -261,7 +308,7 @@ const Charts = () => {
       datalabels: {
          display: false
     },
-   
+    
       legend: {
         position: 'right' as const,
         labels: {
@@ -280,10 +327,20 @@ const Charts = () => {
      
     },
     scales: {
+     
       x: {
-        title: {
-          display: true,
-          text: 'Time'
+       
+        ticks: {
+         
+          callback: function(value:any, index:any, values:any) {
+            let newthis = this as any;
+            let val=  newthis.getLabelForValue(value)
+            if (val.length > 10) {
+                return val.substr(0, 10) + '...';
+            } else {
+                return val
+              }
+          }
         }
       },
       y: {

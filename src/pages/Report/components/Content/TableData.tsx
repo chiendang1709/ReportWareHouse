@@ -83,40 +83,60 @@ const TableData = () => {
     ,{
         key_code: "total",
          value_code: "Tổng",
-         table_name: "total",
-   }];
+         table_name: "Thêm",
+      },
+      {
+        key_code: "id",
+        value_code: "ID",
+        table_name: "Thêm",
+      },
+      {
+        key_code: "MONTH",
+        value_code: "Tháng",
+        table_name: "Thêm",
+      },
+      {
+        key_code: "DATE",
+        value_code: "Thời Gian",
+        table_name: "Thêm",
+      },{
+        key_code: "YEAR",
+        value_code: "Năm",
+        table_name: "Thêm",
+      }
+  ];
   useEffect(()=> setOn(onTable.onTable),[onTable])
 
   const formatter = new Intl.NumberFormat("it-IT", {
     style: "currency",
     currency: "VND",
-    minimumFractionDigits: 3
+    minimumFractionDigits: 1
   });
   if(listValueField.listData.length !== 0){
     let nameField =Object.keys(listValueField.listData[0])
-    if(nameField.includes('month_name') && nameField.includes('year') )
+    if(nameField.includes('MONTH') && nameField.includes('YEAR') )
     {
       listValueField.listData.map((valueField:any, index:number)=> {
-        let year =valueField["year"]
-        let month = valueField["month_name"]
+        let year =valueField["YEAR"]
+        let month = valueField["MONTH"]
         let coppy ={...valueField}
-        coppy.time = `${month}/ ${year}`
+        coppy.DATE = `${month}/ ${year}`
         coppy.total = ""
-        delete coppy["year"]
-        delete coppy["month_name"]
+        delete coppy["YEAR"]
+        delete coppy["MONTH"]
         listChange.push(coppy)      
     })
-    } else  if(nameField.includes('month_name') ==false && nameField.includes('year') )
+    } else  if(nameField.includes('MONTH') ==false && nameField.includes('YEAR') )
     {
       listValueField.listData.map((valueField:any, index:number)=> {
-        let year =valueField["year"]
+        let year =valueField["YEAR"]
         let coppy ={...valueField}
-        coppy.time = `${year}`
+        coppy.DATE = `Năm ${year}`
         coppy.total = ""
-        delete coppy["year"]
+        delete coppy["YEAR"]
         listChange.push(coppy)      
     })
-    }else if(nameField.includes('month_name') ==false && nameField.includes('year') ==false){
+    }else if(nameField.includes('MONTH') ==false && nameField.includes('YEAR') ==false){
       listValueField.listData.map((valueField:any, index:number)=> {
         let coppy ={...valueField}
         coppy.total = ""
@@ -160,39 +180,45 @@ const TableData = () => {
   const colums =()=>{
     if(listChange.length !== 0){
       let nameField =Object.keys(listChange[0])
-      nameField.unshift("id")
-      nameField.map((nameField:string)=> {
-        if(nameField =="departments_name"){
-          for(let z = 0;z<nameTV.length; z++){
-            if(nameTV[z].key_code ==`${nameField}`){
-              columns.push({ field: nameField, headerName: nameTV[z].value_code, width: 100,type: "number"} )  
-            }
-        } 
-        }
-        
-        else {
+        nameField.unshift("id")
+       
+        nameField.map((nameField:string)=> {
           for(let z = 0;z<nameTV.length; z++){
             if(nameTV[z].key_code ==`${nameField}` && nameField !=="id"){
-              columns.push({ field: nameField, headerName: nameTV[z].value_code, width: 180,renderCell:(params: GridCellParams) =>converNumber(params), type: "number"} )
+              columns.push({ field: nameField, headerName: nameTV[z].value_code,minWidth:130, width:220,renderCell:(params: GridCellParams) =>converNumber(params), type: "number",align:'center'} )
              } else if(nameTV[z].key_code ==`${nameField}` && nameField ==="id") {
               columns.push( {field: 'stt',headerName: 'STT',width: 10,valueGetter: getIndex, sortable: false})
-             }
-        }
-        }
+             }   
+        }    
        })
     }
    
   }
+ 
+  
   const addTotal = ()=> {
     if(listChange.length !== 0){
     let nameField =Object.keys(listChange[0])
     let field: any ={stt:"Total"}
     for(let i =0; i<nameField.length; i++){
-      let sum = 0
+      let sum: number= 0
         for(let j=0; j< listChange.length;j++ ){
              sum = sum + Number(listChange[j][nameField[i]])
+            
+            //  if(typeof(sum) === NaN){
+            //   sum = 0
+            //  }else {
+            //   sum = sum
+            //  }
         }
-         field[nameField[i]]=sum 
+        if(String(sum) == "NaN"){
+          field[nameField[i]]= "-"
+        } else {
+          field[nameField[i]]= sum
+        }
+         
+        
+         
     }
     listChange.unshift(field)
     
@@ -247,6 +273,7 @@ const TableData = () => {
               pageSize={pageSize}
               onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
               rowsPerPageOptions={[5, 10, 20]}
+              
               pagination
             />   
         
