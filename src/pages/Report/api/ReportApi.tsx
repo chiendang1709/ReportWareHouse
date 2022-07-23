@@ -11,7 +11,7 @@ const dataApi ={
      },
     //lấy danh sách tên bảng
     getListTable: async()=> {
-          const url ="/get-fields/";
+          const url ="/reports/get-fields/";
           return await axiosClient.get(url)
     },
     //lấy danh sách tên bộ phận

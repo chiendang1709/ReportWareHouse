@@ -7,7 +7,7 @@
     border-right:  1px solid $border-color;
     box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
     0 4px 6px -2px rgba(71, 63, 79, 0.16);
-    z-index: 2;
+    z-index: 4;
     .sidebar__header{  
         border-bottom: 1px solid $border-color;
         padding:1vw;
@@ -101,13 +101,27 @@
                               }
                           
                               .content__table{
+                                display: flex;
+                                flex-direction: column;
                                 visibility: hidden;
                                 opacity: 0;
                                 transition: visibility 0s, opacity 1s ease-in-out;
-                                        li{
-                                            padding: auto;
+                                background-color: #343A40;
+                                position:absolute;
+                                width: 100%;
+                                top: 0px;
+                                text-align: left;
+                                border-right:  1px solid $border-color;
+                                border-left:  1px solid $border-color;
+                                box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
+                                0 4px 6px -2px rgba(71, 63, 79, 0.16);
+                                        .submenu__item{
+                                                min-height: 3vw;
+                                                max-height: 28vw;
+                                                display: flex;
+                                                flex-direction: column;
                                                 .submenu__btn{
-                                                    text-align: center;
+                                                    text-align: left;
                                                     font-weight:600;
                                                     top:0;
                                                     left: 0;
@@ -116,12 +130,12 @@
                                                     border-top: 1px solid $border-color;
                                                     opacity: 0;
                                                     font-size:0;
-                                                    max-height: 80px;
+                                                    height: 3vw;
                                                     
                                                     
                                                     img{
                                                         height: 1vw;
-                                                        width: 1vw;
+                                                        width: 1vw; 
                                                         float: right;
                                                          transition: transform 1s;
                                                        
@@ -205,7 +219,6 @@
                                                             ul{
                                                                 margin-left: 3vw;
                                                                 display: none;                                                             
-                                                                animation: TTB ease 0.5s; 
                                                                 li{
                                                                     display:flex;
                                                                     align-items: center;
@@ -228,41 +241,18 @@
                                                 .field__show{
                                                     visibility: visible !important;
                                                     opacity: 1 !important;
-                                                    max-height: 150px!important;
+                                                    max-height: 25vw;
                                                 }
                
                                         }
                                                                
                             }
                           
-                            .content__submenu{
-                                background-color: #343A40;
-                                position:absolute;
-                                width: 100%;
-                                max-height: 0px;
-                                min-height: auto;
-                                top: 0px;
-                                text-align: center;
-                                border-right:  1px solid $border-color;
-                                border-left:  1px solid $border-color;
-                                box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
-                                0 4px 6px -2px rgba(71, 63, 79, 0.16);
-                              ;     
-                                        li{
-                                            padding: 0px    ;
-                                            
-                                        }
-                                                                   
-                                      img {
-                                        width: 20%;
-                                      }
-                                       
-                            }
-                            .show{
-                                visibility: visible;
+                            .show{                     
+                               visibility: visible;
                                 opacity:1;
                                 left: 13.8vw;
-                                max-height: 1000px;
+                                max-height: 34vw;
                                     .submenu__btn{
                                         opacity: 1 !important;
                                         font-size: 0.8vw !important;
@@ -322,4 +312,9 @@
                 }
     }
 
+}
+.sidebar--small{
+    .hidden{
+        visibility: hidden;
+    }
 }

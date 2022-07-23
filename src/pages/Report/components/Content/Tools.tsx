@@ -27,7 +27,7 @@ const Tools = () => {
   const listDepartment = useAppSelector(state=> state.department) 
   const listValueField = useAppSelector(state=> state.listValue)
   const listFilter = useAppSelector(state=> state.filter)
-  const onTool = useAppSelector(state=> state.onTool)
+
 
   const [depart, setDepart] = useState<any[]>([]);
   const [customer, setCustomer] = useState<any[]>([]);

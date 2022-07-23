@@ -66,7 +66,7 @@ const Table = ( props :{ listTable: listTable[], name: string, loading:boolean }
     
   return (  
     
-     <li  ref={ref}>
+     <li className={`submenu__item  ${submenu ? "submenu--open" : ""} `} ref={ref}>
          <button  className={`content__btn submenu__btn ${submenu ? "table__active" : " "} `} 
          type="button" aria-haspopup="menu" aria-expanded={submenu ? "true" : "false"}
           onClick={()=> {setSubmenu((prev) => !prev); dispatch(getOnTable(true));  } }>
