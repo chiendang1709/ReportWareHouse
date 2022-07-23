@@ -31,6 +31,7 @@ const MenuItems = (props:{listCategory:listCategory}) => {
   }, [dropright]);
   
     //get nameTable
+    
     for(let y = 0; y <listTable.listTable.length;y++)
     {  
      const list= listTable.listTable[y].table_name;

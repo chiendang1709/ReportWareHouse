@@ -23,7 +23,9 @@ export const listValueField = createSlice({
       state.loading=false
     },
     showListValueFields: (state, action)=> {
-      if(action.payload.length ==0){
+      console.log("ffiler",action.payload);
+      
+      if(action.payload.length ===0){
         state.listValueField =[];
        
       }else {

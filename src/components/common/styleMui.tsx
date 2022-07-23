@@ -65,12 +65,16 @@ import { height } from '@mui/system';
       maxHeight: '100% !important',
       width:'100%'  ,
       color:`#F4F4F4 !important`,
+      textAlign: 'center  !important'
+      
     },   
     '& .MuiDataGrid-cell .MuiDataGrid-cell--textLeft': {
       
       whiteSpace: 'normal',
     },
-    
+    '&.css-1r5v9hu-MuiDataGrid-root .MuiDataGrid-columnHeaderTitleContainerContent':{
+      margin: '0 auto'
+    },
     '& .MuiDataGrid-row': {
       fontSize: '12px',
     },
@@ -92,8 +96,10 @@ import { height } from '@mui/system';
   },
   textField : {
     '& .MuiInputLabel-outlined': {             
-      transform: 'translate(14px, 15px) scale(1)'}
-    
+      transform: 'translate(14px, 15px) scale(1)'},
+    // '&.MuiAutocomplete-popper':{
+    //     display: "none"
+    //   }
   },
   checkbox : {
     
