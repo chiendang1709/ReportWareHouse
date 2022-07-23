@@ -83,12 +83,27 @@ const TableData = () => {
     ,{
         key_code: "total",
          value_code: "Tổng",
-         table_name: "total",
-   },{
-     key_code: "id",
-     value_code: "ID",
-     table_name: "id",
-}
+         table_name: "Thêm",
+      },
+      {
+        key_code: "id",
+        value_code: "ID",
+        table_name: "Thêm",
+      },
+      {
+        key_code: "MONTH",
+        value_code: "Tháng",
+        table_name: "Thêm",
+      },
+      {
+        key_code: "DATE",
+        value_code: "Thời Gian",
+        table_name: "Thêm",
+      },{
+        key_code: "YEAR",
+        value_code: "Năm",
+        table_name: "Thêm",
+      }
   ];
   useEffect(()=> setOn(onTable.onTable),[onTable])
 
@@ -99,29 +114,29 @@ const TableData = () => {
   });
   if(listValueField.listData.length !== 0){
     let nameField =Object.keys(listValueField.listData[0])
-    if(nameField.includes('month_name') && nameField.includes('year') )
+    if(nameField.includes('MONTH') && nameField.includes('YEAR') )
     {
       listValueField.listData.map((valueField:any, index:number)=> {
-        let year =valueField["year"]
-        let month = valueField["month_name"]
+        let year =valueField["YEAR"]
+        let month = valueField["MONTH"]
         let coppy ={...valueField}
-        coppy.time = `${month}/ ${year}`
+        coppy.DATE = `${month}/ ${year}`
         coppy.total = ""
-        delete coppy["year"]
-        delete coppy["month_name"]
+        delete coppy["YEAR"]
+        delete coppy["MONTH"]
         listChange.push(coppy)      
     })
-    } else  if(nameField.includes('month_name') ==false && nameField.includes('year') )
+    } else  if(nameField.includes('MONTH') ==false && nameField.includes('YEAR') )
     {
       listValueField.listData.map((valueField:any, index:number)=> {
-        let year =valueField["year"]
+        let year =valueField["YEAR"]
         let coppy ={...valueField}
-        coppy.time = `${year}`
+        coppy.DATE = `Năm ${year}`
         coppy.total = ""
-        delete coppy["year"]
+        delete coppy["YEAR"]
         listChange.push(coppy)      
     })
-    }else if(nameField.includes('month_name') ==false && nameField.includes('year') ==false){
+    }else if(nameField.includes('MONTH') ==false && nameField.includes('YEAR') ==false){
       listValueField.listData.map((valueField:any, index:number)=> {
         let coppy ={...valueField}
         coppy.total = ""
@@ -243,9 +258,6 @@ const TableData = () => {
               <div className='header__item'>
                   <div className='title__item'>
                         Data List
-                  </div>
-                  <div className='button__item'>
-                      
                   </div>
               </div>
               <div className='table__item'>

@@ -61,7 +61,7 @@ import { height } from '@mui/system';
 
     '&.MuiDataGrid-root .MuiDataGrid-columnHeaders': {
       border: 0,
-      backgroundColor: '#1582ef',
+      backgroundColor: '#1582ef !important',
       maxHeight: '100% !important',
       width:'100%'  ,
       color:`#F4F4F4 !important`,

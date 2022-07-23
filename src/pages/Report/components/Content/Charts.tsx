@@ -226,16 +226,18 @@ for(let i =0; i<value.length;i ++){
     plugins: {
       datalabels: {
         formatter: (value:any, ctx:any) => { 
+          let percentage:string =""
           let dataArr = ctx.chart.data.datasets;
     
+          console.log("t", dataArr);
           for(let i =0; i<dataArr.length;i++){
             let sum = 0;
-            
-           
-            if (dataArr[i].indexOf(ctx.dataset) === dataArr[i].length - 1) {
-              let total =  dataArr[i].data.reduce((pre: number, val: number)=>pre + val,sum
-              ) 
-              let percentage = (value * 100 / total).toFixed(1);
+            let total =  dataArr[i].data.reduce((pre: number, val: number)=>pre + val,sum
+            ) 
+            console.log("data", ctx.chart.data.datasets[i].data);
+            dataArr[i].data.map((item: number)=>{
+                if(value === item){
+                  percentage = (item * 100 / total).toFixed(1);
                   if(Number(percentage) >5){
                     percentage=percentage +"%"
                     return percentage;
@@ -243,12 +245,19 @@ for(let i =0; i<value.length;i ++){
                     percentage="" 
                     return percentage;
                   }
+                  
+                  
+                 
                 }
-           
+            })
             
            
-              }
+          }
          
+           return percentage;
+           
+              
+            
       },
         color: '#fff',
         font:(context: any) => {          
