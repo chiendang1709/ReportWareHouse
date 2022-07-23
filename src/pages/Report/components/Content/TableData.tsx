@@ -253,35 +253,33 @@ const TableData = () => {
     );
   }
   return (
-    // <div className='content__item content__table'>
-    //    {/* <div className='item card table'>
-    //           <div className='header__item'>
-    //               <div className='title__item'>
-    //                     Data List
-    //               </div>
-    //           </div>
-    //           <div className='table__item'>
-           
-    //           </div>
+    <div className='content__item content__table'>
+       <div className='item card table'>
+              <div className='header__item'>
+                  <div className='title__item'>
+                        Data List
+                  </div>
+              </div>
+              <div className='table__item'>
+                  <DataGrid            
+                  autoHeight
+                  rowHeight={29}      
+                  className={classes.root}
+                  rows={ rows}          
+                  columns={columns}
+                  components={{ Toolbar: MyExportButton}}  
+                  pageSize={pageSize}
+                  onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                  rowsPerPageOptions={[5, 10, 20]}
+                  
+                  pagination
+                />   
+              </div>
         
-    //   </div>   */}
+      </div>  
       
-    // </div>
-    <Fragment>
-         <DataGrid            
-              autoHeight
-              rowHeight={29}      
-              className={classes.root}
-              rows={ rows}          
-              columns={columns}
-              components={{ Toolbar: MyExportButton}}  
-              pageSize={pageSize}
-              onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-              rowsPerPageOptions={[5, 10, 20]}
-              
-              pagination
-            />   
-    </Fragment>
+    </div>
+  
    
   )
 }
