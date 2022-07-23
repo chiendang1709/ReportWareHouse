@@ -10,6 +10,7 @@ import { height } from '@mui/system';
         top:'0',
         pointerEvents:'auto',
         padding: '0 0',
+        overflow:'visible'
 
     },
     '&.MuiDataGrid-root .MuiDataGrid-columnHeader .MuiDataGrid-cell': {
