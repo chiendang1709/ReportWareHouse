@@ -105,6 +105,7 @@
                                 flex-direction: column;
                                 visibility: hidden;
                                 opacity: 0;
+<<<<<<< HEAD
                                 transition: visibility 0s, opacity 1s ease-in-out;
                                 background-color: #343A40;
                                 position:absolute;
@@ -120,6 +121,11 @@
                                                 max-height: 28vw;
                                                 display: flex;
                                                 flex-direction: column;
+=======
+                                transition: visibility 0s, opacity 0.5s ease-in-out;
+                                        li{
+                                            padding: auto;
+>>>>>>> f51864dace066f7bb9edfaaef3d9d442bada6025
                                                 .submenu__btn{
                                                     text-align: left;
                                                     font-weight:600;

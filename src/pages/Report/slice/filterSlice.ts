@@ -28,7 +28,7 @@ export interface Filter {
   };
   const initialState: Filter = {
     listFilter:[],
-    loading:false,
+    loading:true,
   };
   
 

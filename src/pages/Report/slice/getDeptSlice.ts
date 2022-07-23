@@ -13,7 +13,7 @@ const initialState: ListDepartment = {
     loading:false,
 };
 
-export const departmentSlice = createSlice({
+export const getDepartmentSlice = createSlice({
   name: 'department',
   initialState,
   reducers: {
@@ -30,7 +30,7 @@ export const departmentSlice = createSlice({
   
 });
 
-export const departmentAction= departmentSlice.actions;
+export const departmentAction= getDepartmentSlice.actions;
 
 
-export default departmentSlice.reducer;
+export default getDepartmentSlice.reducer;

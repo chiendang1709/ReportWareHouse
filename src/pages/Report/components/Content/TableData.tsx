@@ -6,84 +6,96 @@ import { useAppSelector } from 'app/store/hooks';
 import { styleMui } from 'components/common/styleMui';
 
 
-const nameTV = [
-  {
+// const nameTV = [
+//   {
     
-    key_code: "id",
-    value_code: "STT"
-  },
-  {
+//     key_code: "id",
+//     value_code: "STT"
+//   },
+//   {
     
-    key_code: "profit",
-    value_code: "Lợi Nhuận"
-  },
-  {
+//     key_code: "profit",
+//     value_code: "Lợi Nhuận"
+//   },
+//   {
    
-    key_code: "net_profit",
-    value_code: "Lợi Nhuận Ròng"
-  },
-  {
+//     key_code: "net_profit",
+//     value_code: "Lợi Nhuận Ròng"
+//   },
+//   {
     
-    key_code: "gross_profit",
-    value_code: "Lợi Nhuận Gộp"
-  },
-  {
+//     key_code: "gross_profit",
+//     value_code: "Lợi Nhuận Gộp"
+//   },
+//   {
    
-    key_code: "total_including_tax",
-    value_code: "Doanh Thu Sau Thuế"
-  },
-  {
+//     key_code: "total_including_tax",
+//     value_code: "Doanh Thu Sau Thuế"
+//   },
+//   {
    
-    key_code: "total_excluding_tax",
-    value_code: "Doanh Thu Trước Thuế"
-  },
-  {
-    key_code: "departments_name",
-    value_code: "Bộ phận"
-  },
-  {
+//     key_code: "total_excluding_tax",
+//     value_code: "Doanh Thu Trước Thuế"
+//   },
+//   {
+//     key_code: "departments_name",
+//     value_code: "Bộ phận"
+//   },
+//   {
    
-    key_code: "month_name",
-    value_code: "Tháng"
-  },
-  {
+//     key_code: "month_name",
+//     value_code: "Tháng"
+//   },
+//   {
    
-    key_code: "year",
-    value_code: "Năm"
-  },
-  {
+//     key_code: "year",
+//     value_code: "Năm"
+//   },
+//   {
    
-    key_code: "time",
-    value_code: "Thời Gian"
-  },
-  {
-    key_code: "total",
-    value_code: "Tổng"
-  }
+//     key_code: "time",
+//     value_code: "Thời Gian"
+//   },
+//   {
+//     key_code: "total",
+//     value_code: "Tổng"
+//   }
   
-]
+// ]
 
 const TableData = () => {
 
   var regex = new RegExp('^[0-9]*$')
   const columns: GridColDef[] = [];
   const rows:any =[];
+ 
   const listChange:any =[]
   const classes = styleMui();
+
+  const onTable = useAppSelector(state=> state.onTable) 
+  const listValueField = useAppSelector(state=> state.tableData) 
+  const listTable = useAppSelector(state => state.table)
 
   const [on, setOn] = useState(false);
   const [pageSize, setPageSize] = useState<number>(5);
   const [total, setTotal] = useState(0);
-  const onTable = useAppSelector(state=> state.onTable) 
-  const listValueField = useAppSelector(state=> state.tableData) 
-  const listTable = useAppSelector(state => state.table)
-   
+  const nameTV= [...listTable.listTable
+    ,{
+        key_code: "total",
+         value_code: "Tổng",
+         table_name: "total",
+   },{
+     key_code: "id",
+     value_code: "ID",
+     table_name: "id",
+}
+  ];
   useEffect(()=> setOn(onTable.onTable),[onTable])
 
   const formatter = new Intl.NumberFormat("it-IT", {
     style: "currency",
     currency: "VND",
-    minimumFractionDigits: 3
+    minimumFractionDigits: 1
   });
   if(listValueField.listData.length !== 0){
     let nameField =Object.keys(listValueField.listData[0])
@@ -137,7 +149,9 @@ const TableData = () => {
   //   (id:any) => apiRef.current.getSortedRowIds().indexOf(id),
   //   [apiRef],
   // );
- 
+
+  
+  //add STT
   function getIndex(params:any) {
 
     if(params.row.stt){
@@ -151,39 +165,45 @@ const TableData = () => {
   const colums =()=>{
     if(listChange.length !== 0){
       let nameField =Object.keys(listChange[0])
-      nameField.unshift("id")
-      nameField.map((nameField:string)=> {
-        if(nameField =="departments_name"){
-          for(let z = 0;z<nameTV.length; z++){
-            if(nameTV[z].key_code ==`${nameField}`){
-              columns.push({ field: nameField, headerName: nameTV[z].value_code, width: 100,type: "number"} )  
-            }
-        } 
-        }
-        
-        else {
+        nameField.unshift("id")
+       
+        nameField.map((nameField:string)=> {
           for(let z = 0;z<nameTV.length; z++){
             if(nameTV[z].key_code ==`${nameField}` && nameField !=="id"){
-              columns.push({ field: nameField, headerName: nameTV[z].value_code, width: 180,renderCell:(params: GridCellParams) =>converNumber(params), type: "number"} )
+              columns.push({ field: nameField, headerName: nameTV[z].value_code,minWidth:130, width:220,renderCell:(params: GridCellParams) =>converNumber(params), type: "number",align:'center'} )
              } else if(nameTV[z].key_code ==`${nameField}` && nameField ==="id") {
               columns.push( {field: 'stt',headerName: 'STT',width: 10,valueGetter: getIndex, sortable: false})
-             }
-        }
-        }
+             }   
+        }    
        })
     }
    
   }
+ 
+  
   const addTotal = ()=> {
     if(listChange.length !== 0){
     let nameField =Object.keys(listChange[0])
     let field: any ={stt:"Total"}
     for(let i =0; i<nameField.length; i++){
-      let sum = 0
+      let sum: number= 0
         for(let j=0; j< listChange.length;j++ ){
              sum = sum + Number(listChange[j][nameField[i]])
+            
+            //  if(typeof(sum) === NaN){
+            //   sum = 0
+            //  }else {
+            //   sum = sum
+            //  }
         }
-         field[nameField[i]]=sum 
+        if(String(sum) == "NaN"){
+          field[nameField[i]]= "-"
+        } else {
+          field[nameField[i]]= sum
+        }
+         
+        
+         
     }
     listChange.unshift(field)
     
@@ -238,6 +258,7 @@ const TableData = () => {
               pageSize={pageSize}
               onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
               rowsPerPageOptions={[5, 10, 20]}
+              
               pagination
             />   
         
