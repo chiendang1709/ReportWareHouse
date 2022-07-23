@@ -259,9 +259,6 @@ const TableData = () => {
                   <div className='title__item'>
                         Data List
                   </div>
-                  <div className='button__item'>
-                      
-                  </div>
               </div>
             <DataGrid            
               autoHeight
