@@ -370,11 +370,11 @@
    }
    .content__table {
       .table {
-          flex-grow: 25%;
+        .table__item{
+            flex-grow: 1  ;
+        }
       }
-      .hello{
-        color: aqua;
-      }
+    
      
      
    }
