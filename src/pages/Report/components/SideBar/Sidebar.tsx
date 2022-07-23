@@ -100,9 +100,9 @@ const Sidebar = () => {
             <div className="sidebar__footer" >
                   <button  onClick={()=>dispatch(apply.getApply("Apply"))}>
                       {/* <img src={ap} alt="apply" title="apply data" /> */}
-                      <p>Apply</p>
+                      
                       {
-                        listValueField.loading ? (""): ( <img src={loading} alt="loading" title="loading"/>)
+                        listValueField.loading ? (<p>Apply</p>): ( <img src={loading} alt="loading" title="loading"/>)
                       }
                      
                   </button>
