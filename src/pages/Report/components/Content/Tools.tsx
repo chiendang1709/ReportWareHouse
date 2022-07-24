@@ -27,8 +27,7 @@ type getdata = (arrayCoppy:string[], nameDep: string) => void;
 const Tools = () => {
   const selectGroup = ['ws_code','emp_name','dept_name','cus_name']
   const listfieldnumber =["opt_budget","opt_expect_revenue","opt_profit","opt_gross_profit","opt_commit_revenue","scon_ex_ct_value"]
-  const dateFilters= ["opt_bid_open_date","opt_bid_close_date"]
- 
+  const dateFilters= ["opt_bid_open_date","opt_bid_close_date","scon_posting_date","scon_date_locked"]
   const classes = styleMui();
   const checkedIcon = <CheckBoxIcon fontSize="small"   className={classes.checkbox} />;
   const icon = <CheckBoxOutlineBlankIcon fontSize="small"  className={classes.checkbox}/>;
@@ -41,18 +40,18 @@ const Tools = () => {
   const listMW = useAppSelector(state=> state.mw)  
   const listValueField = useAppSelector(state=> state.listValue)
   const listFilter = useAppSelector(state=> state.filter)
-  const apply = useAppSelector(state => state.clickApply)
   
   let checFields = listValueField.listCheckField.split(",")
   let group_bys: string=""
   let from_dates:string = ""
   let to_dates:string =""
   let type_filters :string=""
-  let date_filters:string=""
+  
   let number_selecteds:string[] = []
   let string_selecteds:string[]=[] 
+  const [date_filters,setdateFilter]=useState("NULL");
   const [limit,setLimit ] =useState("");
-  const [compare ,setCompare]=useState("");
+  const [compare ,setCompare]=useState("NULL");
   const [depart, setDepart] = useState<any[]>([]);
   const [customer, setCustomer] = useState<any[]>([]);
   const [staff, setStaff] = useState<any[]>([]);
@@ -159,15 +158,6 @@ for(let i =0; i< checFields.length; i++ ){
     string_selecteds.push(checFields[i])
   }
 
-  if(checFields[i] == "opt_bid_open_date"){
-    date_filters =checFields[i]
-  }else if(checFields.includes("opt_bid_open_date") === false && checFields[i] == "opt_bid_close_date" ){
-    date_filters =checFields[i]
-  }else if(checFields.includes("opt_bid_open_date") == false && checFields.includes("opt_bid_close_date") == false  && checFields.includes("scon_posting_date") ){
-    date_filters =checFields[i]
-  }else if(checFields.includes("opt_bid_open_date") == false && checFields.includes("opt_bid_close_date") == false  && checFields.includes("scon_posting_date") == false  && checFields.includes("scon_date_locked")){
-    date_filters =checFields[i]
-  }
 }
 const checkGroup = (data:string)=>{
   if(data === "time_code"){
@@ -223,8 +213,14 @@ const filtertest= ()=>{
     if(mvv.length >0){
       extrass.push(changelistFielter(mvv,"ws_code"));
     }
+    //check date filter
+    if(date_filters== "NULL"){
+      return toast.error(`${error.ERROR_INPUT_DATE_FILTER}`);
+    }
     //check limit
-    if(compare && limit ===""){
+    if(compare !=="NULL" && limit ===""){
+      return toast.error(`${error.ERROR_INPUT_LIMIT}`);
+    } else if(compare =="NULL" && limit !=="") {
       return toast.error(`${error.ERROR_INPUT_LIMIT}`);
     }
     //group
@@ -256,6 +252,23 @@ const filtertest= ()=>{
            return (<option value={`${data}`}> {`${nameTV[z].value_code}`} </option>) 
            } 
       }
+    })
+    return list
+  }
+  const dateFilter =()=>
+  {
+   let list = checFields.map((data:string)=>
+      { 
+        for(let i =0; i <dateFilters.length; i++){
+           if(dateFilters[i]=== `${data}`){
+            for(let z = 0;z<nameTV.length; z++){
+              if(nameTV[z].key_code ==`${data}`){
+               return (<option value={`${data}`}> {`${nameTV[z].value_code}`} </option>) 
+               } 
+          }
+           }
+        }
+        
     })
     return list
   }
@@ -484,7 +497,12 @@ const filtertest= ()=>{
                                <input type="date" min="2018-01-01" max="2030-01-01" value={dateTo} className="time__field" placeholder="Day" name="day" id='day'  onChange={(e)=> setDateTo(e.target.value)} required />
                           </div>
                         </div>
-    
+                         
+                        <select id='selectGroup' className='tool__group'  onChange={(e)=> setdateFilter(e.target.value )}>
+                          <option  value="NULL"> Date Filter </option> 
+                          {dateFilter()}   
+                        </select>
+
                       <div className='br' ></div>
                       
                         <select id='selectGroup' className='tool__group'  onChange={(e)=> setGroup(e.target.value )}>
@@ -493,9 +511,8 @@ const filtertest= ()=>{
                           <option id='dept_name' value="dept_code"> Bộ Phận </option>
                           <option id='emp_name' value="emp_code" > Nhân Viên </option> 
                           <option id='cus_name' value="cus_code"> Khách Hàng </option>
-                          <option id='ws_code' value="ws_code"> Mã Workspase </option>   
-                                
-                      </select>
+                          <option id='ws_code' value="ws_code"> Mã Workspase </option>        
+                        </select>
                      
                     </div>
                     <div className='group__tool'>
@@ -510,7 +527,7 @@ const filtertest= ()=>{
                           <option value="ASC"> Min </option>
                           <option value="DESC"> Max </option>                          
                       </select>
-                      <input type="number" onChange={(e)=> setLimit(e.target.value )} placeholder="Top"></input>
+                      <input type="number" value={limit}   onChange={(e)=> setLimit(String(Math.round(Number(e.target.value))) )} placeholder="Top"></input>
 
                       <div  className='group__button'>
                       <button id="filter" onClick={()=>filtertest()} >Fitler  {
@@ -521,7 +538,7 @@ const filtertest= ()=>{
                                         
                       
                     </div>
-                   
+             
                     
 
       </div>

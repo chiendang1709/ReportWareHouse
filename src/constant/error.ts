@@ -9,5 +9,6 @@ export const error = {
     ERROR_NO_FIELD : "No Data",
     ERROR_NO_CHECK_FIELD:"Please Choose Data Field!",
     ERROR_NO_CHECK_DATEFILTER: "Please Choose Date Fielter",
-    ERROR_INPUT_LIMIT:" Please Choose Top"
+    ERROR_INPUT_LIMIT:" Please Choose Top",
+    ERROR_INPUT_DATE_FILTER:" Please Choose Date Filter"
 }

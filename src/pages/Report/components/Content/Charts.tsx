@@ -58,6 +58,7 @@ const Charts = () => {
   const listTable = useAppSelector(state => state.table)
   const categoryGroup = useAppSelector(state => state.categoryGroup)
   
+ console.log("filte",listFilter);
  
  
   const [types, setType] = useState<ChartType>('bar');
@@ -138,7 +139,7 @@ for(let i =0; i<value.length;i ++){
         }else if(group === "MONTH")  {
           for(let y = 0; y <value.length;y++)
           {  
-           let list =`${value[y]["MONTH"]}/${value[y][" YEAR"]}`
+           let list =`${value[y]["MONTH"]}/${value[y]["YEAR"]}`
            listValueAlphabet.push(list) 
           }
         }else if(group === "YEAR")  {
@@ -160,9 +161,7 @@ for(let i =0; i<value.length;i ++){
       
     }
     
-    if(categoryGroup.group){
-      getAlphabet("DATE",categoryGroup.group)
-    }else if(fieldValues.includes('opt_bid_open_date'))
+     if(fieldValues.includes('opt_bid_open_date'))
     {
       getAlphabet("opt_bid_open_date",categoryGroup.group)
     }else if(fieldValues.includes('opt_bid_open_date')== false && fieldValues.includes('opt_bid_close_date') ) {
@@ -171,6 +170,8 @@ for(let i =0; i<value.length;i ++){
       getAlphabet("scon_posting_date",categoryGroup.group)
     }else if(fieldValues.includes("opt_bid_open_date") == false && fieldValues.includes("opt_bid_close_date") == false  && fieldValues.includes("scon_posting_date")== false && fieldValues.includes("scon_date_locked") ) {
       getAlphabet("scon_date_locked",categoryGroup.group)
+    }else if(fieldValues.includes("opt_bid_open_date") == false && fieldValues.includes("opt_bid_close_date") == false  && fieldValues.includes("scon_posting_date")== false && fieldValues.includes("scon_date_locked")== false && categoryGroup.group){
+      getAlphabet("DATE",categoryGroup.group)
     }
    
     
@@ -252,8 +253,7 @@ for(let i =0; i<value.length;i ++){
                     return percentage;
                   }
                   
-                  
-                 
+                
                 }
             })
             
