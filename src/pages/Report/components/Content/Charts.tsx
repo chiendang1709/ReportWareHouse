@@ -162,8 +162,7 @@ for(let i =0; i<value.length;i ++){
     
     if(categoryGroup.group){
       getAlphabet("DATE",categoryGroup.group)
-    }
-    if(fieldValues.includes('opt_bid_open_date'))
+    }else if(fieldValues.includes('opt_bid_open_date'))
     {
       getAlphabet("opt_bid_open_date",categoryGroup.group)
     }else if(fieldValues.includes('opt_bid_open_date')== false && fieldValues.includes('opt_bid_close_date') ) {
