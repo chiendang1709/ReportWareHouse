@@ -223,12 +223,16 @@ const filtertest= ()=>{
     if(mvv.length >0){
       extrass.push(changelistFielter(mvv,"ws_code"));
     }
+    //check limit
+    if(compare && limit ===""){
+      return toast.error(`${error.ERROR_INPUT_LIMIT}`);
+    }
     //group
     checkGroup(group)
     json = 
     {
       number_selected: numberSL.length >0 ? numberSL : number_selecteds.length >0 ? number_selecteds.join(","):  "NULL",
-      string_selected: stringSL.length >0 ? stringSL : string_selecteds.length >0 ? string_selecteds.join(","):  "NULL",
+      string_selected: string_selecteds.length >0 ? string_selecteds.join(","):  "NULL",
       date_filter:date_filters,
       from_date:from_dates,
       to_date:to_dates,
@@ -280,9 +284,7 @@ const filtertest= ()=>{
                          getOptionSelected={(option:any, value:any) =>  option.dept_code === value.dept_code}
                          renderOption={(option, { selected }) => (
                           <React.Fragment>
-                            <Checkbox
-                              icon={icon}
-                              checkedIcon={checkedIcon}
+                            <input type="checkbox"
                               style={{ marginRight: 8 }}
                               checked={selected}
                             />
@@ -335,12 +337,8 @@ const filtertest= ()=>{
                          getOptionSelected={(option:any, value:any) =>  option.emp_code === value.emp_code}
                          renderOption={(option, { selected }) => (
                           <React.Fragment>
-                            <Checkbox
-                              color='default'
-                              className={classes.checkbox}
-                              icon={icon}
-                              checkedIcon={checkedIcon}
-                            
+                             <input type="checkbox"
+                              style={{ marginRight: 8 }}
                               checked={selected}
                             />
                             {option.emp_name}
@@ -390,9 +388,7 @@ const filtertest= ()=>{
                          getOptionSelected={(option:any, value:any) =>  option.cus_code === value.cus_code}
                          renderOption={(option, { selected }) => (
                           <React.Fragment>
-                            <Checkbox
-                              icon={icon}
-                              checkedIcon={checkedIcon}
+                             <input type="checkbox"
                               style={{ marginRight: 8 }}
                               checked={selected}
                             />
@@ -441,12 +437,9 @@ const filtertest= ()=>{
                          getOptionSelected={(option:any, value:any) =>  option.ws_code === value.ws_code}
                          renderOption={(option, { selected }) => (
                           <React.Fragment>
-                            <Checkbox
-                              icon={icon}
-                              checkedIcon={checkedIcon}
+                             <input type="checkbox"
                               style={{ marginRight: 8 }}
                               checked={selected}
-                             
                             />
                             {option.ws_code}
                           </React.Fragment>
@@ -484,11 +477,11 @@ const filtertest= ()=>{
                       <div className='time__date'>
                           <div className="time__group">
                                <label htmlFor="day" className="time__label"> From</label>
-                               <input type="date" value={dateFrom} className="time__field" placeholder="Day" name="day" id='day' onChange={(e)=> setDateFrom(e.target.value)} required />
+                               <input type="date"  min="2018-01-01" max="2030-01-01" value={dateFrom} className="time__field" placeholder="Day" name="day" id='day' onChange={(e)=> setDateFrom(e.target.value)} required />
                           </div>
                           <div className="time__group">
                                <label htmlFor="day" className="time__label"> To </label>
-                               <input type="date" value={dateTo} className="time__field" placeholder="Day" name="day" id='day'  onChange={(e)=> setDateTo(e.target.value)} required />
+                               <input type="date" min="2018-01-01" max="2030-01-01" value={dateTo} className="time__field" placeholder="Day" name="day" id='day'  onChange={(e)=> setDateTo(e.target.value)} required />
                           </div>
                         </div>
     
@@ -511,10 +504,7 @@ const filtertest= ()=>{
                            <option value="NULL"> Number Select </option> 
                             {addOption(number_selecteds)}               
                       </select>
-                      <select id='select' className='tool__top' >
-                          <option value="NULL"> String Select </option> 
-                          {addOption(string_selecteds)}                           
-                      </select>
+                      
                       <select id='select' className='tool__top' onChange={(e)=> setCompare(e.target.value )}>
                           <option value="NULL"> Compare </option> 
                           <option value="ASC"> Min </option>
