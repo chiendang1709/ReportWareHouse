@@ -159,7 +159,10 @@ for(let i =0; i<value.length;i ++){
       }
       
     }
-
+    
+    if(categoryGroup.group){
+      getAlphabet("DATE",categoryGroup.group)
+    }
     if(fieldValues.includes('opt_bid_open_date'))
     {
       getAlphabet("opt_bid_open_date",categoryGroup.group)
@@ -170,16 +173,7 @@ for(let i =0; i<value.length;i ++){
     }else if(fieldValues.includes("opt_bid_open_date") == false && fieldValues.includes("opt_bid_close_date") == false  && fieldValues.includes("scon_posting_date")== false && fieldValues.includes("scon_date_locked") ) {
       getAlphabet("scon_date_locked",categoryGroup.group)
     }
-    else if(fieldValues.includes('opt_bid_open_date')== false && fieldValues.includes('opt_bid_close_date')==false && fieldValues.includes("scon_posting_date") == false && fieldValues.includes("scon_date_locked") == false ) 
-    {  
-      if(categoryGroup.group =="DAY"){
-        getAlphabet("DATE",categoryGroup.group)
-      }
-      if(categoryGroup.group !=="DAY"){
-        getAlphabet("DATE",categoryGroup.group)
-      }
-      
-    }
+   
     
   
     //get value in chart
