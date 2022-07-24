@@ -194,6 +194,37 @@
                         width: 2px;
                         height: auto;
                     }
+                    .tool__group {
+                        position: relative;
+                        padding: 5px 10px;
+                        margin:10px 15px 10px;
+                        border-radius: 4px;
+                        width: calc(100% /3);
+                        border: 1px solid #C4C4C4 ;
+                        height: auto;
+                        text-align: center;
+                    }
+                    button {
+                        margin:5px 5px 10px ;
+                        position: relative;
+                        background-color:$button;
+                        padding: 5px 10px;
+                        border-radius: 4px;
+                        width: 6vw;
+                        color: $font-color-2;
+                        border: 1px solid #C4C4C4 ;
+                        height: auto;
+                        img {
+                            width: 30%;
+                            height: 30%;
+                            margin: auto 0;
+                        } 
+                    }
+    
+                }
+                .group__tool{
+                    display: flex;
+                    height: 69px;
                     .tool__top {
                         position: relative;
                         padding: 5px 10px;
@@ -204,17 +235,12 @@
                         height: auto;
                         text-align: center;
                     }
-    
-                }
-                .group__tool{
-                    display: flex;
-                    height: 69px;
-                    .tool__group {
+                    input {
                         position: relative;
                         padding: 5px 10px;
                         margin:10px 15px 10px;
                         border-radius: 4px;
-                        width: calc(100% /3);
+                        width: 20%;
                         border: 1px solid #C4C4C4 ;
                         height: auto;
                         text-align: center;
@@ -370,6 +396,11 @@
         .table__item{
             flex-grow: 1  ;
         }
+        .table-cell-trucate {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
       }
     
      

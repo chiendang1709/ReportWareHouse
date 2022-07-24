@@ -337,7 +337,10 @@ for(let i =0; i<value.length;i ++){
             let val=  newthis.getLabelForValue(value)
             if (val.length > 10) {
                 return val.substr(0, 10) + '...';
-            } else {
+            } else if(val.toString() === "undefined") {
+                return "*"
+              } if(val.toString() !== "undefined")
+              {
                 return val
               }
           }

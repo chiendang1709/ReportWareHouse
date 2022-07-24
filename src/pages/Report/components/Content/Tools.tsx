@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import TextField from "@material-ui/core/TextField";
-import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@material-ui/icons/CheckBox";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Checkbox from "@material-ui/core/Checkbox";
 
@@ -16,8 +16,7 @@ import { useAppDispatch, useAppSelector } from 'app/store/hooks';
 import { filterAction } from 'pages/Report/slice/filterSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import { error } from 'constant/error';
-import undo  from 'assets/images/undo__icon.png'
-import fil from 'assets/images/filter__icon.png'
+
 import ex from 'assets/images/export__icon.png'
 import loading from 'assets/images/loading.svg'
 import { color } from '@mui/system';
@@ -29,10 +28,13 @@ const Tools = () => {
   const selectGroup = ['ws_code','emp_name','dept_name','cus_name']
   const listfieldnumber =["opt_budget","opt_expect_revenue","opt_profit","opt_gross_profit","opt_commit_revenue","scon_ex_ct_value"]
   const dateFilters= ["opt_bid_open_date","opt_bid_close_date"]
+ 
   const classes = styleMui();
   const checkedIcon = <CheckBoxIcon fontSize="small"   className={classes.checkbox} />;
   const icon = <CheckBoxOutlineBlankIcon fontSize="small"  className={classes.checkbox}/>;
   const dispatch = useAppDispatch()
+
+  const listTable = useAppSelector(state => state.table)
   const listDepartment = useAppSelector(state=> state.department)
   const listStaff = useAppSelector(state=> state.staff) 
   const listCustomer = useAppSelector(state=> state.customer) 
@@ -42,7 +44,15 @@ const Tools = () => {
   const apply = useAppSelector(state => state.clickApply)
   
   let checFields = listValueField.listCheckField.split(",")
-
+  let group_bys: string=""
+  let from_dates:string = ""
+  let to_dates:string =""
+  let type_filters :string=""
+  let date_filters:string=""
+  let number_selecteds:string[] = []
+  let string_selecteds:string[]=[] 
+  const [limit,setLimit ] =useState("");
+  const [compare ,setCompare]=useState("");
   const [depart, setDepart] = useState<any[]>([]);
   const [customer, setCustomer] = useState<any[]>([]);
   const [staff, setStaff] = useState<any[]>([]);
@@ -54,7 +64,10 @@ const Tools = () => {
   const [dismvv, setdisMvv] =  useState<boolean>(true);
   const [dateFrom, setDateFrom]= useState("")
   const [dateTo, setDateTo]= useState("") 
- 
+  
+  const [numberSL,setNumberSL]=useState("")
+  const [stringSL,setStringSL]=useState("")
+  const nameTV= [...listTable.listTable];
    //getListDept
   useEffect(() => {dispatch(departmentAction.getDepartment())}, []);
   //getListStaff
@@ -120,6 +133,7 @@ const changelistFielter = (list:any[], name:string)=>{
   return `${name} IN(${ext.join(",")})`
   
 }
+
 //clear
     
     const clear = ()=>{
@@ -136,65 +150,69 @@ const changelistFielter = (list:any[], name:string)=>{
         clear()
       }
     },[listValueField.listCheckField])
+
+//get number string
+for(let i =0; i< checFields.length; i++ ){
+  if(listfieldnumber.indexOf(`${checFields[i]}`) !== -1){
+    number_selecteds.push(checFields[i])
+  }else if(listfieldnumber.indexOf(`${checFields[i]}`)== -1) {
+    string_selecteds.push(checFields[i])
+  }
+
+  if(checFields[i] == "opt_bid_open_date"){
+    date_filters =checFields[i]
+  }else if(checFields.includes("opt_bid_open_date") === false && checFields[i] == "opt_bid_close_date" ){
+    date_filters =checFields[i]
+  }else if(checFields.includes("opt_bid_open_date") == false && checFields.includes("opt_bid_close_date") == false  && checFields.includes("scon_date_locked") ){
+    date_filters =checFields[i]
+  }else if(checFields.includes("opt_bid_open_date") == false && checFields.includes("opt_bid_close_date") == false  && checFields.includes("scon_date_locked") == false  && checFields.includes("scon_posting_date")){
+    date_filters =checFields[i]
+  }
+}
+const checkGroup = (data:string)=>{
+  if(data === "time_code"){
+      
+    group_bys =type_filters
     
+  }else {
+    group_bys = data
+  }
+}
 //filter test
 const filtertest= ()=>{
-  let date1 = dateFrom.split('-')
-  let date2 =dateTo.split('-')
-  let number_selecteds:string[] = []
-  let string_selecteds:string[]=[]
-  let date_filters:string=""
-  let from_dates:string = ""
-  let to_dates:string =""
-  let type_filters :string=""
-  let group_bys: string=""
+
   let extrass:string[]=[]
   let json:any={}
-
-  //check date filter
-  if(checFields.includes("opt_bid_open_date") == false && checFields.includes("opt_bid_close_date") == false){
+  let date1 = dateFrom.split('-')
+  let date2 =dateTo.split('-')
+  if(checFields.includes("opt_bid_open_date") == false && checFields.includes("opt_bid_close_date") == false  && checFields.includes("scon_date_locked") == false  && checFields.includes("scon_posting_date") == false){
     return toast.error(`${error.ERROR_NO_CHECK_DATEFILTER}`)
   }
-  //check number and string
-  for(let i =0; i< checFields.length; i++ ){
-    if(listfieldnumber.indexOf(`${checFields[i]}`) !== -1){
-      number_selecteds.push(checFields[i])
-    }else if(listfieldnumber.indexOf(`${checFields[i]}`)== -1 && dateFilters.indexOf(`${checFields[i]}`)== -1) {
-      string_selecteds.push(checFields[i])
-    }else if(checFields[i] == "opt_bid_open_date"){
-      date_filters =checFields[i]
-    }else if(checFields.includes("opt_bid_open_date") === false && checFields[i] == "opt_bid_close_date" ){
-      date_filters =checFields[i]
-    }
+  if(date1.length == 0 || date2.length == 0){
+    return toast.error(`${error.ERROR_NULL_DATE}`);
+  }else {
+  if(date1[0] > date2[0]){
+    return toast.error(`${error.ERROR_INPUT_YEAR}`);
+  } 
+  else if(date1[0]===date2[0] && date1[1]> date2[1]) {
+    return toast.error(`${error.ERROR_INPUT_MONTH}`);
   }
-  //date
-    if(date1.length == 0 || date2.length == 0){
-      return toast.error(`${error.ERROR_NULL_DATE}`);
-    }else {
-    if(date1[0] > date2[0]){
-      return toast.error(`${error.ERROR_INPUT_YEAR}`);
-    } 
-    else if(date1[0]===date2[0] && date1[1]> date2[1]) {
-      return toast.error(`${error.ERROR_INPUT_MONTH}`);
-    }
-    else if (date1[0]=== date2[0] && date1[1]===date2[1] && date1[2]> date2[2]) {
-      return toast.error(`${error.ERROR_INPUT_DAY}`);
-    } else if(date1[0]=== date2[0] && date1[1]===date2[1] && date1[2] === date2[2]){
-      return toast.error(`${error.ERROR_INPUT_DATE}`);
-    }
-    
-    if( date1[0] !== date2[0]){
-      type_filters= "YEAR"
-    }else if(date1[1] !== date2[1] && date1[0] === date2[0]){
-      type_filters= "MONTH"
-    }else if(date1[2] !== date2[2] && date1[1] === date2[1] && date1[0] === date2[0]){
-      type_filters= "DAY"
-    }
-    from_dates =date1.join("/")
-    to_dates  =date2.join("/")  
-    }
-    
-    
+  else if (date1[0]=== date2[0] && date1[1]===date2[1] && date1[2]> date2[2]) {
+    return toast.error(`${error.ERROR_INPUT_DAY}`);
+  } else if(date1[0]=== date2[0] && date1[1]===date2[1] && date1[2] === date2[2]){
+    return toast.error(`${error.ERROR_INPUT_DATE}`);
+  }
+  if( date1[0] !== date2[0]){
+    type_filters= "YEAR"
+  }else if(date1[1] !== date2[1] && date1[0] === date2[0]){
+    type_filters= "MONTH"
+  }else if(date1[2] !== date2[2] && date1[1] === date2[1] && date1[0] === date2[0]){
+    type_filters= "DAY"
+  }
+  from_dates =date1.join("/")
+  to_dates  =date2.join("/")  
+  }
+
     if(depart.length >0){
       extrass.push(changelistFielter(depart,"dept_code"));
     }
@@ -207,30 +225,39 @@ const filtertest= ()=>{
     if(mvv.length >0){
       extrass.push(changelistFielter(mvv,"ws_code"));
     }
-    
     //group
-    if(group === "time_code"){
-      
-      group_bys =type_filters
-      
-    }else {
-      group_bys = group
-    }
-    json = {
-      number_selected:number_selecteds.length >0 ? number_selecteds.join(","): "NULL",
-      string_selected:string_selecteds.length >0 ? string_selecteds.join(","): "NULL",
+    checkGroup(group)
+    json = 
+    {
+      number_selected: number_selecteds.length >0 ? number_selecteds.join(","): numberSL.length >0 ? numberSL : "NULL",
+      string_selected: string_selecteds.length >0 ? string_selecteds.join(","): stringSL.length >0 ? stringSL : "NULL",
       date_filter:date_filters,
       from_date:from_dates,
       to_date:to_dates,
-      group_by:group_bys  ? group_bys:"NULL" ,
+      group_by:group_bys ? group_bys:"NULL" ,
       type_filter:type_filters ?type_filters :"NULL",
-      extras:extrass.length > 0 ? extrass.join(" AND "): "1=1"
+      extras:extrass.length > 0 ? extrass.join(" AND "): "1=1",
+      limits: limit ? limit :"NULL",
+      desc: compare ? compare :"NULL"
     }
 
      dispatch(filterAction.getFilter(json))
      dispatch(groupAction.getGroup(group_bys))
     }
-   
+  
+  const addOption =(array :string[])=>
+  {
+   let list = array.map((data:string)=>
+      {
+        for(let z = 0;z<nameTV.length; z++){
+          if(nameTV[z].key_code ==`${data}`){
+           return (<option value={`${data}`}> {`${nameTV[z].value_code}`} </option>) 
+           } 
+      }
+    })
+    return list
+  }
+  
 
   return (
    
@@ -468,27 +495,40 @@ const filtertest= ()=>{
                         </div>
     
                       <div className='br' ></div>
-                      <select id='select' className='tool__top' disabled>
-                          <option value="NULL"> Loading.... </option> 
-                          <option value="1"> January </option>
-                          <option value="2"> February </option>                          
-                        </select>
-                    </div>
-                    
-                    <div className='group__tool'>
-                    <select id='selectGroup' className='tool__group'  onChange={(e)=> setGroup(e.target.value )}>
+                      
+                        <select id='selectGroup' className='tool__group'  onChange={(e)=> setGroup(e.target.value )}>
                           <option  value="NULL"> Group by </option> 
                           <option id='time_name' value="time_code"> Time </option>
                           <option id='dept_name' value="dept_code"> Bộ Phận </option>
                           <option id='emp_name' value="emp_code" > Nhân Viên </option> 
                           <option id='cus_name' value="cus_code"> Khách Hàng </option>
-                          <option id='ws_code' value="ws_code"> Mã Workspase </option>                                   
+                          <option id='ws_code' value="ws_code"> Mã Workspase </option>   
+                                
                       </select>
+                     
+                    </div>
+                    <div className='group__tool'>
+
+                      <select id='select' className='tool__top' onChange={(e)=> setNumberSL(e.target.value )} >
+                           <option value="NULL"> Number Select </option> 
+                            {addOption(number_selecteds)}               
+                      </select>
+                      <select id='select' className='tool__top' >
+                          <option value="NULL"> String Select </option> 
+                          {addOption(string_selecteds)}                           
+                      </select>
+                      <select id='select' className='tool__top' onChange={(e)=> setCompare(e.target.value )}>
+                          <option value="NULL"> Compare </option> 
+                          <option value="ASC"> Min </option>
+                          <option value="DESC"> Max </option>                          
+                      </select>
+                      <input type="number" onChange={(e)=> setLimit(e.target.value )} placeholder="Top"></input>
+
                       <div  className='group__button'>
                       <button id="filter" onClick={()=>filtertest()} >Fitler  {
                         listFilter.loading ? (""): ( <img src={loading} alt="loading" title="loading"/>)
-                      } </button>  
-                      <button id="filter" onClick={()=>clear()} >Clear </button>   
+                      } </button> 
+                      <button id="clear" onClick={()=>clear()} >Clear </button>   
                       </div>
                                         
                       

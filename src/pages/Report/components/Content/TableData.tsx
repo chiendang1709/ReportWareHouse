@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useAppSelector } from 'app/store/hooks';
 import { styleMui } from 'components/common/styleMui';
 import { DataGrid, GridColDef,GridToolbarContainer,GridToolbar,GridCellParams,GridToolbarExport,GridToolbarColumnsButton,GridToolbarFilterButton,GridToolbarDensitySelector} from '@mui/x-data-grid';
-
+import Tooltip from '@mui/material/Tooltip';
 
 // const nameTV = [
 //   {
@@ -156,8 +156,12 @@ const TableData = () => {
       }
   }
   const converNumber = (value: GridCellParams)=>{
-    if(regex.test(value.value)) {
+    if(regex.test(value.value) && value.value !== "") {
       return  formatter.format(value.value)
+    } else if(value.value === ""){
+      return "-"
+    }else if(regex.test(value.value)== false && value.value !== ""){
+      return value.value
     }
   }
   // const getRowIndex = React.useCallback<GridSortApi['getRowIndex']>(
@@ -194,7 +198,11 @@ const TableData = () => {
         nameField.map((nameField:string)=> {
           for(let z = 0;z<nameTV.length; z++){
             if(nameTV[z].key_code ==`${nameField}` && nameField !=="id"){
-              columns.push({ field: nameField, headerName: nameTV[z].value_code,minWidth:130, width:220,renderCell:(params: GridCellParams) =>converNumber(params), type: "number",align:'center'} )
+              columns.push({ field: nameField, headerName: nameTV[z].value_code,minWidth:130, width:220,renderCell:(params: GridCellParams) => (
+                <Tooltip title={params.value} >
+                 <span className="table-cell-trucate">{converNumber(params)}</span>
+                 </Tooltip>
+               ), type: "number",align:'center'} )
              } else if(nameTV[z].key_code ==`${nameField}` && nameField ==="id") {
               columns.push( {field: 'stt',headerName: 'STT',width: 10,valueGetter: getIndex, sortable: false})
              }   
