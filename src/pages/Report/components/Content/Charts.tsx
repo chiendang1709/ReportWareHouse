@@ -135,10 +135,16 @@ for(let i =0; i<value.length;i ++){
            let list =`${value[y][name]}`
            listValueAlphabet.push(list) 
           }
-        }else {
+        }else if(group === "MONTH")  {
           for(let y = 0; y <value.length;y++)
           {  
-           let list =`${value[y][group]}`
+           let list =`${value[y]["MONTH"]}/${value[y][" YEAR"]}`
+           listValueAlphabet.push(list) 
+          }
+        }else if(group === "YEAR")  {
+          for(let y = 0; y <value.length;y++)
+          {  
+           let list =`${value[y]["YEAR"]}`
            listValueAlphabet.push(list) 
           }
         }
@@ -159,13 +165,20 @@ for(let i =0; i<value.length;i ++){
       getAlphabet("opt_bid_open_date",categoryGroup.group)
     }else if(fieldValues.includes('opt_bid_open_date')== false && fieldValues.includes('opt_bid_close_date') ) {
       getAlphabet("opt_bid_close_date",categoryGroup.group)
-    }else if(fieldValues.includes('opt_bid_open_date')== false && fieldValues.includes('opt_bid_close_date')==false ) 
+    }else if(fieldValues.includes("opt_bid_open_date") == false && fieldValues.includes("opt_bid_close_date") == false  && fieldValues.includes("scon_posting_date") ) {
+      getAlphabet("scon_posting_date",categoryGroup.group)
+    }else if(fieldValues.includes("opt_bid_open_date") == false && fieldValues.includes("opt_bid_close_date") == false  && fieldValues.includes("scon_posting_date")== false && fieldValues.includes("scon_date_locked") ) {
+      getAlphabet("scon_date_locked",categoryGroup.group)
+    }
+    else if(fieldValues.includes('opt_bid_open_date')== false && fieldValues.includes('opt_bid_close_date')==false ) 
     {  
       if(categoryGroup.group =="DAY"){
         getAlphabet("DATE",categoryGroup.group)
       }
-      if(categoryGroup.group !=="DAY")
-      getAlphabet("DATE",categoryGroup.group)
+      if(categoryGroup.group !=="DAY"){
+        getAlphabet("DATE",categoryGroup.group)
+      }
+      
     }
     
   

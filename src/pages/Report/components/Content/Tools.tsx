@@ -163,9 +163,9 @@ for(let i =0; i< checFields.length; i++ ){
     date_filters =checFields[i]
   }else if(checFields.includes("opt_bid_open_date") === false && checFields[i] == "opt_bid_close_date" ){
     date_filters =checFields[i]
-  }else if(checFields.includes("opt_bid_open_date") == false && checFields.includes("opt_bid_close_date") == false  && checFields.includes("scon_date_locked") ){
+  }else if(checFields.includes("opt_bid_open_date") == false && checFields.includes("opt_bid_close_date") == false  && checFields.includes("scon_posting_date") ){
     date_filters =checFields[i]
-  }else if(checFields.includes("opt_bid_open_date") == false && checFields.includes("opt_bid_close_date") == false  && checFields.includes("scon_date_locked") == false  && checFields.includes("scon_posting_date")){
+  }else if(checFields.includes("opt_bid_open_date") == false && checFields.includes("opt_bid_close_date") == false  && checFields.includes("scon_posting_date") == false  && checFields.includes("scon_date_locked")){
     date_filters =checFields[i]
   }
 }
@@ -199,9 +199,7 @@ const filtertest= ()=>{
   }
   else if (date1[0]=== date2[0] && date1[1]===date2[1] && date1[2]> date2[2]) {
     return toast.error(`${error.ERROR_INPUT_DAY}`);
-  } else if(date1[0]=== date2[0] && date1[1]===date2[1] && date1[2] === date2[2]){
-    return toast.error(`${error.ERROR_INPUT_DATE}`);
-  }
+  } 
   if( date1[0] !== date2[0]){
     type_filters= "YEAR"
   }else if(date1[1] !== date2[1] && date1[0] === date2[0]){
@@ -229,8 +227,8 @@ const filtertest= ()=>{
     checkGroup(group)
     json = 
     {
-      number_selected: number_selecteds.length >0 ? number_selecteds.join(","): numberSL.length >0 ? numberSL : "NULL",
-      string_selected: string_selecteds.length >0 ? string_selecteds.join(","): stringSL.length >0 ? stringSL : "NULL",
+      number_selected: numberSL.length >0 ? numberSL : number_selecteds.length >0 ? number_selecteds.join(","):  "NULL",
+      string_selected: stringSL.length >0 ? stringSL : string_selecteds.length >0 ? string_selecteds.join(","):  "NULL",
       date_filter:date_filters,
       from_date:from_dates,
       to_date:to_dates,
