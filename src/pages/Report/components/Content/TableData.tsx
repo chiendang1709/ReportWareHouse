@@ -74,6 +74,8 @@ const TableData = () => {
   const listValueField = useAppSelector(state=> state.tableData) 
   const listTable = useAppSelector(state => state.table)
 
+
+  const [loading, setLoading] = useState(false);
   const [on, setOn] = useState(false);
   const [pageSize, setPageSize] = useState<number>(5);
   const [total, setTotal] = useState(0);
@@ -103,7 +105,7 @@ const TableData = () => {
         table_name: "Thêm",
       }
   ];
-  useEffect(()=> setOn(onTable.onTable),[onTable])
+
 
   const formatter = new Intl.NumberFormat("it-IT", {
     style: "currency",
@@ -175,6 +177,15 @@ const TableData = () => {
     
     
   }
+ 
+  // useEffect(()=>{
+  //   if( listValueField.loading === true){
+  //       return  setLoading(true)
+  //     } else {
+  //       return setLoading(false)
+  //     }
+     
+  // });
   const colums =()=>{
     if(listChange.length !== 0){
       let nameField =Object.keys(listChange[0])
@@ -223,7 +234,9 @@ const TableData = () => {
     }
    }
    addTotal();
+
   const row = ()=>{
+    
     if(listChange.length !== 0){
       let y =0
       listChange.map((valueField:any, index:number)=> {

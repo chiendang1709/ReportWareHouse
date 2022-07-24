@@ -43,7 +43,7 @@ const MenuItems = (props:{listCategory:listCategory}) => {
   const tables =()=>(nameTable.map((data: string,index:number)=>{
      if(props.listCategory.id === 1){
          
-          return <Table key={index} name={data}  listTable={listTable.listTable} loading={listTable.loading} />
+          return <Table key={index} name={data} dropright={dropright} listTable={listTable.listTable} loading={listTable.loading} />
      }else {
       return null
      }
@@ -60,7 +60,7 @@ const MenuItems = (props:{listCategory:listCategory}) => {
               <img src={arrow} alt="arrow" title="click ra"/>
             </button>
             
-              <ul  className={`content__table content__submenu ${dropright ? "show" : ""}`}>
+              <ul  className={`content__table  ${dropright ? "show" : ""}`}>
 
                 { 
                   listTable.loading !== true ?( <img src={loading} alt="loading" title="loading"/>):(tables())

@@ -11,12 +11,17 @@ export interface listTable {
   value_code:string,
 };
 
-const Table = ( props :{ listTable: listTable[], name: string, loading:boolean }) => {  
+const Table = ( props :{ listTable: listTable[], name: string, dropright:boolean, loading:boolean }) => {  
  
   const dispatch = useAppDispatch()
   const [submenu, setSubmenu] = useState(false);
   let ref = React.useRef<HTMLLIElement>(null)
   
+  
+  // useEffect(() => {if(props.dropright === false)
+  //   setSubmenu(false)
+  // });
+
   const listField = () => {
     let list = props.listTable.map((data : listTable, index:number) => {
       if(data.table_name ===props.name){  
@@ -28,7 +33,7 @@ const Table = ( props :{ listTable: listTable[], name: string, loading:boolean }
     
   return (  
     
-     <li className={`submenu__item  ${submenu ? "submenu--open" : ""} `} ref={ref}>
+     <li className={`submenu__item  `} ref={ref}>
          <button  className={`content__btn submenu__btn ${submenu ? "table__active" : " "} `} 
          type="button" aria-haspopup="menu" aria-expanded={submenu ? "true" : "false"}
           onClick={()=> {setSubmenu((prev) => !prev); dispatch(getOnTable(true));  } }>
