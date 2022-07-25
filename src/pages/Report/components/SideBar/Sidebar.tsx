@@ -21,15 +21,15 @@ const Sidebar = () => {
   const listCategory =[
     {
       id: 1,
-      reports_category_name: 'kinh doanh',
+      reports_category_name: 'hoạt động kinh doanh',
     },
     {
       id: 2 ,
-      reports_category_name: 'nhân sự',
+      reports_category_name: 'hoạt động nhân sự',
     },
     {
       id: 3 ,
-      reports_category_name: 'kỹ thuật',
+      reports_category_name: 'hoạt động kỹ thuật',
     },  
   ]
 
@@ -88,7 +88,7 @@ const Sidebar = () => {
                 <div className="sidebar__title">
 
                   <img src={icon__cate} alt=" icon category" />    
-                    <h3>CATEGORY</h3> 
+                    <h3>DANH MỤC</h3> 
                 </div>
                 <div className="sidebar__content">
                     <ul className="content__type">

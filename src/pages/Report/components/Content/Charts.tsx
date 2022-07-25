@@ -57,7 +57,9 @@ const Charts = () => {
   const listFilter = useAppSelector(state=> state.filter) 
   const listTable = useAppSelector(state => state.table)
   const categoryGroup = useAppSelector(state => state.categoryGroup)
-  
+  const dateFilters = useAppSelector(state => state.datefilter)
+  const dateFilter = dateFilters.datefilter
+
  console.log("filte",listFilter);
  
  
@@ -120,6 +122,7 @@ for(let i =0; i<value.length;i ++){
    }
   }
     
+  console.log("thang",`${dateFilter}_month`+ `${dateFilter}_year` );
    
     //getAlphabet
     const getAlphabet =(name:string, group :string)=>{
@@ -139,13 +142,13 @@ for(let i =0; i<value.length;i ++){
         }else if(group === "MONTH")  {
           for(let y = 0; y <value.length;y++)
           {  
-           let list =`${value[y]["MONTH"]}/${value[y]["YEAR"]}`
+           let list =`${value[y][`${dateFilter}_month`]}/${value[y][`${dateFilter}_year`]}`
            listValueAlphabet.push(list) 
           }
         }else if(group === "YEAR")  {
           for(let y = 0; y <value.length;y++)
           {  
-           let list =`${value[y]["YEAR"]}`
+           let list =`${value[y][`${dateFilter}_year`]}`
            listValueAlphabet.push(list) 
           }
         }
@@ -387,7 +390,7 @@ const printPDF = () => {
         <div className=' item card chart'>
           <div className='header__item'>
               <div className='title__item'>
-                    Chart
+                    Biểu Đồ
               </div>
               <div className='button__item'>
               <button id="print" onClick={printPDF}>
