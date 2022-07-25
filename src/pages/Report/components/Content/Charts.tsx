@@ -236,30 +236,35 @@ for(let i =0; i<value.length;i ++){
         formatter: (value:any, ctx:any) => { 
           let percentage:string =""
           let dataArr = ctx.chart.data.datasets;
-    
-          for(let i =0; i<dataArr.length;i++){
-            let sum = 0;
-            let total =  dataArr[i].data.reduce((pre: number, val: number)=>pre + val,sum
-            ) 
-            dataArr[i].data.map((item: number)=>{
-                if(value === item){
-                  percentage = (item * 100 / total).toFixed(1);
-                  if(Number(percentage) >5){
-                    percentage=percentage +"%"
-                    return percentage;
-                  }else {
-                    percentage="" 
-                    return percentage;
-                  }
-                  
-                
-                }
-            })
-            
+          for(let z =0; z<dataArr.length;z++){
+          if (dataArr.indexOf(ctx.dataset) === z) {
            
-          }
+              let sum = 0;
+              let total =  dataArr[z].data.reduce((pre: number, val: number)=>pre + val,sum
+              ) 
+              dataArr[z].data.map((item: number)=>{
+                  if(value === item){
+                    percentage = (item * 100 / total).toFixed(1);
+                    if(Number(percentage) >5){
+                      percentage=percentage +"%"
+                      return percentage;
+                    }else {
+                      percentage="" 
+                      return percentage;
+                    }
+                    
+                  
+                  }
+              })
+              
+             
+            }
+           
+          
+        }
+        return percentage;
          
-           return percentage;
+          
            
               
             
