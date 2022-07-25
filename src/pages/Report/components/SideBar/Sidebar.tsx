@@ -106,7 +106,6 @@ const Sidebar = () => {
         
             <div className="sidebar__footer" >
                   <button  onClick={()=>dispatch(apply.getApply("Apply"))}>                   
-                  (listValueField.loading ? 
                       { listValueField.loading  ?
 
                       ( onSidebar.onSidebar? 
