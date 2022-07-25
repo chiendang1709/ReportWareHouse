@@ -17,7 +17,7 @@ const Header = () => {
                 <img src={burger} alt="burger__icon" title="burger icon"/>
             </button>
             <button className={`tool__button  ${Tool ? " tool__active" : ""} `} onClick={()=>{setTool((prev) => !prev)}}> 
-                <p>Tool</p> 
+                <p>Công Cụ</p> 
                 <img src={tool} alt="tool__icon" title="tool icon"/>
             </button>
         </nav>

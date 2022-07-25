@@ -96,7 +96,7 @@ const Sidebar = () => {
                 <div className="sidebar__title">
 
                   <img src={icon__cate} alt=" icon category" />    
-                    <h3 className={`${onSidebar.onSidebar ? ('hidden'):('')}`}>CATEGORY</h3> 
+                    <h3 className={`${onSidebar.onSidebar ? ('hidden'):('')}`}>DANH MỤC</h3>  
                 </div>
                 <div className="sidebar__content">
                     <ul className="content__type">
@@ -112,7 +112,7 @@ const Sidebar = () => {
                         (<img src={ap} alt="apply" title="apply data" /> )
                       :     
                        (listValueField.loading ? 
-                        ( <p>Apply</p>): 
+                        ( <p>Xác Nhận</p>): 
                           
                           
                         ( <img src={loading} alt="loading" title="loading"/>)

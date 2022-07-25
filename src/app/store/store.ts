@@ -17,6 +17,7 @@ import filterSlice  from "pages/Report/slice/filterSlice";
 import tableDataAction  from "pages/Report/slice/tableDataSlice";
 import groupSlice  from "pages/Report/slice/getCtGroupSlice";
 import onSidebarSlice from "pages/Report/slice/onSidebar";
+import getDateFilterSlice from "pages/Report/slice/getDateFilterSlice";
 
 const sagaMiddleware = createSagaMiddleware()
 export const store = configureStore({
@@ -37,7 +38,7 @@ export const store = configureStore({
    clickApply : applys,
    categoryGroup: groupSlice,
    onSidebar: onSidebarSlice,
-   
+   datefilter: getDateFilterSlice
    
   
    
