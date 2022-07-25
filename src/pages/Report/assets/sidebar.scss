@@ -41,6 +41,7 @@
                 overflow: hidden;
                  text-overflow: clip; 
                 margin-left:0.5vw;
+                height: 1vw;
                font-size:1vw;
                color:$font-color;
                transition: opacity 0.5s linear, 0.3s visibility ease;
@@ -344,9 +345,7 @@
                     color:black;
                     cursor: pointer;
                     text-align: center;
-                    :nth-child(1){
-                        transition: display 1s ease;
-                    }
+                
                     p{
                         font-size: 1.5vw;
                         font-weight: 600;
