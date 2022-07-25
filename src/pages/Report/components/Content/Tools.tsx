@@ -375,7 +375,7 @@ const filtertest= ()=>{
                               style={{ marginRight: 8 }}
                               checked={selected}
                             />
-                            {option.emp_name}
+                             {` ${option.emp_code} - ${option.emp_name}`}
                           </React.Fragment>
                         )}
                         
@@ -426,7 +426,7 @@ const filtertest= ()=>{
                               style={{ marginRight: 8 }}
                               checked={selected}
                             />
-                            {option.cus_name}
+                            {` ${option.cus_code} - ${option.cus_name}`}
                           </React.Fragment>
                         )}
                         

@@ -76,8 +76,8 @@ import { height } from '@mui/system';
       
       whiteSpace: 'normal',
     },
-    '&.css-1r5v9hu-MuiDataGrid-root .MuiDataGrid-columnHeaderTitleContainerContent':{
-      margin: '0 auto'
+    '& .MuiDataGrid-columnHeaderTitleContainerContent':{
+      margin: '0 auto !important'
     },
     '& .MuiDataGrid-row': {
       fontSize: '12px',

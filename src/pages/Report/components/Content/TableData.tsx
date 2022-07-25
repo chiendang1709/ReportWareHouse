@@ -4,62 +4,7 @@ import { styleMui } from 'components/common/styleMui';
 import { DataGrid, GridColDef,GridToolbarContainer,GridToolbar,GridCellParams,GridToolbarExport,GridToolbarColumnsButton,GridToolbarFilterButton,GridToolbarDensitySelector} from '@mui/x-data-grid';
 import Tooltip from '@mui/material/Tooltip';
 
-// const nameTV = [
-//   {
-    
-//     key_code: "id",
-//     value_code: "STT"
-//   },
-//   {
-    
-//     key_code: "profit",
-//     value_code: "Lợi Nhuận"
-//   },
-//   {
-   
-//     key_code: "net_profit",
-//     value_code: "Lợi Nhuận Ròng"
-//   },
-//   {
-    
-//     key_code: "gross_profit",
-//     value_code: "Lợi Nhuận Gộp"
-//   },
-//   {
-   
-//     key_code: "total_including_tax",
-//     value_code: "Doanh Thu Sau Thuế"
-//   },
-//   {
-   
-//     key_code: "total_excluding_tax",
-//     value_code: "Doanh Thu Trước Thuế"
-//   },
-//   {
-//     key_code: "departments_name",
-//     value_code: "Bộ phận"
-//   },
-//   {
-   
-//     key_code: "month_name",
-//     value_code: "Tháng"
-//   },
-//   {
-   
-//     key_code: "year",
-//     value_code: "Năm"
-//   },
-//   {
-   
-//     key_code: "time",
-//     value_code: "Thời Gian"
-//   },
-//   {
-//     key_code: "total",
-//     value_code: "Tổng"
-//   }
-  
-// ]
+
 
 const TableData = () => {
 
@@ -102,6 +47,21 @@ const TableData = () => {
       },{
         key_code: "YEAR",
         value_code: "Năm",
+        table_name: "Thêm",
+      },
+      {
+        key_code: "dept_code",
+        value_code: "Mã Bộ Phận",
+        table_name: "Thêm",
+      },
+      {
+        key_code: "emp_code",
+        value_code: "Mã Nhân Viên",
+        table_name: "Thêm",
+      },
+      {
+        key_code: "cus_code",
+        value_code: "Mã Khách Hàng",
         table_name: "Thêm",
       }
   ];
