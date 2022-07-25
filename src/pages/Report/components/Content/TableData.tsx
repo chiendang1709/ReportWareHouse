@@ -119,9 +119,9 @@ const TableData = () => {
     {
       listValueField.listData.map((valueField:any, index:number)=> {
         let year =valueField[`${dateFilter}_year`]
-        let month = valueField["MONTH"]
+        let month = valueField[`${dateFilter}_month`]
         let coppy ={...valueField}
-        coppy.DATE = `${month}/ ${year}`
+        coppy.DATE = `${month}/${year}`
         coppy.total = ""
         delete coppy[`${dateFilter}_year`]
         delete coppy[`${dateFilter}_month`]

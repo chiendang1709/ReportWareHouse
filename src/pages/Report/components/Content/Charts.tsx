@@ -155,7 +155,7 @@ for(let i =0; i<value.length;i ++){
        
         for(let y = 0; y <value.length;y++)
         {  
-         let list =`${value[y][name]} - ${value[y][group.replace("code","name")]}`
+         let list =`${value[y][group.replace("code","name")]}`
          listValueAlphabet.push(list) 
         }
       }
