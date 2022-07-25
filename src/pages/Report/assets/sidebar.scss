@@ -344,6 +344,9 @@
                     color:black;
                     cursor: pointer;
                     text-align: center;
+                    :nth-child(1){
+                        transition: display 1s ease;
+                    }
                     p{
                         font-size: 1.5vw;
                         font-weight: 600;
@@ -354,7 +357,7 @@
                         text-overflow: clip; 
                     }
                     img {
-                        width: 4vw;
+                        width: 2vw;
                         height: 2vw;
                         margin: auto 0;
                     }

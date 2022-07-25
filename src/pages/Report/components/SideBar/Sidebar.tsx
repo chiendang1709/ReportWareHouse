@@ -106,16 +106,18 @@ const Sidebar = () => {
         
             <div className="sidebar__footer" >
                   <button  onClick={()=>dispatch(apply.getApply("Apply"))}>                   
-                      { onSidebar.onSidebar ?
+                  (listValueField.loading ? 
+                      { listValueField.loading  ?
 
+                      ( onSidebar.onSidebar? 
                         (<img src={ap} alt="apply" title="apply data" /> )
                       :     
-                       (listValueField.loading ? 
-                        ( <p>Xác Nhận</p>): 
-                          
-                          
+                        ( <p>Xác Nhận</p>)
+                        
+                      ): 
+          
                         ( <img src={loading} alt="loading" title="loading"/>)
-                      )
+                      
                     }
                      
                   </button>
