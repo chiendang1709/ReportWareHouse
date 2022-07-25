@@ -21,23 +21,40 @@
         display: flex;
         align-items: center ;
             .sidebar__button{
-                width: 1.3vw;
+                width: 3vw;
                 height: 1.3vw;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1.5vw;
+                border-radius: 3px;
+                
                 img{
-                    width: 100%;
+                    width: 1.3vw;
                     height: auto;
+                }
+                &:hover{
+                    background-color:  $button !important;
+                    img{
+                        
+                            filter: $icon-hover;
+                    }
                 }
             }
             .tool__button{
                 margin-left: auto;
-                width: 7vw;
+                width: 10vw;
                 height: 1.3vw;
                 display: flex;
                 align-items: center;
-                font-size: 1vw;
-                text-transform:uppercase;
+                
                 padding: 1vw;
                 border-radius: 6px;
+                p{
+                    font-size: 1vw;
+                    text-transform:uppercase;
+                    width: 6vw
+                }
                 img{
                     margin-left: 1vw;
                     width: 1.3vw;

@@ -20,7 +20,7 @@ import pie from 'assets/images/pie__icon.png'
      return (
         <div className='group__chart'>
             <div className="group__title">
-                TYPE
+                LOẠI CHART
             </div>
             <div className="group__item">
              <button className={`chart__button ${ typeCharts.typeChart=='bar' ? 'active__chart' : ''}`} 

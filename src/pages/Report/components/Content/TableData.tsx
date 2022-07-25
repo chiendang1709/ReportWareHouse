@@ -73,8 +73,8 @@ const TableData = () => {
   const onTable = useAppSelector(state=> state.onTable) 
   const listValueField = useAppSelector(state=> state.tableData) 
   const listTable = useAppSelector(state => state.table)
-
-
+  const dateFilters = useAppSelector(state => state.datefilter)
+  const dateFilter = dateFilters.datefilter
   const [loading, setLoading] = useState(false);
   const [on, setOn] = useState(false);
   const [pageSize, setPageSize] = useState<number>(5);
@@ -97,7 +97,7 @@ const TableData = () => {
       },
       {
         key_code: "DATE",
-        value_code: "Thời Gian",
+        value_code: "Khoảng Thời Gian",
         table_name: "Thêm",
       },{
         key_code: "YEAR",
@@ -106,6 +106,8 @@ const TableData = () => {
       }
   ];
 
+  console.log("thang",`${dateFilter}_month`+ `${dateFilter}_year` );
+  
 
   const formatter = new Intl.NumberFormat("it-IT", {
     style: "currency",
@@ -114,29 +116,29 @@ const TableData = () => {
   });
   if(listValueField.listData.length !== 0){
     let nameField =Object.keys(listValueField.listData[0])
-    if(nameField.includes('MONTH') && nameField.includes('YEAR') )
+    if(nameField.includes(`${dateFilter}_month`) && nameField.includes(`${dateFilter}_year`) )
     {
       listValueField.listData.map((valueField:any, index:number)=> {
-        let year =valueField["YEAR"]
+        let year =valueField[`${dateFilter}_year`]
         let month = valueField["MONTH"]
         let coppy ={...valueField}
         coppy.DATE = `${month}/ ${year}`
         coppy.total = ""
-        delete coppy["YEAR"]
-        delete coppy["MONTH"]
+        delete coppy[`${dateFilter}_year`]
+        delete coppy[`${dateFilter}_month`]
         listChange.push(coppy)      
     })
-    } else  if(nameField.includes('MONTH') ==false && nameField.includes('YEAR') )
+    } else  if(nameField.includes(`${dateFilter}_month`) ==false && nameField.includes(`${dateFilter}_year`) )
     {
       listValueField.listData.map((valueField:any, index:number)=> {
-        let year =valueField["YEAR"]
+        let year =valueField[`${dateFilter}_year`]
         let coppy ={...valueField}
         coppy.DATE = `Năm ${year}`
         coppy.total = ""
-        delete coppy["YEAR"]
+        delete coppy[`${dateFilter}_year`]
         listChange.push(coppy)      
     })
-    }else if(nameField.includes('MONTH') ==false && nameField.includes('YEAR') ==false){
+    }else if(nameField.includes(`${dateFilter}_month`) ==false && nameField.includes(`${dateFilter}_year`) ==false){
       listValueField.listData.map((valueField:any, index:number)=> {
         let coppy ={...valueField}
         coppy.total = ""
@@ -276,7 +278,7 @@ const TableData = () => {
        <div className='item card table'>
               <div className='header__item'>
                   <div className='title__item'>
-                        Data List
+                        Bảng Dữ Liệu
                   </div>
               </div>
               <div className='table__item'>

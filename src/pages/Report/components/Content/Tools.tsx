@@ -21,6 +21,7 @@ import ex from 'assets/images/export__icon.png'
 import loading from 'assets/images/loading.svg'
 import { color } from '@mui/system';
 import { groupAction } from 'pages/Report/slice/getCtGroupSlice';
+import { dateFilterAction } from 'pages/Report/slice/getDateFilterSlice';
 
 type getdata = (arrayCoppy:string[], nameDep: string) => void;
 // props:{ callBackData:getdata}
@@ -50,7 +51,7 @@ const Tools = () => {
   let number_selecteds:string[] = []
   let string_selecteds:string[]=[] 
   const [date_filters,setdateFilter]=useState("NULL");
-  const [limit,setLimit ] =useState("");
+  const [limit,setLimit ] =useState("0");
   const [compare ,setCompare]=useState("NULL");
   const [depart, setDepart] = useState<any[]>([]);
   const [customer, setCustomer] = useState<any[]>([]);
@@ -64,8 +65,7 @@ const Tools = () => {
   const [dateFrom, setDateFrom]= useState("")
   const [dateTo, setDateTo]= useState("") 
   
-  const [numberSL,setNumberSL]=useState("")
-  const [stringSL,setStringSL]=useState("")
+  const [numberSL,setNumberSL]=useState("NULL")
   const nameTV= [...listTable.listTable];
    //getListDept
   useEffect(() => {dispatch(departmentAction.getDepartment())}, []);
@@ -177,28 +177,35 @@ const filtertest= ()=>{
   let date2 =dateTo.split('-')
   if(checFields.includes("opt_bid_open_date") == false && checFields.includes("opt_bid_close_date") == false  && checFields.includes("scon_date_locked") == false  && checFields.includes("scon_posting_date") == false){
     return toast.error(`${error.ERROR_NO_CHECK_DATEFILTER}`)
-  }
-  if(date1.length == 0 || date2.length == 0){
-    return toast.error(`${error.ERROR_NULL_DATE}`);
   }else {
-  if(date1[0] > date2[0]){
-    return toast.error(`${error.ERROR_INPUT_YEAR}`);
-  } 
-  else if(date1[0]===date2[0] && date1[1]> date2[1]) {
-    return toast.error(`${error.ERROR_INPUT_MONTH}`);
-  }
-  else if (date1[0]=== date2[0] && date1[1]===date2[1] && date1[2]> date2[2]) {
-    return toast.error(`${error.ERROR_INPUT_DAY}`);
-  } 
-  if( date1[0] !== date2[0]){
-    type_filters= "YEAR"
-  }else if(date1[1] !== date2[1] && date1[0] === date2[0]){
-    type_filters= "MONTH"
-  }else if(date1[2] !== date2[2] && date1[1] === date2[1] && date1[0] === date2[0]){
-    type_filters= "DAY"
-  }
-  from_dates =date1.join("/")
-  to_dates  =date2.join("/")  
+    if(dateFrom === "" && dateTo === ""){
+      return toast.error(`${error.ERROR_NULL_DATE}`);
+    }else {
+    if(date1[0] > date2[0]){
+      return toast.error(`${error.ERROR_INPUT_YEAR}`);
+    } 
+    else if(date1[0]===date2[0] && date1[1]> date2[1]) {
+      return toast.error(`${error.ERROR_INPUT_MONTH}`);
+    }
+    else if (date1[0]=== date2[0] && date1[1]===date2[1] && date1[2]> date2[2]) {
+      return toast.error(`${error.ERROR_INPUT_DAY}`);
+    } else if(date_filters == "NULL"){
+      return toast.error(`${error.ERROR_INPUT_DATE_FILTER}`);
+    } else {
+      if( date1[0] !== date2[0]){
+        type_filters= "YEAR"
+      }else if(date1[1] !== date2[1] && date1[0] === date2[0]){
+        type_filters= "MONTH"
+      }else if(date1[2] !== date2[2] && date1[1] === date2[1] && date1[0] === date2[0]){
+        type_filters= "DAY"
+      }
+
+      from_dates =date1.join("/")
+      to_dates  =date2.join("/")  
+    }
+   
+    
+    }
   }
 
     if(depart.length >0){
@@ -214,20 +221,37 @@ const filtertest= ()=>{
       extrass.push(changelistFielter(mvv,"ws_code"));
     }
     //check date filter
-    if(date_filters== "NULL"){
-      return toast.error(`${error.ERROR_INPUT_DATE_FILTER}`);
-    }
+    
     //check limit
-    if(compare !=="NULL" && limit ===""){
-      return toast.error(`${error.ERROR_INPUT_LIMIT}`);
-    } else if(compare =="NULL" && limit !=="") {
-      return toast.error(`${error.ERROR_INPUT_LIMIT}`);
+    // if(compare !=="NULL" && limit ===""){
+    //   return toast.error(`${error.ERROR_INPUT_LIMIT}`);
+    // } else if(compare =="NULL" && limit !=="") {
+    //   return toast.error(`${error.ERROR_INPUT_LIMIT}`);
+    // }
+    console.log("limit1", numberSL);
+    console.log("limit2", compare);
+    console.log("limit3", limit);
+    if(numberSL !== "NULL"){
+      if(limit !=="0" && compare !=="NULL")
+      {
+        setLimit(limit)
+        setCompare(compare)
+      }else {
+        return toast.error(`${error.ERROR_INPUT_LIMIT}`);
+      }
+    } else {
+      if(limit ==="0" && compare ==="NULL"){
+        setLimit(limit)
+        setCompare(compare)
+      }else {
+        return toast.error(`${error.ERROR_INPUT_LIMIT}`);
+      }
     }
     //group
     checkGroup(group)
     json = 
     {
-      number_selected: numberSL.length >0 ? numberSL : number_selecteds.length >0 ? number_selecteds.join(","):  "NULL",
+      number_selected: numberSL !== "NULL" ? numberSL : number_selecteds.length >0 ? number_selecteds.join(","):  "NULL",
       string_selected: string_selecteds.length >0 ? string_selecteds.join(","):  "NULL",
       date_filter:date_filters,
       from_date:from_dates,
@@ -235,10 +259,10 @@ const filtertest= ()=>{
       group_by:group_bys ? group_bys:"NULL" ,
       type_filter:type_filters ?type_filters :"NULL",
       extras:extrass.length > 0 ? extrass.join(" AND "): "1=1",
-      limits: limit ? limit :"NULL",
-      desc: compare ? compare :"NULL"
+      limits: limit !=="0" ? limit :"NULL",
+      desc: compare 
     }
-
+     dispatch(dateFilterAction.getDateFilter(date_filters))
      dispatch(filterAction.getFilter(json))
      dispatch(groupAction.getGroup(group_bys))
     }
@@ -315,7 +339,7 @@ const filtertest= ()=>{
                             { ...restParams }                                          
                             className={classes.textField}
                             
-                            label="Department" 
+                            label="Bộ Phận" 
                             variant="outlined"
                             placeholder="enter"                                                                    
                             multiline
@@ -365,7 +389,7 @@ const filtertest= ()=>{
                             <TextField 
                             { ...restParams }                                          
                             className={classes.textField}
-                            label="Staff" 
+                            label="Nhân Viên" 
                             variant="outlined"
                             placeholder="enter"                                                                    
                             multiline
@@ -416,7 +440,7 @@ const filtertest= ()=>{
                             <TextField 
                             { ...restParams }                                          
                             className={classes.textField}
-                            label="Customer" 
+                            label="Khách Hàng" 
                             variant="outlined"
                             placeholder="enter"                                                                    
                             multiline
@@ -488,17 +512,17 @@ const filtertest= ()=>{
                     <div className='filter__time'>
                       <div className='time__date'>
                           <div className="time__group">
-                               <label htmlFor="day" className="time__label"> From</label>
+                               <label htmlFor="day" className="time__label"> Từ </label>
                                <input type="date"  min="2018-01-01" max="2030-01-01" value={dateFrom} className="time__field" placeholder="Day" name="day" id='day' onChange={(e)=> setDateFrom(e.target.value)} required />
                           </div>
                           <div className="time__group">
-                               <label htmlFor="day" className="time__label"> To </label>
+                               <label htmlFor="day" className="time__label"> Đến </label>
                                <input type="date" min="2018-01-01" max="2030-01-01" value={dateTo} className="time__field" placeholder="Day" name="day" id='day'  onChange={(e)=> setDateTo(e.target.value)} required />
                           </div>
                         </div>
                          
                         <select id='selectGroup' className='tool__group'  onChange={(e)=> setdateFilter(e.target.value )}>
-                          <option  value="NULL"> Date Filter </option> 
+                          <option  value="NULL"> Loại Thời Gian </option> 
                           {dateFilter()}   
                         </select>
 
@@ -506,7 +530,7 @@ const filtertest= ()=>{
                       
                         <select id='selectGroup' className='tool__group'  onChange={(e)=> setGroup(e.target.value )}>
                           <option  value="NULL"> Group by </option> 
-                          <option id='time_name' value="time_code"> Time </option>
+                          <option id='time_name' value="time_code"> Thời Gian </option>
                           <option id='dept_name' value="dept_code"> Bộ Phận </option>
                           <option id='emp_name' value="emp_code" > Nhân Viên </option> 
                           <option id='cus_name' value="cus_code"> Khách Hàng </option>
@@ -517,22 +541,22 @@ const filtertest= ()=>{
                     <div className='group__tool'>
 
                       <select id='select' className='tool__top' onChange={(e)=> setNumberSL(e.target.value )} >
-                           <option value="NULL"> Number Select </option> 
+                           <option value="NULL"> Thông Số  </option> 
                             {addOption(number_selecteds)}               
                       </select>
                       
                       <select id='select' className='tool__top' onChange={(e)=> setCompare(e.target.value )}>
-                          <option value="NULL"> Compare </option> 
+                          <option value="NULL"> Theo </option> 
                           <option value="ASC"> Min </option>
                           <option value="DESC"> Max </option>                          
                       </select>
                       <input type="number" value={limit}   onChange={(e)=> setLimit(String(Math.round(Number(e.target.value))) )} placeholder="Top"></input>
 
                       <div  className='group__button'>
-                      <button id="filter" onClick={()=>filtertest()} >Fitler  {
+                      <button id="filter" onClick={()=>filtertest()} >Lọc  {
                         listFilter.loading ? (""): ( <img src={loading} alt="loading" title="loading"/>)
                       } </button> 
-                      <button id="clear" onClick={()=>clear()} >Clear </button>   
+                      <button id="clear" onClick={()=>clear()} >Làm Mới </button>   
                       </div>
                                         
                       
