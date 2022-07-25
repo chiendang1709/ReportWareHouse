@@ -2,22 +2,28 @@
 .sidebar{
     background-color: $primary-bg;
      position: fixed;
-    width: 15%;
+    width: 15vw;
     height: 100%;
     border-right:  1px solid $border-color;
     box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
     0 4px 6px -2px rgba(71, 63, 79, 0.16);
     z-index: 4;
+    transition: width 0.3s linear;
     .sidebar__header{  
         border-bottom: 1px solid $border-color;
         padding:1vw;
         width: 100%;
-        position: relative;
+        display: flex;
+        flex-direction: column;
 
         .sidebar__logo{
+            display: flex;
+            align-self: center;
+            justify-content: center;
             width: 10vw;
             height: 5.5vw;
             margin: auto;
+            transition: width 0.2s linear, height 0.2s linear;
                img{
                    width: 100%;
                    height: 100%;                
@@ -28,13 +34,16 @@
             display: flex;
             align-items: center;
             img{
-               
+                margin-left:0.3vw;
                 width: 1.5vw;
             }
             h3{
+                overflow: hidden;
+                 text-overflow: clip; 
                 margin-left:0.5vw;
                font-size:1vw;
                color:$font-color;
+               transition: opacity 0.5s linear, 0.3s visibility ease;
             }
            
         }
@@ -50,6 +59,9 @@
                     filter: $icon-hover;
                 }
     }
+    .hidden{
+        visibility: hidden  ;
+    }
     .sidebar__content{
         display: flex;
         position: relative;
@@ -60,6 +72,9 @@
                     .active{
                         background-color: $second-bg !important;
                         color:$font-color-2 !important;
+                        p{
+                            color:$font-color-2 !important;
+                        }   
                         img{
                             filter: $icon-hover;
                         }
@@ -68,23 +83,39 @@
                         .content__item{
                              width: 100%;
                              height: auto;
-                             padding: 0.5vw;
+                             padding: 0.5vw 0;
+                             
                               .content__btn{  
-                                margin:auto;   
+                                display: flex; 
+                                align-items: center;
                                 text-align: left;                    
                                 border: none;
+                                border-radius: 6px;
                                 background-color: transparent;
                                 cursor: pointer;
                                 width: 100%;
                                 height: 100%;
-                                font-size:0.8vw;
-                                font-weight: 600;
                                 color: $font-color;
-                                padding: 1vw 1.5vw; 
-                                text-transform: capitalize;
+                                padding: 1vw 0.5vw;
+                                transition: width 0.2s linear, height  1s linear;
+                                    p{
+                                        font-size:0.7vw;
+                                        font-weight: 600;
+                                        color: $font-color;
+                                        height: 0.8vw;
+                                        text-transform: capitalize;
+                                         overflow: hidden;
+                                        text-overflow: clip; 
+                                        opacity: 1;
+                                        transition: opacity 0.5s linear, 0.3s visibility ease;
+                                
+                                    }
                                     &:hover {
                                     background-color: $second-bg;
                                     color: $font-color-2;
+                                    p{
+                                        color: $font-color-2;
+                                    }
                                     img{
                                         filter: $icon-hover;
                                     }
@@ -94,8 +125,15 @@
                                 }
                                 img {
                                     height: 1vw;
+                                   
+                                }
+                                .cate__item{
                                     width: 1vw;
-                                    float: right;
+                                    margin-right: 0.5vw;
+                                }
+                                .arrow__item{
+                                    margin-left: auto;
+                                    opacity: 1;
                                 }
 
                               }
@@ -109,7 +147,7 @@
                                 background-color: #343A40;
                                 position:absolute;
                                 width: 100%;
-                                top: -40px;
+                                top: -2.7vw;
                                 text-align: left;
                                 border-right:  1px solid $border-color;
                                 border-left:  1px solid $border-color;
@@ -141,13 +179,15 @@
                                      
                                 visibility: visible;
                                 opacity:1;
-                                left: 13.8vw;
+                                left: 14vw;
                                 max-height: 40vw;
+                                width: 12.79vw;
                                 .submenu__item{
                                     min-height: 3vw;
                                     max-height: 35vw;                                  
                                     flex-direction: column;
-                                   
+                                    width: 100%;
+
                                     .submenu__btn{
                                         text-align: left;
                                         font-weight:600;
@@ -155,16 +195,17 @@
                                         left: 0;
                                         transform: none;                                           
                                         text-transform: capitalize;
-                                        border-top: 1px solid $border-color;                              
+                                        border-top: 1px solid $border-color;
+                                        border-radius: 0;                              
                                         opacity: 1 ;
                                         font-size: 0.8vw;
                                         height: 3vw;
-                                        
+                                        background-color: $primary-bg;
                                         
                                         img{
                                             height: 1vw;
                                             width: 1vw; 
-                                            float: right;
+                                            margin-left: auto;
                                              transition: transform 1s;
                                            
                                         }
@@ -190,11 +231,13 @@
                                       
                                     }                                           
                                     .content__field{
+                                        background-color: $primary-bg;
                                         overflow-y: scroll;
                                         visibility: hidden;
                                         opacity: 0;                                       
                                         max-height:0;
                                         transition: visibility 0s,  max-height 0.4s linear, opacity 0.3s linear;
+                                        width: 100%;
                                         &::-webkit-scrollbar{
                                             opacity: 1;
                                             width: 2px;
@@ -219,7 +262,7 @@
                                                     border: none;
                                                     opacity: 1 ;
                                                     font-size: 0.7vw ;
-                                                    background-color: transparent;
+                                                    background-color: $primary-bg;
                                                     cursor: pointer;
                                                     display: flex;
                                                     text-align: left;
@@ -285,29 +328,29 @@
     }
     .sidebar__footer{
         border-top: 1px solid $border-color;
-        padding:1vw;
+        padding:1vw 2vw;
         width: 100%;
         position: relative;
                 button{
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    width: 10vw;
-                    margin: 0.5vw 1vw;
+                    width: 100%;
+                    margin: 0.5vw 0;
                     padding: 0.5vw;
                     border:  1px solid transparent;
                     border-radius:10px;
                     background-color: $button;
                     color:black;
-                    font-size: 1.5vw;
-                    font-weight: 600;
                     cursor: pointer;
                     text-align: center;
                     p{
-                        width: 100%;
-                        height:100%;
+                        font-size: 1.5vw;
+                        font-weight: 600;
                         color: $font-color-2;
                         margin: auto 0;
+                        overflow: hidden;
+                        text-overflow: clip; 
                     }
                     img {
                         width: 4vw;
@@ -325,8 +368,53 @@
     }
 
 }
-.sidebar--small{
+.sidebar--off{
+    width:4vw;
+    .sidebar__header{
+        padding: 0.5vw;
+        .sidebar__logo{
+            width: 100%;
+            height: 3vw;
+        }
+        .logo__small{
+            width: 3vw !important;
+        }
+        .sidebar__title{
+            img{
+                margin-left: 0.8vw;
+            }
+        }
+        .sidebar__content{
+            min-height: 20vh;
+            .show{
+                left: 3.5vw !important;
+            }
+            .content__btn{
+                justify-content: center;
+                .cate__item{
+                    margin-right: 0px !important; 
+                    margin-left: 0.5vw;
+                }
+                p{
+                    width: 0px;
+                    font-size: 0!important;
+                }
+                .arrow__item{
+                    width: 0px;
+                    height: 0px!important;
+                }
+               
+
+            }
+        }
+    }
+    
     .hidden{
         visibility: hidden;
+        opacity: 0!important;
+        height: 0;
+    }
+    .sidebar__footer{
+        padding:0.5vw 0.5vw;
     }
 }

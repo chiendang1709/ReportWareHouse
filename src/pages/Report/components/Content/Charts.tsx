@@ -390,9 +390,13 @@ const printPDF = () => {
                     Chart
               </div>
               <div className='button__item'>
-              <button id="print" onClick={printPDF}>
+                <div className="button__print">
+                <button id="print" onClick={printPDF}>
                              <img src={ex} alt="export" title="export pdf" />
-                    </button>
+                   </button>
+
+                </div>
+           
                     <ChartsType/>
                    
               </div>

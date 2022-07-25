@@ -16,6 +16,7 @@ import getMWtmentSlice from "pages/Report/slice/getMWSlice";
 import filterSlice  from "pages/Report/slice/filterSlice";
 import tableDataAction  from "pages/Report/slice/tableDataSlice";
 import groupSlice  from "pages/Report/slice/getCtGroupSlice";
+import onSidebarSlice from "pages/Report/slice/onSidebar";
 
 const sagaMiddleware = createSagaMiddleware()
 export const store = configureStore({
@@ -35,6 +36,8 @@ export const store = configureStore({
    onTable: onTableSlice,
    clickApply : applys,
    categoryGroup: groupSlice,
+   onSidebar: onSidebarSlice,
+   
    
   
    

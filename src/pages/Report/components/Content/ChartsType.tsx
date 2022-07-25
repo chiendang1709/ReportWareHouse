@@ -19,7 +19,10 @@ import pie from 'assets/images/pie__icon.png'
 
      return (
         <div className='group__chart'>
-       
+            <div className="group__title">
+                TYPE
+            </div>
+            <div className="group__item">
              <button className={`chart__button ${ typeCharts.typeChart=='bar' ? 'active__chart' : ''}`} 
 
                         onClick={()=>{dispatch(getTypeChart('bar')) }}>
@@ -38,9 +41,9 @@ import pie from 'assets/images/pie__icon.png'
                         onClick={()=>{dispatch(getTypeChart('line'))}}>
                    
                             <img src={line} title="choose line chart"  alt="line" />
-                           
-                              
+                                                  
             </button>
+            </div>
         </div>
    )
  }

@@ -7,8 +7,9 @@ import { listCategory, listTable } from 'interfaces/components'
 import { tableAction } from 'pages/Report/slice/tableSlice'
 import arrow from 'assets/images/arrow__icon.png'
 import loading from 'assets/images/loading.svg'
+import cate from 'assets/images/cate__icon__2.png'
  
-const MenuItems = (props:{listCategory:listCategory}) => {
+const MenuItems = (props:{listCategory:listCategory, sidebar:boolean}) => {
  
   let nameTable: string[]=[]  
   const dispatch = useAppDispatch()
@@ -52,15 +53,16 @@ const MenuItems = (props:{listCategory:listCategory}) => {
  
   const categorys = () => (  
       <li  className='content__item' ref={ref} >
-          
             <button className={`content__btn ${dropright ? "active": ""}`}aria-expanded={dropright ? "true" : "false"}
               onClick={()=> { setDropright((prev) => !prev);dispatch(tableAction.getListTables(props.listCategory.id)) ;}}>
-              {props.listCategory.reports_category_name}
+              <img className='cate__item' src={cate} alt="cate image" />
+
+              <p className={`${props.sidebar ? ('hidden'):('')}`}> {props.listCategory.reports_category_name} </p>
               
-              <img src={arrow} alt="arrow" title="click ra"/>
+              <img className={` arrow__item ${props.sidebar ? ('hidden'):('')}`} src={arrow} alt="arrow" title="click ra"/>
             </button>
             
-              <ul  className={`content__table  ${dropright ? "show" : ""}`}>
+              <ul  className={`content__table  ${dropright ? "show" : ""} `}>
 
                 { 
                   listTable.loading !== true ?( <img src={loading} alt="loading" title="loading"/>):(tables())

@@ -1,6 +1,7 @@
+import bg from 'assets/images/background.jpg'
 import React from 'react'
 import logo from 'assets/images/logo.png'
-import bg from 'assets/images/background.jpg'
+
 
 const Banner = () => {
   return (  

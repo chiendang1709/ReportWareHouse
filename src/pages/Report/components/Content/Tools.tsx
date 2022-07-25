@@ -277,7 +277,6 @@ const filtertest= ()=>{
   return (
    
   <Fragment>
-        <div className="tool__header"> </div>
         <div className='tool__component' >
                     <div className='filter__name'>
                       <div className='filter_name--col'>
