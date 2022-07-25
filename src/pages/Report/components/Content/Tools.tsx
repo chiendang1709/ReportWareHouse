@@ -136,12 +136,19 @@ const changelistFielter = (list:any[], name:string)=>{
 //clear
     
     const clear = ()=>{
+     
       setDepart([]) 
       setCustomer([]) 
       setStaff([]) 
       setMvv([]) 
       setDateFrom("")
       setDateTo("")
+      setCompare("NULL")
+      setGroup("NULL")
+      setNumberSL("NULL")
+      setdateFilter("NULL")
+      setLimit("0")
+
     }
     useEffect(()=>{
   
@@ -519,14 +526,14 @@ const filtertest= ()=>{
                           </div>
                         </div>
                          
-                        <select id='selectGroup' className='tool__group'  onChange={(e)=> setdateFilter(e.target.value )}>
+                        <select id='selectTime' className='tool__group' value={date_filters}  onChange={(e)=> setdateFilter(e.target.value )}>
                           <option  value="NULL"> Loại Thời Gian </option> 
                           {dateFilter()}   
                         </select>
 
                       <div className='br' ></div>
                       
-                        <select id='selectGroup' className='tool__group'  onChange={(e)=> setGroup(e.target.value )}>
+                        <select id='selectGroup' className='tool__group'  value={group}  onChange={(e)=> setGroup(e.target.value )}>
                           <option  value="NULL"> Group by </option> 
                           <option id='time_name' value="time_code"> Thời Gian </option>
                           <option id='dept_name' value="dept_code"> Bộ Phận </option>
@@ -536,20 +543,21 @@ const filtertest= ()=>{
                         </select>
                      
                     </div>
+                    <div className='brH'></div>
                     <div className='group__tool'>
 
-                      <select id='select' className='tool__top' onChange={(e)=> setNumberSL(e.target.value )} >
+                      <select id='selectNumber' className='tool__top'  value={numberSL} onChange={(e)=> setNumberSL(e.target.value )} >
                            <option value="NULL"> Thông Số  </option> 
                             {addOption(number_selecteds)}               
                       </select>
                       
-                      <select id='select' className='tool__top' onChange={(e)=> setCompare(e.target.value )}>
+                      <select id='selectCompare' className='tool__top'  value={compare} onChange={(e)=> setCompare(e.target.value )}>
                           <option value="NULL"> Theo </option> 
                           <option value="ASC"> Min </option>
                           <option value="DESC"> Max </option>                          
                       </select>
                       <input type="number" value={limit}   onChange={(e)=> setLimit(String(Math.round(Number(e.target.value))) )} placeholder="Top"></input>
-
+                      <div className='br1' ></div>
                       <div  className='group__button'>
                       <button id="filter" onClick={()=>filtertest()} >Lọc  {
                         listFilter.loading ? (""): ( <img src={loading} alt="loading" title="loading"/>)

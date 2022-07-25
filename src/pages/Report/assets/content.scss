@@ -225,15 +225,7 @@
                               } 
                         }
                     }
-                    .br {
-                        position: relative;
-                        
-                        margin:10px 0px 10px;
-                        border-radius: 4px;
-                        background-color: #C4C4C4;
-                        width: 2px;
-                        height: auto;
-                    }
+                    
                     .tool__group {
                         position: relative;
                         padding: 5px 10px;
@@ -289,7 +281,7 @@
                         display: flex;
                         margin-left: auto;
                         button {
-                            margin:5px 5px 10px ;
+                            margin:10px 5px 10px ;
                             position: relative;
                             background-color:$button;
                             padding: 5px 10px;
@@ -477,7 +469,32 @@
 //    .MuiAutocomplete-popper{
 //     display: none !important;
 //   }
-   
+.br {
+    position: relative;
+    
+    margin:10px 0px 10px;
+    border-radius: 4px;
+    background-color: #C4C4C4;
+    width: 1px;
+    height: auto;
+}
+.br1 {
+    position: relative;
+    
+    margin:10px 10px 10px 0px;
+    border-radius: 4px;
+    background-color: #C4C4C4;
+    width: 1px;
+    height: auto;
+}
+.brH {
+  
+    position: relative;
+    margin:5px 15px 5px;
+    border-radius: 4px;
+    background-color: #C4C4C4;
+    height: 1px;
+}
 }
 .content--off{
     width: 96%;
