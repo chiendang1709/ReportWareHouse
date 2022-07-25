@@ -106,7 +106,6 @@ const TableData = () => {
       }
   ];
 
-  console.log("thang",`${dateFilter}_month`+ `${dateFilter}_year` );
   
 
   const formatter = new Intl.NumberFormat("it-IT", {

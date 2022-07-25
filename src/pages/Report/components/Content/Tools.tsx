@@ -228,9 +228,7 @@ const filtertest= ()=>{
     // } else if(compare =="NULL" && limit !=="") {
     //   return toast.error(`${error.ERROR_INPUT_LIMIT}`);
     // }
-    console.log("limit1", numberSL);
-    console.log("limit2", compare);
-    console.log("limit3", limit);
+  
     if(numberSL !== "NULL"){
       if(limit !=="0" && compare !=="NULL")
       {

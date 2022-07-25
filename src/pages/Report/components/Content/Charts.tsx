@@ -60,7 +60,6 @@ const Charts = () => {
   const dateFilters = useAppSelector(state => state.datefilter)
   const dateFilter = dateFilters.datefilter
 
- console.log("filte",listFilter);
  
  
   const [types, setType] = useState<ChartType>('bar');
@@ -121,8 +120,7 @@ for(let i =0; i<value.length;i ++){
     } 
    }
   }
-    
-  console.log("thang",`${dateFilter}_month`+ `${dateFilter}_year` );
+  
    
     //getAlphabet
     const getAlphabet =(name:string, group :string)=>{
@@ -239,12 +237,10 @@ for(let i =0; i<value.length;i ++){
           let percentage:string =""
           let dataArr = ctx.chart.data.datasets;
     
-          console.log("t", dataArr);
           for(let i =0; i<dataArr.length;i++){
             let sum = 0;
             let total =  dataArr[i].data.reduce((pre: number, val: number)=>pre + val,sum
             ) 
-            console.log("data", ctx.chart.data.datasets[i].data);
             dataArr[i].data.map((item: number)=>{
                 if(value === item){
                   percentage = (item * 100 / total).toFixed(1);

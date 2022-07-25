@@ -64,7 +64,6 @@ const Sidebar = () => {
 
   useEffect(()=>{
     if(arrayCheck.length >0){
-      console.log("check", arrayCheck);
       let array =arrayCheck.join(",")
       dispatch(listValueFieldAction.getlistValueField(array)) 
       dispatch(apply.getApply("null") )  
