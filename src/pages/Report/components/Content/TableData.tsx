@@ -163,7 +163,7 @@ const TableData = () => {
                 <Tooltip title={params.value} >
                  <span className="table-cell-trucate">{converNumber(params)}</span>
                  </Tooltip>
-               ), type: "number",align:'center'} )
+               ), type: "number",align:'center', sortable: false} )
              } else if(nameTV[z].key_code ==`${nameField}` && nameField ==="id") {
               columns.push( {field: 'stt',headerName: 'STT',width: 10,valueGetter: getIndex, sortable: false})
              }   
