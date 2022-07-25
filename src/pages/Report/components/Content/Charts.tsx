@@ -340,8 +340,8 @@ for(let i =0; i<value.length;i ++){
           callback: function(value:any, index:any, values:any) {
             let newthis = this as any;
             let val=  newthis.getLabelForValue(value)
-            if (val.length > 10) {
-                return val.substr(0, 10) + '...';
+            if (val.length > 30) {
+                return val.substr(0, 30) + '...';
             } else if(val.toString() === "undefined") {
                 return "*"
               } if(val.toString() !== "undefined")
