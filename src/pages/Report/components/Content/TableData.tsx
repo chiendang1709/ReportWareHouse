@@ -71,7 +71,7 @@ const TableData = () => {
   const formatter = new Intl.NumberFormat("it-IT", {
     style: "currency",
     currency: "VND",
-    minimumFractionDigits: 1
+    minimumFractionDigits: 0
   });
   if(listValueField.listData.length !== 0){
     let nameField =Object.keys(listValueField.listData[0])
