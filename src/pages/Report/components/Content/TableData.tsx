@@ -15,15 +15,12 @@ const TableData = () => {
   const listChange:any =[]
   const classes = styleMui();
 
-  const onTable = useAppSelector(state=> state.onTable) 
   const listValueField = useAppSelector(state=> state.tableData) 
   const listTable = useAppSelector(state => state.table)
   const dateFilters = useAppSelector(state => state.datefilter)
   const dateFilter = dateFilters.datefilter
-  const [loading, setLoading] = useState(false);
-  const [on, setOn] = useState(false);
   const [pageSize, setPageSize] = useState<number>(5);
-  const [total, setTotal] = useState(0);
+  
   const nameTV= [...listTable.listTable
     ,{
         key_code: "total",
@@ -73,6 +70,7 @@ const TableData = () => {
     currency: "VND",
     minimumFractionDigits: 0
   });
+
   if(listValueField.listData.length !== 0){
     let nameField =Object.keys(listValueField.listData[0])
     if(nameField.includes(`${dateFilter}_month`) && nameField.includes(`${dateFilter}_year`) )
@@ -125,10 +123,7 @@ const TableData = () => {
       return value.value
     }
   }
-  // const getRowIndex = React.useCallback<GridSortApi['getRowIndex']>(
-  //   (id:any) => apiRef.current.getSortedRowIds().indexOf(id),
-  //   [apiRef],
-  // );
+
 
   
   //add STT
@@ -143,14 +138,7 @@ const TableData = () => {
     
   }
  
-  // useEffect(()=>{
-  //   if( listValueField.loading === true){
-  //       return  setLoading(true)
-  //     } else {
-  //       return setLoading(false)
-  //     }
-     
-  // });
+
   const colums =()=>{
     if(listChange.length !== 0){
       let nameField =Object.keys(listChange[0])
@@ -182,21 +170,12 @@ const TableData = () => {
       let sum: number= 0
         for(let j=0; j< listChange.length;j++ ){
              sum = sum + Number(listChange[j][nameField[i]])
-            
-            //  if(typeof(sum) === NaN){
-            //   sum = 0
-            //  }else {
-            //   sum = sum
-            //  }
         }
         if(String(sum) == "NaN"){
           field[nameField[i]]= "-"
         } else {
           field[nameField[i]]= sum
-        }
-         
-        
-         
+        }     
     }
     listChange.unshift(field)
     
@@ -215,7 +194,6 @@ const TableData = () => {
       })
     }
   }
-  
   
   colums();           
   row();  

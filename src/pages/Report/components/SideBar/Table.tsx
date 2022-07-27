@@ -16,11 +16,6 @@ const Table = ( props :{ listTable: listTable[], name: string, dropright:boolean
   const dispatch = useAppDispatch()
   const [submenu, setSubmenu] = useState(false);
   let ref = React.useRef<HTMLLIElement>(null)
-  
-  
-  // useEffect(() => {if(props.dropright === false)
-  //   setSubmenu(false)
-  // });
 
   const listField = () => {
     let list = props.listTable.map((data : listTable, index:number) => {

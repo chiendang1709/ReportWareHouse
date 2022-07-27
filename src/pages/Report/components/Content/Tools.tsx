@@ -1,12 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import TextField from "@material-ui/core/TextField";
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import Checkbox from "@material-ui/core/Checkbox";
 
 import { styleMui } from 'components/common/styleMui';
-import { listDepartment } from 'interfaces/components';
 import { departmentAction } from 'pages/Report/slice/getDeptSlice'
 import { staffAction } from 'pages/Report/slice/getStaffSlice'
 import { customerAction } from 'pages/Report/slice/getCusSlice'
@@ -14,24 +10,19 @@ import { mwAction } from 'pages/Report/slice/getMWSlice'
 
 import { useAppDispatch, useAppSelector } from 'app/store/hooks';
 import { filterAction } from 'pages/Report/slice/filterSlice';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { error } from 'constant/error';
 
-import ex from 'assets/images/export__icon.png'
 import loading from 'assets/images/loading.svg'
-import { color } from '@mui/system';
 import { groupAction } from 'pages/Report/slice/getCtGroupSlice';
 import { dateFilterAction } from 'pages/Report/slice/getDateFilterSlice';
 
-type getdata = (arrayCoppy:string[], nameDep: string) => void;
 // props:{ callBackData:getdata}
 const Tools = () => {
   const selectGroup = ['ws_code','emp_name','dept_name','cus_name']
   const listfieldnumber =["opt_budget","opt_expect_revenue","opt_profit","opt_gross_profit","opt_commit_revenue","scon_ex_ct_value"]
   const dateFilters= ["opt_bid_open_date","opt_bid_close_date","scon_posting_date","scon_date_locked"]
   const classes = styleMui();
-  const checkedIcon = <CheckBoxIcon fontSize="small"   className={classes.checkbox} />;
-  const icon = <CheckBoxOutlineBlankIcon fontSize="small"  className={classes.checkbox}/>;
   const dispatch = useAppDispatch()
 
   const listTable = useAppSelector(state => state.table)
@@ -123,7 +114,7 @@ const Tools = () => {
   
   
 //change 
-const changelistFielter = (list:any[], name:string)=>{
+  const changelistFielter = (list:any[], name:string)=>{
   let ext:string[]= []
  
   for(let i =0 ; i< list.length; i++){
@@ -131,7 +122,7 @@ const changelistFielter = (list:any[], name:string)=>{
   }
   return `${name} IN(${ext.join(",")})`
   
-}
+  }
 
 //clear
     
@@ -176,7 +167,7 @@ const checkGroup = (data:string)=>{
   }
 }
 //filter test
-const filtertest= ()=>{
+  const filtertest= ()=>{
 
   let extrass:string[]=[]
   let json:any={}
@@ -229,12 +220,6 @@ const filtertest= ()=>{
     }
     //check date filter
     
-    //check limit
-    // if(compare !=="NULL" && limit ===""){
-    //   return toast.error(`${error.ERROR_INPUT_LIMIT}`);
-    // } else if(compare =="NULL" && limit !=="") {
-    //   return toast.error(`${error.ERROR_INPUT_LIMIT}`);
-    // }
   
     if(numberSL !== "NULL"){
       if(limit !=="0" && compare !=="NULL")

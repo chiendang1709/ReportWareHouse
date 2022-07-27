@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 
 import { useAppDispatch, useAppSelector } from 'app/store/hooks'
 import { getTypeChart } from 'pages/Report/slice/changeChart'
-import { getOnChart } from 'pages/Report/slice/onChart'
 
 import bar from 'assets/images/bar__icon.png'
 import line from 'assets/images/line__icon.png'
@@ -14,7 +13,6 @@ import pie from 'assets/images/pie__icon.png'
  const ChartsType = () => {
   
      const typeCharts = useAppSelector(state => state.typeChart)
-     const onChart = useAppSelector(state=> state.onChart) 
      const dispatch = useAppDispatch()
 
      return (

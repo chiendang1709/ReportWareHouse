@@ -6,15 +6,12 @@ import logosmall from 'assets/images/logo_title.png'
 import icon__cate from 'assets/images/cate__icon.png'
 import { useAppDispatch, useAppSelector } from 'app/store/hooks'
 import { listValueFieldAction } from 'pages/Report/slice/valueField';
-// import { categoryAction } from 'pages/Report/slice/categorySlice'
 import MenuItem from './MenuItem'
 import { listCategory } from 'interfaces/components'
 import { apply } from 'pages/Report/slice/applySlice'
 import ap from 'assets/images/apply__icon.png'
-// import arrow from 'assets/images/arrow__icon.png'
 import { error } from 'constant/error';
 import loading from 'assets/images/loading.svg'
-import onSidebar from 'pages/Report/slice/onSidebar';
 
 
 

@@ -1,18 +1,18 @@
 import React, { Fragment, useEffect, useState } from 'react'
 
 import { useAppDispatch, useAppSelector } from 'app/store/hooks';
-import { Chart as ChartJS, DatasetController, registerables } from "chart.js";
+import { Chart as ChartJS, registerables } from "chart.js";
 import {ChartType} from 'chart.js';
 import  {Chart}  from 'react-chartjs-2';
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import zoom from "chartjs-plugin-zoom";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 import { chartColors } from 'constant/color';
-import { listChart, listDepartment } from 'interfaces/components';
+import { listChart } from 'interfaces/components';
 import ChartsType from '../Content/ChartsType'
 import ex from 'assets/images/export__icon.png'
 import { tableDataAction } from 'pages/Report/slice/tableDataSlice';
@@ -47,9 +47,7 @@ const Charts = () => {
   let listValueAlphabet: string[]= [] 
   let fieldValues: string[]=[]  
   let x: string[]=[]
- 
-  let ref = React.useRef<HTMLDivElement>(null)
-  
+   
   const dispatch = useAppDispatch()
   const typeCharts = useAppSelector(state => state.typeChart)
   const onChart = useAppSelector(state=> state.onChart) 
@@ -87,7 +85,7 @@ const Charts = () => {
       x=[]
     }
 // x null
-  useEffect(()=>{
+    useEffect(()=>{
       if(value.length ==0){
         setData({
           labels: [],
@@ -96,13 +94,12 @@ const Charts = () => {
         })
       }
     },[value])
-for(let i =0; i<value.length;i ++){
-   
+    for(let i =0; i<value.length;i ++){  
   x.push("*")
-}
-    
-    
-   for(let i =0 ;i<fieldValues.length; i++ ){
+    }
+
+
+    for(let i =0 ;i<fieldValues.length; i++ ){
     const listValueNumber: string[]= []
     if(listfieldnumber.indexOf(fieldValues[i]) !==-1){
       for(let y = 0; y <value.length;y++)
@@ -119,7 +116,7 @@ for(let i =0; i<value.length;i ++){
       }
     } 
    }
-  }
+    }
   
    
     //getAlphabet
@@ -192,14 +189,14 @@ for(let i =0; i<value.length;i ++){
           
     })
   }
- useEffect(()=>{
-  valueChart.map((data)=> { 
-    if(data.de.length >0){
-      datasets.push( insertChart(data))      
-    } 
- })
- },[valueChart])
-
+  useEffect(()=>{
+     valueChart.map((data)=> { 
+       if(data.de.length >0){
+         datasets.push( insertChart(data))      
+       } 
+    })
+    },[valueChart])
+  
    useEffect(()=>
    { 
     if(value.length ==0){
@@ -381,7 +378,7 @@ const printPDF = () => {
 };
  
 
-  //filter
+ 
   
 
   return (
