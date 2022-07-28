@@ -4,12 +4,12 @@ import { Filter } from "../slice/filterSlice";
 
 const dataApi ={
 
-    //lấy danh sách category
+    //lấy danh sách danh mục
     getCategory: async()=> {
           const url ="/category/";
           return await axiosClient.get(url)
      },
-    //lấy danh sách tên bảng
+    //lấy danh sách tên bảng+ trường
     getListTable: async()=> {
           const url ="/reports/get-fields/";
           return await axiosClient.get(url)
@@ -34,16 +34,14 @@ const dataApi ={
       const url ="/datasets/workspace/";
       return await axiosClient.get(url)
     },
-
-
-    //lấy value theo chon 
+    //lấy dữ liệu theo trường đã chọn
     postValueField: async(params: string)=> {
           const json = JSON.stringify({params: params});
           const url ="/datasets/data-custom/";
           console.log("json",json);
           return await axiosClient.post(url, json)
     },
-    //lấy filter theo chon 
+    //lấy dữ liệu theo filter 
     postFilter: async(params: Filter)=> {
           
       const json = JSON.stringify(params);

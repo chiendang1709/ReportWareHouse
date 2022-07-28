@@ -95,27 +95,27 @@ const Charts = () => {
       }
     },[value])
     for(let i =0; i<value.length;i ++){  
-  x.push("*")
+        x.push("*")
     }
 
 
     for(let i =0 ;i<fieldValues.length; i++ ){
-    const listValueNumber: string[]= []
-    if(listfieldnumber.indexOf(fieldValues[i]) !==-1){
-      for(let y = 0; y <value.length;y++)
-      {  
-         const list= value[y][`${fieldValues[i]}`];       
-         listValueNumber.push(list)
+      const listValueNumber: string[]= []
+      if(listfieldnumber.indexOf(fieldValues[i]) !==-1){
+         for(let y = 0; y <value.length;y++)
+         {  
+            const list= value[y][`${fieldValues[i]}`];       
+            listValueNumber.push(list)
+         }
+         for(let z = 0;z<listTable.listTable.length; z++){
+         if(listTable.listTable[z].key_code ==`${fieldValues[i]}`){
+           valueChart.push({
+             name:`${listTable.listTable[z].value_code}`,
+             de: listValueNumber
+           }) 
+         }
+       } 
       }
-      for(let z = 0;z<listTable.listTable.length; z++){
-      if(listTable.listTable[z].key_code ==`${fieldValues[i]}`){
-        valueChart.push({
-          name:`${listTable.listTable[z].value_code}`,
-          de: listValueNumber
-        }) 
-      }
-    } 
-   }
     }
   
    
@@ -178,7 +178,7 @@ const Charts = () => {
     let y : number = 0
     const insertChart = (data:listChart)=> { 
      
-      let converNumber = data.de.map((item:string)=> Number(item))
+       let converNumber = data.de.map((item:string)=> Number(item))
        let random =  chartColors[y++];
       return ( { 
           type: types,
@@ -211,23 +211,15 @@ const Charts = () => {
           labels: listValueAlphabet.length !==0 ? listValueAlphabet : x,
           datasets: datasets,
           xAxisID:'xAxis1',
-        })
-    
-        
-        
-      }
-      
-    
-   
-  
-}
+        })  
+      } 
+    }
   ,[value,types])
 
 
   const optionPie = {
     responsive: true,
     clamp: true,
-    
     plugins: {
       datalabels: {
         formatter: (value:any, ctx:any) => { 
@@ -249,38 +241,21 @@ const Charts = () => {
                       percentage="" 
                       return percentage;
                     }
-                    
-                  
                   }
               })
-              
-             
             }
-           
-          
         }
-        return percentage;
-         
-          
-           
-              
-            
+        return percentage;    
       },
         color: '#fff',
         font:(context: any) => {          
           var width = context.chart.width;
           var size = Math.round(width / 65);
-          
             return {
               size: size,
-             
             };
         },
-       
-        
-       
     },
-   
       legend: {
         position: 'right' as const,
         labels: {
@@ -295,8 +270,7 @@ const Charts = () => {
         display: true,
         text: `Chart ${types} ${nameChart}`,
         position: 'top' as const,
-      },
-      
+      },    
     },
     scales: {
       x: {
@@ -305,8 +279,6 @@ const Charts = () => {
       y: {
         display:false
       }},
-     
-   
   };
   
   const options = {
@@ -315,7 +287,6 @@ const Charts = () => {
       datalabels: {
          display: false
     },
-    
       legend: {
         position: 'right' as const,
         labels: {
@@ -330,15 +301,11 @@ const Charts = () => {
         display: true,
         text: `Chart ${types} ${nameChart}`,
         position: 'top' as const,
-      },
-     
+      },  
     },
-    scales: {
-     
-      x: {
-       
+    scales: {  
+      x: { 
         ticks: {
-         
           callback: function(value:any, index:any, values:any) {
             let newthis = this as any;
             let val=  newthis.getLabelForValue(value)
@@ -359,8 +326,6 @@ const Charts = () => {
           text: 'Money'
         },
       }},
-     
-   
   };
  
   //PDF
@@ -395,11 +360,8 @@ const printPDF = () => {
                 <button id="print" onClick={printPDF}>
                              <img src={ex} alt="export" title="export pdf" />
                    </button>
-
                 </div>
-           
-                    <ChartsType/>
-                   
+                    <ChartsType/> 
               </div>
           </div>
           <div className="chart__item">

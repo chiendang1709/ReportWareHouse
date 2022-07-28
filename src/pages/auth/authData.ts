@@ -104,7 +104,7 @@ export function* getListValue({payload}: {payload: string} ){
         console.log('Error')
       }
     }
-// lọc 
+// lấy dữ liệu theo filter
 export function* getFilter({payload}: {payload: Filter} ){
   
     try {
