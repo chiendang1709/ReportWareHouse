@@ -1,7 +1,7 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import createSagaMiddleware from "@redux-saga/core";
 
-import rootSaga from "../../pages/Report/rootSaga";
+import rootSaga from "../../pages/auth/rootSaga";
 import tableSlice from "pages/Report/slice/tableSlice";
 import categorySlice from "pages/Report/slice/categorySlice";
 import changeChart from "pages/Report/slice/changeChart";

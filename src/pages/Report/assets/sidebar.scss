@@ -41,8 +41,8 @@
                 overflow: hidden;
                  text-overflow: clip; 
                 margin-left:0.5vw;
-                height: 1vw;
-               font-size:1vw;
+                height: 1.4vw;
+               font-size:0.9vw;
                color:$font-color;
                transition: opacity 0.5s linear, 0.3s visibility ease;
             }
@@ -346,12 +346,12 @@
                     cursor: pointer;
                     text-align: center;
                 
-                    p{
-                        font-size: 1.5vw;
+                    p{  
+                        font-size: 1vw;
                         font-weight: 600;
                         height: 2vw;
                         color: $font-color-2;
-                        margin: auto 0;
+                        padding: 0.5vw 0;
                         overflow: hidden;
                         text-overflow: clip; 
                     }

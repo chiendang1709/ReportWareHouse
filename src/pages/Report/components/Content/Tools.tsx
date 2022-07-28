@@ -173,7 +173,8 @@ const checkGroup = (data:string)=>{
   let json:any={}
   let date1 = dateFrom.split('-')
   let date2 =dateTo.split('-')
-  if(checFields.includes("opt_bid_open_date") == false && checFields.includes("opt_bid_close_date") == false  && checFields.includes("scon_date_locked") == false  && checFields.includes("scon_posting_date") == false){
+  if(checFields.includes("opt_bid_open_date") == false && checFields.includes("opt_bid_close_date") == false  && 
+    checFields.includes("scon_date_locked") == false  && checFields.includes("scon_posting_date") == false){
     return toast.error(`${error.ERROR_NO_CHECK_DATEFILTER}`)
   }else {
     if(dateFrom === "" && dateTo === ""){
@@ -201,8 +202,7 @@ const checkGroup = (data:string)=>{
       from_dates =date1.join("/")
       to_dates  =date2.join("/")  
     }
-   
-    
+     
     }
   }
 
